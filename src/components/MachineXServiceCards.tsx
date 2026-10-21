@@ -375,6 +375,165 @@ export default function MachineXServiceCards({
         })}
       </motion.div>
 
+      {/* QUADRO COMPARATIVO DIRETO DOS 3 PLANOS */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-12 bg-white rounded-3xl border border-[#472F5B]/15 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
+      >
+        <div className="p-7 sm:p-9 border-b border-[#472F5B]/10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-[#FAF9F5]">
+          <div>
+            <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D97706] block mb-1.5">
+              COMPARAÇÃO OBJETIVA DE ESCOPO
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-serif font-light text-[#1F242D]">
+              Resumo direto: o que a Favo faz <span className="italic font-medium text-[#D97706]">vs. o que fica com você</span>
+            </h3>
+          </div>
+          <span className="text-xs text-[#4B5262] font-medium">
+            Toque ou passe o mouse em uma coluna para focar no plano acima
+          </span>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+            <thead>
+              <tr className="border-b border-[#472F5B]/15 bg-white">
+                <th className="py-5 px-6 sm:px-8 font-bold uppercase tracking-wider text-[11px] text-[#472F5B] w-[22%]">
+                  Critério Prático
+                </th>
+                <th
+                  onClick={() => setActiveId("bpo")}
+                  onMouseEnter={() => {
+                    if (typeof window !== "undefined" && window.innerWidth >= 1024) setActiveId("bpo");
+                  }}
+                  className={cn(
+                    "py-5 px-6 cursor-pointer transition-colors duration-300 w-[26%]",
+                    activeId === "bpo" ? "bg-[#472F5B]/5" : "hover:bg-[#FAF9F5]"
+                  )}
+                >
+                  <span className="font-serif text-xl font-normal text-[#1F242D] block">
+                    BPO Financeiro
+                  </span>
+                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#472F5B] mt-1">
+                    Processo Padrão
+                  </span>
+                </th>
+                <th
+                  onClick={() => setActiveId("assistencia")}
+                  onMouseEnter={() => {
+                    if (typeof window !== "undefined" && window.innerWidth >= 1024) setActiveId("assistencia");
+                  }}
+                  className={cn(
+                    "py-5 px-6 cursor-pointer transition-colors duration-300 w-[26%] border-x border-[#D97706]/20",
+                    activeId === "assistencia" ? "bg-[#D97706]/10" : "bg-[#D97706]/5 hover:bg-[#D97706]/10"
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-serif text-xl font-medium text-[#1F242D]">
+                      Assistência Virtual
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-[#D97706] text-white text-[9px] uppercase tracking-wider font-semibold">
+                      Recomendado
+                    </span>
+                  </div>
+                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#D97706] mt-1">
+                    Processo Padrão + Suporte
+                  </span>
+                </th>
+                <th
+                  onClick={() => setActiveId("gestao")}
+                  onMouseEnter={() => {
+                    if (typeof window !== "undefined" && window.innerWidth >= 1024) setActiveId("gestao");
+                  }}
+                  className={cn(
+                    "py-5 px-6 cursor-pointer transition-colors duration-300 w-[26%]",
+                    activeId === "gestao" ? "bg-[#472F5B]/5" : "hover:bg-[#FAF9F5]"
+                  )}
+                >
+                  <span className="font-serif text-xl font-normal text-[#1F242D] block">
+                    Gestão Estratégica
+                  </span>
+                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#472F5B] mt-1">
+                    Padrão + Suporte + Análise
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#472F5B]/10 text-[#4B5262] leading-relaxed">
+              {[
+                {
+                  criterion: "Para quem é indicado",
+                  bpo: "Empresas que preferem lançar pagamentos no banco internamente, mas querem controle e conciliação em dia.",
+                  assistencia: "Empresas que querem delegar toda a rotina diária de banco, boletos, notas fiscais e cobrança.",
+                  gestao: "Empresas em expansão que precisam de operação delegada + projeção de caixa e metas mensais.",
+                },
+                {
+                  criterion: "O que a Favo executa",
+                  bpo: "Organiza contas no sistema, concilia extratos diariamente (D+1) e fecha o mês.",
+                  assistencia: "Tudo do BPO + agenda pagamentos no banco, emite NFS-e/boletos, controla cartões e inadimplência.",
+                  gestao: "Tudo da Assistência + capta documentos de fornecedores, projeta fluxo futuro e elabora metas.",
+                },
+                {
+                  criterion: "O que fica a cargo do cliente",
+                  bpo: "Enviar documentos, agendar e pagar as contas no banco a partir do relatório semanal da Favo.",
+                  assistencia: "Apenas conferir e aprovar com 1 clique no app do banco os pagamentos já agendados pela Favo.",
+                  gestao: "Aprovar os agendamentos no app do banco e participar da tomada de decisão estratégica mensal.",
+                },
+                {
+                  criterion: "Frequência de relatórios e reuniões",
+                  bpo: "Relatórios semanais de contas a pagar/receber + fechamento mensal escrito.",
+                  assistencia: "Relatórios semanais + DRE mensal + Reunião mensal de apresentação de resultados.",
+                  gestao: "Relatórios semanais + DRE, gráficos e projeções + Reunião mensal de planejamento e resultados.",
+                },
+              ].map((row, idx) => (
+                <motion.tr
+                  key={row.criterion}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.45, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="group transition-colors duration-200 hover:bg-[#FAF9F5]/70"
+                >
+                  <td className="py-5 px-6 sm:px-8 font-semibold text-[#1F242D] align-top">
+                    {row.criterion}
+                  </td>
+                  <td
+                    onClick={() => setActiveId("bpo")}
+                    className={cn(
+                      "py-5 px-6 align-top cursor-pointer transition-colors duration-300",
+                      activeId === "bpo" && "bg-[#472F5B]/[0.03] text-[#1F242D]"
+                    )}
+                  >
+                    {row.bpo}
+                  </td>
+                  <td
+                    onClick={() => setActiveId("assistencia")}
+                    className={cn(
+                      "py-5 px-6 align-top cursor-pointer transition-colors duration-300 border-x border-[#D97706]/15 font-medium text-[#1F242D]",
+                      activeId === "assistencia" ? "bg-[#D97706]/10" : "bg-[#D97706]/[0.04]"
+                    )}
+                  >
+                    {row.assistencia}
+                  </td>
+                  <td
+                    onClick={() => setActiveId("gestao")}
+                    className={cn(
+                      "py-5 px-6 align-top cursor-pointer transition-colors duration-300",
+                      activeId === "gestao" && "bg-[#472F5B]/[0.03] text-[#1F242D]"
+                    )}
+                  >
+                    {row.gestao}
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </motion.div>
+
       {/* SERVIÇOS ESPECÍFICOS & IMPLEMENTAÇÃO */}
       <div className="mt-12 pt-10 border-t border-[#472F5B]/15">
         <motion.div
