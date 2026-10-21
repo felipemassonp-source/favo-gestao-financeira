@@ -78,6 +78,8 @@ export const operationalPlans: PlanData[] = [
 ];
 
 const comparisonMatrix = [
+  { feature: "Para quem é indicado", bpo: "Empresas que pagam contas internamente", assistencia: "Empresas que querem delegar a rotina bancária", gestao: "Empresas em expansão com foco em metas" },
+  { feature: "O que fica com o cliente", bpo: "Agendar e pagar no banco", assistencia: "Apenas aprovar os agendamentos no app", gestao: "Aprovar no app + reunião estratégica" },
   { feature: "Organização de contas a pagar", bpo: "Sem agendamento bancário", assistencia: "Com agendamento bancário", gestao: "Com agendamento bancário" },
   { feature: "Organização / Gestão de contas a receber", bpo: true, assistencia: true, gestao: true },
   { feature: "Conciliação bancária diária", bpo: true, assistencia: true, gestao: true },

@@ -246,24 +246,11 @@ export default function LeadCaptureForm({
               {step === 1 ? "Inicie seu Diagnóstico Personalizado" : step === 2 ? "Detalhes do seu Cenário" : "Retorno sobre sua Solicitação"}
             </h3>
           </div>
-          <div className="text-xs text-[#333A48] font-medium hidden sm:block text-right">
+          <div className="text-xs text-[#4B5262] font-medium hidden sm:block text-right">
             <span className="block">{step === 1 ? "Preenchimento rápido (1 min)" : step === 2 ? "Quase lá!" : "Confirmação Registrada"}</span>
-            <span className="text-[11px] text-[#472F5B] font-semibold">
-              Retorno em até 1 dia útil • Conversa de 20 a 30 min • Sem compromisso
+            <span className="text-[11px] text-[#472F5B]">
+              Retorno em até 1 dia útil • Sem compromisso
             </span>
-          </div>
-        </div>
-
-        {/* Faixa explicativa do que acontece após solicitar o diagnóstico */}
-        <div className="mb-6 p-3.5 rounded-2xl bg-[#FAF9F5] border border-[#472F5B]/15 grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-[#333A48]">
-          <div>
-            <strong className="text-[#472F5B]">1. Prazo de retorno:</strong> Contato em até 1 dia útil via WhatsApp ou e-mail.
-          </div>
-          <div>
-            <strong className="text-[#472F5B]">2. Formato da conversa:</strong> Reunião diagnóstica online de 20 a 30 minutos.
-          </div>
-          <div>
-            <strong className="text-[#472F5B]">3. Sem compromisso:</strong> Avaliação gratuita do cenário e proposta sob medida.
           </div>
         </div>
 
