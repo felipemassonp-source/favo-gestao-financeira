@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+}
+
+body {
+  background-color: #F7F6EE;
+  color: #232A1B;
+}
+
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+  input, textarea, [contenteditable="true"] {
+    cursor: text !important;
+  }
+}
