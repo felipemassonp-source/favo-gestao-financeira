@@ -341,7 +341,7 @@ export default function Home() {
                       src="/founder/andryelle.jpg" 
                       alt="Andryelle Niederauer - Fundadora e Estrategista Financeira da Favo"
                       onError={() => setFounderImgError(true)}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
                     <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-[#472F5B]/15 text-left shadow-lg">
