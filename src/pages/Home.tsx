@@ -343,17 +343,6 @@ export default function Home() {
                       onError={() => setFounderImgError(true)}
                       className="w-full h-full object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
-                    <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-[#472F5B]/15 text-left shadow-lg">
-                      <h4 className="text-xl font-serif font-medium text-[#1F242D]">Andryelle Niederauer</h4>
-                      <p className="text-[11px] uppercase tracking-wider text-[#D97706] font-semibold mt-0.5">
-                        Fundadora & Estrategista Financeira
-                      </p>
-                      <div className="mt-2 pt-2 border-t border-[#472F5B]/10 text-[11px] text-[#4B5262] font-medium flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        + de 20 anos de liderança em finanças empresariais
-                      </div>
-                    </div>
                   </>
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-[#472F5B]/10 to-white rounded-2xl flex flex-col items-center justify-center border border-[#472F5B]/15 p-8 text-center">
@@ -398,13 +387,13 @@ export default function Home() {
 
             <div className="space-y-5 text-[#4B5262] text-sm sm:text-base leading-relaxed">
               <p>
-                Ao longo de mais de 20 anos no mercado financeiro corporativo, vi centenas de empresários brilhantes no que vendem, mas sufocados por planilhas amadoras, misturando contas pessoais e sem saber se realmente estavam lucrando ou só girando dinheiro em caixa.
+                Ao longo de <span className="text-[#1F242D] font-medium underline decoration-[#D97706]/50 decoration-1 underline-offset-4">mais de 20 anos no mercado financeiro corporativo</span>, vi centenas de empresários brilhantes no que vendem, mas sufocados por planilhas amadoras, misturando contas pessoais e sem saber se realmente estavam lucrando ou só girando dinheiro em caixa.
               </p>
               <p>
-                A Favo nasceu com um propósito claro: libertar você da prisão operacional do financeiro para que sua energia esteja 100% voltada ao crescimento e às vendas da sua empresa.
+                A Favo nasceu com um propósito claro: <span className="text-[#1F242D] font-medium underline decoration-[#D97706]/50 decoration-1 underline-offset-4">libertar você da prisão operacional do financeiro</span> para que sua energia esteja 100% voltada ao crescimento e às vendas da sua empresa.
               </p>
               <p>
-                Cuidamos de cada nota fiscal, cada conciliação bancária e cada centavo como se a empresa fosse nossa — com o rigor de grandes corporações e a agilidade do mercado digital.
+                Cuidamos de cada nota fiscal, cada conciliação bancária e cada centavo como se a empresa fosse nossa — com o <span className="text-[#1F242D] font-medium underline decoration-[#D97706]/50 decoration-1 underline-offset-4">rigor de grandes corporações</span> e a agilidade do mercado digital.
               </p>
             </div>
 
