@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowRight, CheckCircle2, ChevronLeft, MessageCircle, Mail, Phone, ShieldCheck } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
+import { ArrowRight, CheckCircle2, ChevronLeft, MessageCircle, Mail, Phone, ShieldCheck, Lock } from "lucide-react";
 import { cn } from "../lib/utils";
 import { db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -337,10 +337,20 @@ export default function LeadCaptureForm({
               </div>
             </div>
 
-            <div className="pt-4 flex justify-end">
+            <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <p className="text-[11px] text-[#333A48] leading-relaxed flex items-start gap-2 max-w-md">
+                <Lock className="w-3.5 h-3.5 text-[#D97706] shrink-0 mt-0.5" />
+                <span>
+                  Seus dados são usados exclusivamente para elaborar seu diagnóstico e retornar pelo WhatsApp/e-mail.{" "}
+                  <Link to="/privacidade" className="text-[#472F5B] font-semibold underline hover:text-[#D97706]">
+                    Política de Privacidade (LGPD)
+                  </Link>
+                  .
+                </span>
+              </p>
               <button 
                 type="submit"
-                className="inline-flex items-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all"
+                className="inline-flex items-center justify-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all shrink-0 cursor-pointer"
               >
                 Próximo Passo <ArrowRight className="w-4 h-4" />
               </button>
@@ -442,21 +452,32 @@ export default function LeadCaptureForm({
               </div>
             )}
 
-            <div className="pt-6 flex items-center justify-between">
-              <button 
-                type="button"
-                onClick={handlePrev}
-                className="px-6 py-3.5 border border-[#472F5B]/20 text-[#472F5B] hover:bg-[#472F5B]/5 rounded-full transition-colors flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider"
-              >
-                <ChevronLeft className="w-4 h-4" /> Voltar
-              </button>
-              <button 
-                type="submit"
-                disabled={!formData.dorPrincipal || !formData.volumeOuControle}
-                className="inline-flex items-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Enviar Avaliação <ArrowRight className="w-4 h-4" />
-              </button>
+            <div className="pt-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <button 
+                  type="button"
+                  onClick={handlePrev}
+                  className="px-6 py-3.5 border border-[#472F5B]/20 text-[#472F5B] hover:bg-[#472F5B]/5 rounded-full transition-colors flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider cursor-pointer"
+                >
+                  <ChevronLeft className="w-4 h-4" /> Voltar
+                </button>
+                <button 
+                  type="submit"
+                  disabled={!formData.dorPrincipal || !formData.volumeOuControle}
+                  className="inline-flex items-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  Enviar Avaliação <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+              <p className="text-[11px] text-[#333A48] leading-relaxed flex items-center justify-center gap-1.5 text-center pt-2">
+                <Lock className="w-3.5 h-3.5 text-[#D97706] shrink-0" />
+                <span>
+                  Após o envio, você verá o resumo das suas respostas e poderá avançar no WhatsApp.{" "}
+                  <Link to="/privacidade" className="text-[#472F5B] font-semibold underline hover:text-[#D97706]">
+                    Política de Privacidade
+                  </Link>
+                </span>
+              </p>
             </div>
           </form>
         )}

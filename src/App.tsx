@@ -14,6 +14,7 @@ import SEO from "./components/SEO";
 const Consultoria = lazy(() => import("./pages/Consultoria"));
 const GestaoFinanceira = lazy(() => import("./pages/GestaoFinanceira"));
 const Obrigado = lazy(() => import("./pages/Obrigado"));
+const Privacidade = lazy(() => import("./pages/Privacidade"));
 const AdminLeads = lazy(() => import("./pages/AdminLeads"));
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/consultoria" element={<Consultoria />} />
             <Route path="/gestao-financeira" element={<GestaoFinanceira />} />
             <Route path="/obrigado" element={<Obrigado />} />
+            <Route path="/privacidade" element={<Privacidade />} />
             <Route path="/admin" element={<AdminLeads />} />
           </Routes>
         </Suspense>

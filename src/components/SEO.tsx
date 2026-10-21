@@ -39,6 +39,14 @@ const ROUTE_SEO: Record<string, PageSEOConfig> = {
     canonical: `${BASE_URL}/consultoria`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
+  "/privacidade": {
+    title: "Política de Privacidade e Proteção de Dados (LGPD) | Favo Gestão Financeira",
+    description:
+      "Política de Privacidade e conformidade com a LGPD da Favo Gestão Financeira. Transparência sobre coleta e uso de dados no diagnóstico financeiro.",
+    keywords: "política de privacidade favo, lgpd favo gestão financeira",
+    canonical: `${BASE_URL}/privacidade`,
+    robots: "index, follow",
+  },
   "/obrigado": {
     title: "Solicitação Recebida com Sucesso | Favo Gestão Financeira",
     description: "Resumo do seu diagnóstico financeiro enviado para a Favo Gestão Financeira.",

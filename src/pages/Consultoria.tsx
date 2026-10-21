@@ -75,7 +75,7 @@ export default function Consultoria() {
                 className="relative inline-flex items-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4.5 rounded-full text-xs uppercase tracking-[0.18em] font-semibold border border-[#D97706]/40 hover:border-[#D97706] shadow-xl shadow-[#472F5B]/25 hover:shadow-[0_12px_36px_rgba(217,119,6,0.35)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 group cursor-pointer overflow-hidden"
               >
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[#D97706]/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-                <span className="relative z-10">Agendar Diagnóstico Gratuito</span>
+                <span className="relative z-10">Solicitar Diagnóstico Gratuito</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300 relative z-10 text-[#FFFFF0]" />
               </button>
 
@@ -268,15 +268,15 @@ export default function Consultoria() {
           <FadeInUp>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
               <div>
-                <span className="text-[#D97706] text-[11px] uppercase tracking-[0.25em] mb-4 block font-semibold">
+                <span className="text-[#D97706] text-xs uppercase tracking-[0.25em] mb-4 block font-semibold">
                   Metodologia Validada
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-serif font-light text-[#111827] leading-tight">
                   Jornada de <br/><span className="italic text-[#D97706] font-medium">08 Semanas</span>
                 </h2>
               </div>
-              <p className="text-[#4B5563] text-sm md:text-base font-normal leading-relaxed max-w-sm">
-                Nossa Consultoria irá te guiar a encontrar os gargalos do seu financeiro e trazer ferramentas que possam te auxiliar na construção de um negócio sólido ao longo de 08 semanas de imersão.
+              <p className="text-[#333A48] text-sm md:text-base font-normal leading-relaxed max-w-sm">
+                Quatro encontros práticos e estruturados — do mapeamento dos números atuais à entrega do Raio-X executivo e do mapa estratégico com acompanhamento direto no WhatsApp.
               </p>
             </div>
             <ConsultingTimeline />

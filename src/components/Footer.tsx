@@ -71,9 +71,15 @@ export default function Footer() {
 
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-[#472F5B]/10 text-[10px] uppercase tracking-widest text-[#4B5262] flex flex-col md:flex-row justify-between items-center gap-4 font-normal">
+      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-[#472F5B]/10 text-[11px] uppercase tracking-widest text-[#333A48] flex flex-col md:flex-row justify-between items-center gap-4 font-normal">
         <p>&copy; {new Date().getFullYear()} Favo Gestão Financeira. Todos os direitos reservados.</p>
-        <div className="flex items-center gap-4 text-[#4B5262]/70">
+        <div className="flex items-center gap-6 text-[#333A48]/85">
+          <Link
+            to="/privacidade"
+            className="hover:text-[#472F5B] underline underline-offset-4 transition-colors cursor-pointer"
+          >
+            Política de Privacidade (LGPD)
+          </Link>
           <Link 
             to="/admin" 
             className="hover:text-[#472F5B] transition-colors cursor-pointer"
