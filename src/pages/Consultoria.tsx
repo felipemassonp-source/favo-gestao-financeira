@@ -51,9 +51,12 @@ export default function Consultoria() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light tracking-tight leading-[1.15] text-[#1F242D] max-w-5xl mb-8 pb-2"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-serif font-light tracking-tight leading-[1.15] text-[#1F242D] max-w-5xl mb-8 pb-2 text-balance"
         >
-          Encontre os gargalos do seu financeiro. E construa um negócio <span className="italic font-medium text-[#472F5B]">sólido.</span>
+          Encontre os gargalos do seu financeiro. E construa um{" "}
+          <span className="whitespace-nowrap">
+            negócio <span className="italic font-medium text-[#472F5B]">sólido.</span>
+          </span>
         </motion.h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">

@@ -66,9 +66,12 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light tracking-tight leading-[1.15] text-[#1F242D] max-w-5xl mb-8 pb-2"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-serif font-light tracking-tight leading-[1.15] text-[#1F242D] max-w-5xl mb-8 pb-2 text-balance"
         >
-          Seu financeiro no piloto automático. Seu foco no <span className="italic font-medium text-[#D97706]">lucro real.</span>
+          Seu financeiro no piloto automático.{" "}
+          <span className="whitespace-nowrap">
+            Seu foco no <span className="italic font-medium text-[#D97706]">lucro real.</span>
+          </span>
         </motion.h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -236,7 +239,7 @@ export default function Home() {
               <div className="pt-4 border-t border-[#472F5B]/10 flex items-center gap-2.5 text-xs sm:text-sm text-[#4B5262]">
                 <Lock className="w-4 h-4 text-[#D97706] shrink-0" />
                 <span className="leading-snug">
-                  Acesso 100% como operador secundário: você mantém o controle máster e autoriza cada transação.
+                  Perfil de operador secundário no banco: a Favo agenda os pagamentos e somente o titular autoriza a transação no app.
                 </span>
               </div>
 

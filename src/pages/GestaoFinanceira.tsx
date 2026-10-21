@@ -65,9 +65,12 @@ export default function GestaoFinanceira() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light tracking-tight leading-[1.15] text-[#1F242D] max-w-5xl mb-8 pb-2"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-serif font-light tracking-tight leading-[1.15] text-[#1F242D] max-w-5xl mb-8 pb-2 text-balance"
         >
-          Sua rotina financeira delegada. Seu tempo <span className="italic font-medium text-[#472F5B]">devolvido.</span>
+          Sua rotina financeira delegada.{" "}
+          <span className="whitespace-nowrap">
+            Seu tempo <span className="italic font-medium text-[#472F5B]">devolvido.</span>
+          </span>
         </motion.h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
@@ -108,10 +111,10 @@ export default function GestaoFinanceira() {
             {/* Badges de Garantia Operacional */}
             <div className="mt-12 flex flex-wrap items-center gap-6 text-xs text-[#4B5262] font-medium">
               <span className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-[#D97706]" /> Acesso apenas de operador (zero risco de transferência)
+                <Lock className="w-4 h-4 text-[#D97706]" /> Perfil de operador secundário (aprovação final exclusiva do titular no banco)
               </span>
               <span className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Conciliação bancária 100% diária
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Conciliação bancária diária em D+1
               </span>
             </div>
           </motion.div>
@@ -206,10 +209,10 @@ export default function GestaoFinanceira() {
               <div className="pt-4 border-t border-[#472F5B]/10 flex items-center justify-between text-[11px] text-[#4B5262]">
                 <span className="flex items-center gap-1.5 font-medium">
                   <Lock className="w-3.5 h-3.5 text-[#D97706]" />
-                  Acesso 100% como operador secundário
+                  Perfil de operador secundário (sem alçada de saque)
                 </span>
                 <span className="text-[#472F5B] font-mono text-[10px]">
-                  Zero risco
+                  Dupla alçada
                 </span>
               </div>
 

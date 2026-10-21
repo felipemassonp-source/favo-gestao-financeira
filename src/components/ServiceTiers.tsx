@@ -213,14 +213,14 @@ export default function ServiceTiers() {
           </div>
 
           <div className="p-6 bg-[#FAF9F5] border-t border-[#472F5B]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs text-[#4B5262]">
-              ✦ Todos os planos contam com segurança bancária de acesso apenas operador (zero risco de transferência desautorizada).
+            <span className="text-xs text-[#333A48]">
+              ✦ Todos os planos operam com perfil bancário de operador secundário (a Favo agenda e somente o titular autoriza no app do banco).
             </span>
             <button
-              onClick={() => scrollToContact("Gestão Financeira")}
-              className="px-6 py-3 bg-[#472F5B] text-[#FFFFF0] rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-[#361F48] transition-all"
+              onClick={() => scrollToContact("Assistência Financeira Virtual")}
+              className="px-6 py-3 bg-[#472F5B] text-[#FFFFF0] rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-[#361F48] transition-all cursor-pointer"
             >
-              Falar com Especialista
+              Solicitar Proposta no Formulário
             </button>
           </div>
         </div>

@@ -375,6 +375,139 @@ export default function MachineXServiceCards({
         })}
       </motion.div>
 
+      {/* QUADRO COMPARATIVO DIRETO: O QUE MUDA NA PRÁTICA ENTRE OS 3 PLANOS */}
+      <div className="mt-10 bg-white rounded-3xl border border-[#472F5B]/15 shadow-xs overflow-hidden">
+        <div className="p-6 sm:p-8 border-b border-[#472F5B]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#FAF9F5]">
+          <div>
+            <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#472F5B] font-mono block mb-1">
+              COMPARAÇÃO OBJETIVA DE ESCOPO
+            </span>
+            <h3 className="text-xl sm:text-2xl font-serif font-light text-[#1F242D]">
+              Resumo direto: o que a Favo faz vs. o que fica com você
+            </h3>
+          </div>
+          <span className="text-xs text-[#333A48] font-medium">
+            Escolha pela rotina atual da sua empresa
+          </span>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[680px] text-xs">
+            <thead>
+              <tr className="border-b border-[#472F5B]/15 bg-white">
+                <th className="py-4 px-6 font-bold uppercase tracking-wider text-[#472F5B] w-1/4">
+                  Critério Prático
+                </th>
+                <th className="py-4 px-5 font-bold uppercase tracking-wider text-[#1F242D] w-1/4">
+                  BPO Financeiro
+                  <span className="block text-[10px] font-normal text-[#333A48] mt-0.5">Processo Padrão</span>
+                </th>
+                <th className="py-4 px-5 font-bold uppercase tracking-wider text-[#D97706] bg-[#D97706]/5 w-1/4">
+                  Assistência Virtual ★
+                  <span className="block text-[10px] font-semibold text-[#D97706] mt-0.5">Plano Recomendado</span>
+                </th>
+                <th className="py-4 px-5 font-bold uppercase tracking-wider text-[#472F5B] w-1/4">
+                  Gestão Estratégica
+                  <span className="block text-[10px] font-normal text-[#333A48] mt-0.5">Padrão + Suporte + Análise</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#472F5B]/10 text-[#333A48]">
+              <tr>
+                <td className="py-4 px-6 font-semibold text-[#1F242D]">Para quem é indicado</td>
+                <td className="py-4 px-5">Empresas que preferem lançar pagamentos no banco internamente, mas querem controle e conciliação em dia.</td>
+                <td className="py-4 px-5 bg-[#D97706]/5 font-medium text-[#1F242D]">Empresas que querem delegar toda a rotina diária de banco, boletos, notas fiscais e cobrança.</td>
+                <td className="py-4 px-5">Empresas em expansão que precisam de operação delegada + projeção de caixa e metas mensais.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-6 font-semibold text-[#1F242D]">O que a Favo executa</td>
+                <td className="py-4 px-5">Organiza contas no sistema, concilia extratos diariamente (D+1) e fecha o mês.</td>
+                <td className="py-4 px-5 bg-[#D97706]/5 font-medium text-[#1F242D]">Tudo do BPO + agenda pagamentos no banco, emite NFS-e/boletos, controla cartões e inadimplência.</td>
+                <td className="py-4 px-5">Tudo da Assistência + capta documentos de fornecedores, projeta fluxo futuro e elabora metas.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-6 font-semibold text-[#1F242D]">O que fica a cargo do cliente</td>
+                <td className="py-4 px-5">Enviar documentos, agendar e pagar as contas no banco a partir do relatório semanal da Favo.</td>
+                <td className="py-4 px-5 bg-[#D97706]/5 font-medium text-[#1F242D]">Apenas conferir e aprovar com 1 clique no app do banco os pagamentos já agendados pela Favo.</td>
+                <td className="py-4 px-5">Aprovar os agendamentos no app do banco e participar da tomada de decisão estratégica mensal.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-6 font-semibold text-[#1F242D]">Frequência de relatórios e reuniões</td>
+                <td className="py-4 px-5">Relatórios semanais de contas a pagar/receber + fechamento mensal escrito.</td>
+                <td className="py-4 px-5 bg-[#D97706]/5 font-medium text-[#1F242D]">Relatórios semanais + DRE mensal + <strong>Reunião mensal de apresentação de resultados</strong>.</td>
+                <td className="py-4 px-5">Relatórios semanais + DRE, gráficos e projeções + <strong>Reunião mensal de planejamento e resultados</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* AMOSTRA VISUAL DE ENTREGÁVEL MENSAL (DADOS ANONIMIZADOS) */}
+      <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#301A3F] to-[#20102B] text-[#FFFFF0] border border-[#472F5B]/30 shadow-lg">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6 pb-5 border-b border-white/10">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.25em] font-mono font-semibold text-[#D97706] block mb-1">
+              EVIDÊNCIA DE ENTREGA • EXEMPLO REAL ANONIMIZADO
+            </span>
+            <h3 className="text-xl sm:text-2xl font-serif font-light text-[#FFFFF0]">
+              Veja um trecho do Relatório Mensal de Fechamento & DRE Favo
+            </h3>
+          </div>
+          <span className="text-xs bg-white/10 text-[#FFFFF0]/90 px-3.5 py-1.5 rounded-full self-start lg:self-auto">
+            Entregue até o 5º dia útil de cada mês
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-7 bg-white/5 rounded-2xl p-5 border border-white/10 font-mono text-xs">
+            <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-white/10 text-[11px] text-[#D97706]">
+              <span>DEMONSTRATIVO GERENCIAL (EMPRESA EXEMPLO LTDA)</span>
+              <span>COMPETÊNCIA: MÊS FECHADO</span>
+            </div>
+            <div className="space-y-2 text-[#FFFFF0]/90">
+              <div className="flex justify-between">
+                <span>(+) Receita Operacional Bruta Conciliada</span>
+                <strong className="text-white">R$ 142.800,00 (100%)</strong>
+              </div>
+              <div className="flex justify-between text-white/75">
+                <span>(-) Impostos s/ Faturamento & Taxas de Cartão/Boleto</span>
+                <span>- R$ 15.990,00 (11,2%)</span>
+              </div>
+              <div className="flex justify-between pt-1 border-t border-white/10">
+                <span>(=) Receita Líquida Real</span>
+                <strong className="text-white">R$ 126.810,00 (88,8%)</strong>
+              </div>
+              <div className="flex justify-between text-white/75">
+                <span>(-) Custos Diretos Operacionais & Fornecedores</span>
+                <span>- R$ 48.180,00 (33,7%)</span>
+              </div>
+              <div className="flex justify-between text-white/75">
+                <span>(-) Despesas Fixas, Folha & Pró-Labore Definido</span>
+                <span>- R$ 51.350,00 (36,0%)</span>
+              </div>
+              <div className="flex justify-between pt-2 border-t border-[#D97706]/40 text-emerald-300 font-bold text-sm">
+                <span>(=) Geração Livre de Caixa (Lucro Líquido em Caixa)</span>
+                <span>+ R$ 27.280,00 (19,1%)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-3 text-xs text-[#FFFFF0]/85">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <strong className="text-[#D97706] block mb-1 uppercase tracking-wider text-[10px]">
+                Parecer Executivo da Analista Favo
+              </strong>
+              <p className="leading-relaxed">
+                "A renegociação de pacotes de software e o pagamento de boletos sem multas economizaram R$ 1.920 neste mês. Recomendamos destinar R$ 10.000 do saldo positivo para compor a reserva de capital de giro."
+              </p>
+            </div>
+            <p className="text-[11px] text-[#FFFFF0]/70 leading-relaxed">
+              ✦ Nos planos de <strong>Assistência Virtual</strong> e <strong>Gestão Estratégica</strong>, apresentamos esses números em reunião mensal ao vivo para tirar dúvidas e apoiar suas decisões.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* SERVIÇOS ESPECÍFICOS & IMPLEMENTAÇÃO */}
       <div className="mt-12 pt-10 border-t border-[#472F5B]/15">
         <motion.div

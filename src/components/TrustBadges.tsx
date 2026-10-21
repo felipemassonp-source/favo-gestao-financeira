@@ -4,19 +4,19 @@ import { motion } from "motion/react";
 const badgesData = [
   {
     icon: Lock,
-    title: "Dados Criptografados",
-    desc: "Tráfego 100% seguro de ponta a ponta"
+    title: "Perfil Operador Bancário",
+    desc: "A Favo agenda os pagamentos no banco e somente o titular autoriza a transação no app",
   },
   {
     icon: FileText,
-    title: "Contrato com Sigilo",
-    desc: "Acordo de Confidencialidade (NDA)"
+    title: "Contrato com Sigilo (NDA)",
+    desc: "Cláusula contratual de confidencialidade sobre extratos, relatórios e documentos",
   },
   {
     icon: ShieldCheck,
-    title: "Compliance LGPD",
-    desc: "Privacidade absoluta dos seus dados"
-  }
+    title: "Conformidade LGPD & HTTPS",
+    desc: "Tráfego protegido por criptografia TLS e acesso restrito aos analistas da sua conta",
+  },
 ];
 
 export default function TrustBadges() {
@@ -25,7 +25,7 @@ export default function TrustBadges() {
       {badgesData.map((badge, idx) => {
         const Icon = badge.icon;
         return (
-          <motion.div 
+          <motion.div
             key={idx}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,8 +36,12 @@ export default function TrustBadges() {
             <div className="w-12 h-12 rounded-full bg-[#472F5B]/10 flex items-center justify-center mb-4">
               <Icon className="w-5 h-5 text-[#472F5B]" />
             </div>
-            <span className="text-xs font-serif uppercase tracking-widest text-[#1F242D] font-medium mb-1.5">{badge.title}</span>
-            <span className="text-[11px] font-normal text-[#4B5262] leading-relaxed">{badge.desc}</span>
+            <span className="text-xs font-serif uppercase tracking-widest text-[#1F242D] font-medium mb-1.5">
+              {badge.title}
+            </span>
+            <span className="text-[11px] font-normal text-[#333A48] leading-relaxed">
+              {badge.desc}
+            </span>
           </motion.div>
         );
       })}
