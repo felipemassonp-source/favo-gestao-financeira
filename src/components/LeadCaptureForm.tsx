@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, ChevronLeft, MessageCircle, Mail, Phone, Shie
 import { cn } from "../lib/utils";
 import { db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { getStoredAdsAttribution } from "./SEO";
 
 export type FormType = "bpo" | "assistencia" | "gestao" | "consultoria";
 
@@ -33,7 +34,7 @@ export default function LeadCaptureForm({
     : "https://api.whatsapp.com/send?phone=5548999725750&text=Olá,%20gostaria%20de%20conversar%20sobre%20a%20Consultoria%20Estratégica%20da%20Favo."
 }: LeadCaptureFormProps) {
   const [selectedService, setSelectedService] = useState<FormType>(
-    type === "consultoria" ? "consultoria" : "gestao"
+    type === "consultoria" ? "consultoria" : "assistencia"
   );
   const [step, setStep] = useState(1);
   const [customWhatsAppUrl, setCustomWhatsAppUrl] = useState("");
@@ -55,6 +56,7 @@ export default function LeadCaptureForm({
     const currentServiceInfo = serviceLabels[selectedService];
 
     try {
+      const adsAttribution = getStoredAdsAttribution();
       await addDoc(collection(db, "leads"), {
         nome: formData.nome,
         whatsapp: formData.whatsapp,
@@ -65,6 +67,11 @@ export default function LeadCaptureForm({
         formula: currentServiceInfo.formula,
         dorPrincipal: formData.dorPrincipal,
         volumeOuControle: formData.volumeOuControle,
+        origem: adsAttribution.utm_source || "organico_direto",
+        campanha: adsAttribution.utm_campaign || "",
+        palavraChave: adsAttribution.utm_term || "",
+        gclid: adsAttribution.gclid || "",
+        paginaEntrada: adsAttribution.landingPage || window.location.pathname,
         status: "novo",
         createdAt: new Date().toISOString()
       });

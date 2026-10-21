@@ -53,7 +53,11 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 border-t border-[#472F5B]/15 bg-[#FFFFF0]">
+    <section
+      className="py-24 border-t border-[#472F5B]/15 bg-[#FFFFF0]"
+      itemScope
+      itemType="https://schema.org/FAQPage"
+    >
       <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-16">
         
         {/* FAQ Header */}
@@ -85,12 +89,19 @@ export default function FAQ() {
                 <div 
                   key={index} 
                   className="faq-item border-b border-[#472F5B]/15 overflow-hidden"
+                  itemScope
+                  itemProp="mainEntity"
+                  itemType="https://schema.org/Question"
                 >
                   <button
                     onClick={() => toggleQuestion(index)}
+                    aria-expanded={isOpen}
                     className="w-full py-6 flex items-center justify-between text-left focus:outline-none group cursor-pointer"
                   >
-                    <h3 className={`text-base md:text-lg font-serif font-medium pr-8 transition-colors duration-300 ${isOpen ? 'text-[#472F5B]' : 'text-[#1F242D] group-hover:text-[#472F5B]'}`}>
+                    <h3
+                      itemProp="name"
+                      className={`text-base md:text-lg font-serif font-medium pr-8 transition-colors duration-300 ${isOpen ? 'text-[#472F5B]' : 'text-[#1F242D] group-hover:text-[#472F5B]'}`}
+                    >
                       {faq.question}
                     </h3>
                     <motion.div
@@ -109,8 +120,11 @@ export default function FAQ() {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        itemScope
+                        itemProp="acceptedAnswer"
+                        itemType="https://schema.org/Answer"
                       >
-                        <div className="pb-8 pr-12 text-sm font-normal text-[#4B5262] leading-relaxed">
+                        <div itemProp="text" className="pb-8 pr-12 text-sm font-normal text-[#4B5262] leading-relaxed">
                           {faq.answer}
                         </div>
                       </motion.div>

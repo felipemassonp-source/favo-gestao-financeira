@@ -10,10 +10,12 @@ import Consultoria from "./pages/Consultoria";
 import GestaoFinanceira from "./pages/GestaoFinanceira";
 import AdminLeads from "./pages/AdminLeads";
 import Preloader from "./components/Preloader";
+import SEO from "./components/SEO";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <SEO />
       <Preloader />
       <Layout>
         <Routes>

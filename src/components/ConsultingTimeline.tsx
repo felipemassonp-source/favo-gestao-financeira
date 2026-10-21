@@ -5,30 +5,30 @@ import { MessageCircle, CheckCircle2, FileText, Video, Search } from "lucide-rea
 const timelineSteps = [
   {
     encounter: "1º Encontro",
-    title: "Identificação de Gargalos e Objetivo do Empresário",
+    title: "Identificação de gargalos e objetivo do empresário",
     timing: "Semana 1",
-    description: "Identificação aprofundada dos gargalos do seu financeiro e alinhamento do objetivo do empresário para direcionar o plano.",
+    description: "Entender onde estão os principais problemas do financeiro e qual é o objetivo do empresário com o negócio.",
     icon: Search
   },
   {
     encounter: "2º Encontro",
-    title: "Mapeamento de Processos Já Existentes e Análise de Números da Empresa",
+    title: "Mapeamento de processos e análise de números",
     timing: "Semana 3",
-    description: "Mapeamento dos processos já existentes na sua empresa e análise detalhada dos números para entender a real operação.",
+    description: "Mapear os processos que já existem na empresa e analisar os números atuais.",
     icon: FileText
   },
   {
     encounter: "3º Encontro",
-    title: "Apresentação do Raio-X Financeiro e Identificação do Problema",
+    title: "Raio-X financeiro e identificação do problema",
     timing: "Semana 5",
-    description: "Apresentação do Raio-X financeiro da empresa, com diagnóstico completo e identificação precisa do problema central.",
+    description: "Apresentar o diagnóstico completo, com os números analisados e o problema central identificado.",
     icon: CheckCircle2
   },
   {
     encounter: "4º Encontro",
-    title: "Mapa Estratégico com as Melhorias a Serem Aplicadas e Ferramentas Sugeridas",
+    title: "Mapa estratégico",
     timing: "Semana 7",
-    description: "Apresentação e entrega do mapa estratégico com as melhorias a serem aplicadas na prática e lista de ferramentas sugeridas.",
+    description: "Entregar o plano com as melhorias a serem aplicadas e as ferramentas sugeridas.",
     icon: Video
   },
   {

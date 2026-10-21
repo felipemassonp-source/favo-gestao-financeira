@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger, Draggable);
 
 const testimonials = [
   {
-    author: "Juliana Librelon",
+    author: "J. Librelon",
     role: "Proprietária",
-    company: "Clínica de Estética",
+    company: "Assessoria virtual",
     text: "Andry, eu quero te abraçar! Eu não tô acreditando que tô tirando essas férias. Já tô até programando a próxima com as crianças. A tranquilidade de saber que o negócio roda financeiramente sem mim não tem preço.",
     highlight: "Ganhou tempo e liberdade",
     stars: 5
@@ -19,7 +19,7 @@ const testimonials = [
   {
     author: "Brunella Freitas",
     role: "CEO",
-    company: "Agência de Marketing",
+    company: "Agência de Videomaker",
     text: "A Andry é muito mais do que uma terceirizada. Cada solução reflete o cuidado que ela dedica. Ela não apenas entende nossas necessidades, mas nos ajuda a superar desafios de caixa. Pessoa de extrema confiança e competência!",
     highlight: "Previsibilidade de Caixa",
     stars: 5
@@ -43,17 +43,33 @@ const testimonials = [
   {
     author: "B. Dias",
     role: "Fundadora",
-    company: "E-commerce",
+    company: "Empresa confidencial",
     text: "O suporte de vocês tem sido fundamental, vocês não fazem ideia! O BPO tirou um peso enorme das minhas costas. Chega de pagar juros por esquecer vencimentos no meio da loucura das vendas.",
     highlight: "Zero Atrasos e Multas",
     stars: 5
   },
   {
-    author: "Gabriel Soares",
+    author: "Lads Queiroz",
+    role: "Sócio",
+    company: "Grupo VK Digital",
+    text: "Eu estava desesperado. Há 3 anos que nós não conseguíamos ver os números da nossa empresa e pensar nas estratégias. Foram 3 financeiros diferentes até vocês chegarem. Os sócios e eu estamos muito felizes com o que estamos construindo e tudo que você e as meninas estão trazendo de melhorias pra nós. Finalmente conseguimos analisar nossos números. Muito obrigado.",
+    highlight: "Clareza nos Números",
+    stars: 5
+  },
+  {
+    author: "Sarah Mota",
+    role: "Fundadora",
+    company: "The Good Company",
+    text: "Tem sido incrível trabalhar com a Favo! Pela primeira vez tô tendo uma visão muito cirúrgica do nosso financeiro, gastos e previsões. Todo o processo a Andry conduziu explicando cada passo e eu confio totalmente no trabalho da Favo. É ótimo dormir sabendo quanto tem no banco e qual o tamanho da nossa reserva, ou planos de ação. É muito bom poder contar com alguém para trocar ideias sobre decisões estratégicas.",
+    highlight: "Visão Cirúrgica & Reserva",
+    stars: 5
+  },
+  {
+    author: "Cássio",
     role: "Fundador",
-    company: "Startup de Tecnologia",
-    text: "Acho o máximo que a Favo consegue nos dar essa visibilidade real dos números. Não sei o que seria da saúde financeira dessa empresa sem vocês. Obrigado por olharem estrategicamente pro nosso todo.",
-    highlight: "Visão Estratégica",
+    company: "Saúde Diária",
+    text: "Meninas, eu estava fazendo o lançamento do financeiro paralelo, em planilha aqui, enquanto estamos nessa transição, por medo de dar algum desencontro, ou eu ter esquecido de passar alguma coisa pra vocês, mas acabei de perceber que está tudo perfeito. Ficou muito claro, e eu também estou surpreso por ter sido tão rápido. Vocês estão de parabéns pela entrega. Estou muito feliz.",
+    highlight: "Transição Ágil e Perfeita",
     stars: 5
   }
 ];

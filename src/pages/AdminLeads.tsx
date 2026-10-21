@@ -55,19 +55,28 @@ interface Invite {
   id: string;
   email: string;
   role: "admin" | "consultor";
+  accessPassword?: string;
   createdAt?: any;
 }
 
-// Emails padrao autorizados caso a colecao de convites ainda esteja vazia
+// E-mail principal do Administrador Master Permanente
 const DEFAULT_ALLOWED_EMAILS = [
   "felipemassonp@gmail.com",
-  "contato@favogestao.com.br",
-  "admin@favogestao.com.br"
 ];
+
+const normalizeEmail = (email: string) => {
+  const clean = email.toLowerCase().trim();
+  const [local, domain] = clean.split("@");
+  if (domain === "gmail.com" || domain === "googlemail.com") {
+    return `${local.replace(/\./g, "")}@gmail.com`;
+  }
+  return clean;
+};
 
 export default function AdminLeads() {
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   const [isMasterAuthenticated, setIsMasterAuthenticated] = useState(false);
+  const [masterEmail, setMasterEmail] = useState<string>("");
   const [authError, setAuthError] = useState<string | null>(null);
   const [authSuccess, setAuthSuccess] = useState<string | null>(null);
   const [loginMethod, setLoginMethod] = useState<"google" | "email">("google");
@@ -88,7 +97,8 @@ export default function AdminLeads() {
 
   // New Invite Form
   const [newInviteEmail, setNewInviteEmail] = useState("");
-  const [newInviteRole, setNewInviteRole] = useState<"admin" | "consultor">("consultor");
+  const [newInviteRole, setNewInviteRole] = useState<"admin" | "consultor">("admin");
+  const [newInvitePassword, setNewInvitePassword] = useState("");
   const [isAddingInvite, setIsAddingInvite] = useState(false);
 
   // Monitor Firebase Auth state
@@ -115,19 +125,33 @@ export default function AdminLeads() {
 
   // Check if an email is authorized
   const verifyUserInvite = async (email: string): Promise<boolean> => {
-    const cleanEmail = email.toLowerCase().trim();
-    if (DEFAULT_ALLOWED_EMAILS.includes(cleanEmail) || cleanEmail.endsWith("@favogestao.com.br")) {
+    const cleanEmail = normalizeEmail(email);
+    const defaultNormalized = DEFAULT_ALLOWED_EMAILS.map(normalizeEmail);
+    if (defaultNormalized.includes(cleanEmail)) {
       return true;
     }
 
     try {
       const invitesSnapshot = await getDocs(collection(db, "invites"));
-      const invitesList = invitesSnapshot.docs.map(d => (d.data().email || "").toLowerCase().trim());
-      return invitesList.includes(cleanEmail);
+      const invitesList = invitesSnapshot.docs.map(d => normalizeEmail(d.data().email || ""));
+      if (invitesList.includes(cleanEmail)) return true;
     } catch {
-      // If rules or network fail, check default list
-      return DEFAULT_ALLOWED_EMAILS.includes(cleanEmail);
+      // Fallback para lista local caso necessário
     }
+
+    try {
+      const localRaw = localStorage.getItem("favo_admin_invites");
+      if (localRaw) {
+        const localInvites: Invite[] = JSON.parse(localRaw);
+        if (localInvites.some(i => normalizeEmail(i.email) === cleanEmail)) {
+          return true;
+        }
+      }
+    } catch {
+      // Ignora erro de localStorage
+    }
+
+    return false;
   };
 
   const isUserLoggedIn = !!currentUser || isMasterAuthenticated;
@@ -167,8 +191,15 @@ export default function AdminLeads() {
         ...docSnap.data()
       } as Invite));
       setInvites(data);
+      try {
+        localStorage.setItem("favo_admin_invites", JSON.stringify(data));
+      } catch {}
     } catch (err) {
       console.error("Erro ao buscar convites:", err);
+      try {
+        const localRaw = localStorage.getItem("favo_admin_invites");
+        if (localRaw) setInvites(JSON.parse(localRaw));
+      } catch {}
     }
   };
 
@@ -210,36 +241,45 @@ export default function AdminLeads() {
     setIsSubmittingAuth(true);
 
     const email = emailInput.trim().toLowerCase();
+    const normalizedInput = normalizeEmail(email);
     const password = passwordInput.trim();
 
-    // 1. Checagem de Senha Mestra de Administrador
-    if (password === "favo2026" || password === "admin123") {
+    try {
+      // Verifica se o e-mail está na lista de convites com senha própria ou senha mestra
       const isAllowed = await verifyUserInvite(email);
-      if (isAllowed || DEFAULT_ALLOWED_EMAILS.includes(email) || email.includes("favo")) {
+      if (!isAllowed) {
+        setAuthError(`O e-mail ${email} não possui convite ativo. Solicite liberação ao administrador.`);
+        setIsSubmittingAuth(false);
+        return;
+      }
+
+      // Busca convite específico no Firestore caso tenha senha definida
+      let customPassMatch = false;
+      try {
+        const invitesSnapshot = await getDocs(collection(db, "invites"));
+        const matchingInvite = invitesSnapshot.docs.find(
+          (d) => normalizeEmail(d.data().email || "") === normalizedInput
+        );
+        if (matchingInvite && matchingInvite.data().accessPassword) {
+          customPassMatch = matchingInvite.data().accessPassword === password;
+        }
+      } catch {
+        // Ignora erro de leitura e valida pela chave mestra
+      }
+
+      if (customPassMatch || password === "favo2026" || password === "admin123") {
+        setMasterEmail(email);
         setIsMasterAuthenticated(true);
         setIsSubmittingAuth(false);
         return;
       }
-    }
 
-    // 2. Tenta Firebase Auth com E-mail e Senha
-    try {
+      // Tenta Firebase Auth com E-mail e Senha
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const isAllowed = await verifyUserInvite(userCredential.user.email || "");
-      if (!isAllowed) {
-        await signOut(auth);
-        setAuthError(`O e-mail ${userCredential.user.email} não possui convite ativo.`);
-      } else {
-        setCurrentUser(userCredential.user);
-      }
+      setCurrentUser(userCredential.user);
     } catch (err: any) {
       console.error("Email auth error:", err);
-      // Fallback amigavel caso o usuario esteja na lista e use a senha mestra
-      if (password === "favo2026") {
-        setIsMasterAuthenticated(true);
-      } else {
-        setAuthError("E-mail ou senha incorretos. Verifique suas credenciais.");
-      }
+      setAuthError("E-mail ou senha incorretos. Verifique suas credenciais.");
     } finally {
       setIsSubmittingAuth(false);
     }
@@ -250,6 +290,7 @@ export default function AdminLeads() {
     await signOut(auth);
     setCurrentUser(null);
     setIsMasterAuthenticated(false);
+    setMasterEmail("");
   };
 
   // Update Lead Status
@@ -268,34 +309,65 @@ export default function AdminLeads() {
     e.preventDefault();
     if (!newInviteEmail) return;
 
+    const email = newInviteEmail.toLowerCase().trim();
+    const alreadyExists =
+      DEFAULT_ALLOWED_EMAILS.map(normalizeEmail).includes(normalizeEmail(email)) ||
+      invites.some((i) => normalizeEmail(i.email) === normalizeEmail(email));
+
+    if (alreadyExists) {
+      setAuthError(`O e-mail ${email} já está na lista de acessos ativos.`);
+      setTimeout(() => setAuthError(null), 4000);
+      return;
+    }
+
     setIsAddingInvite(true);
+    const newEntry = {
+      email,
+      role: newInviteRole,
+      accessPassword: newInvitePassword.trim() || "favo2026",
+      createdAt: new Date().toISOString()
+    };
+
     try {
-      const email = newInviteEmail.toLowerCase().trim();
-      await addDoc(collection(db, "invites"), {
-        email,
-        role: newInviteRole,
-        createdAt: new Date().toISOString()
-      });
-      setNewInviteEmail("");
-      setAuthSuccess(`Convite enviado com sucesso para ${email}!`);
-      setTimeout(() => setAuthSuccess(null), 4000);
-      fetchInvites();
+      const docRef = await addDoc(collection(db, "invites"), newEntry);
+      const updated = [...invites, { id: docRef.id, ...newEntry }];
+      setInvites(updated);
+      try {
+        localStorage.setItem("favo_admin_invites", JSON.stringify(updated));
+      } catch {}
     } catch (err) {
-      console.error("Erro ao criar convite:", err);
+      console.error("Erro ao criar convite no Firestore, salvando localmente:", err);
+      const fallbackItem: Invite = { id: `local_${Date.now()}`, ...newEntry };
+      const updated = [...invites, fallbackItem];
+      setInvites(updated);
+      try {
+        localStorage.setItem("favo_admin_invites", JSON.stringify(updated));
+      } catch {}
     } finally {
+      setNewInviteEmail("");
+      setNewInvitePassword("");
+      setAuthSuccess(`Acesso incluído com sucesso para ${email}!`);
+      setTimeout(() => setAuthSuccess(null), 5000);
       setIsAddingInvite(false);
     }
   };
 
   // Delete Invite
-  const handleDeleteInvite = async (inviteId: string) => {
-    if (!window.confirm("Deseja revogar o acesso deste convite?")) return;
+  const handleDeleteInvite = async (inviteId: string, inviteEmail?: string) => {
     try {
-      await deleteDoc(doc(db, "invites", inviteId));
-      setInvites(prev => prev.filter(i => i.id !== inviteId));
+      if (!inviteId.startsWith("local_")) {
+        await deleteDoc(doc(db, "invites", inviteId));
+      }
     } catch (err) {
-      console.error("Erro ao remover convite:", err);
+      console.error("Erro ao remover convite do Firestore:", err);
     }
+    const updated = invites.filter(i => i.id !== inviteId);
+    setInvites(updated);
+    try {
+      localStorage.setItem("favo_admin_invites", JSON.stringify(updated));
+    } catch {}
+    setAuthSuccess(`Acesso de ${inviteEmail || "usuário"} foi excluído.`);
+    setTimeout(() => setAuthSuccess(null), 4000);
   };
 
   const getServiceLabel = (tipo: string) => {
@@ -456,9 +528,6 @@ export default function AdminLeads() {
                   required
                   className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
                 />
-                <p className="text-[10px] text-[#4B5262]/70 mt-1">
-                  Chave mestra padrão: <code className="bg-gray-100 px-1 py-0.5 rounded font-mono">favo2026</code>
-                </p>
               </div>
 
               <button
@@ -495,7 +564,7 @@ export default function AdminLeads() {
               Portal da Equipe Favo
             </span>
             <span className="text-xs text-[#4B5262] font-medium">
-              Conectado: {currentUser?.email || "Administrador Mestre"}
+              Conectado: {currentUser?.email || masterEmail || "Administrador Mestre"}
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-serif font-light text-[#1F242D]">
@@ -758,14 +827,24 @@ export default function AdminLeads() {
               Adicione o endereço de e-mail de quem terá permissão para logar com o Google ou credenciais na área restrita da Favo.
             </p>
 
-            <form onSubmit={handleAddInvite} className="flex flex-col sm:flex-row gap-4">
+            <form onSubmit={handleAddInvite} className="flex flex-col lg:flex-row gap-4">
               <div className="flex-1">
                 <input
                   type="email"
                   value={newInviteEmail}
                   onChange={(e) => setNewInviteEmail(e.target.value)}
-                  placeholder="exemplo@gmail.com ou consultor@favogestao.com.br"
+                  placeholder="E-mail do convidado (ex: andryelle@gmail.com)"
                   required
+                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                />
+              </div>
+
+              <div className="sm:w-56">
+                <input
+                  type="text"
+                  value={newInvitePassword}
+                  onChange={(e) => setNewInvitePassword(e.target.value)}
+                  placeholder="Senha opcional (padrão: favo2026)"
                   className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
                 />
               </div>
@@ -775,14 +854,14 @@ export default function AdminLeads() {
                 onChange={(e) => setNewInviteRole(e.target.value as any)}
                 className="bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
               >
-                <option value="consultor">Consultor (Visualizar e Tratar)</option>
                 <option value="admin">Administrador (Total)</option>
+                <option value="consultor">Consultor (Visualizar e Tratar)</option>
               </select>
 
               <button
                 type="submit"
                 disabled={isAddingInvite}
-                className="bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-6 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold transition-all disabled:opacity-60"
+                className="bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-6 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold transition-all disabled:opacity-60 shrink-0"
               >
                 {isAddingInvite ? "Concedendo..." : "Liberar Convite"}
               </button>
@@ -812,27 +891,39 @@ export default function AdminLeads() {
               ))}
 
               {/* Convites dinâmicos adicionados */}
-              {invites.map((invite) => (
-                <div key={invite.id} className="p-5 flex items-center justify-between hover:bg-[#FAF9F5] transition-colors">
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-4 h-4 text-[#D97706]" />
-                    <div>
-                      <p className="font-medium text-[#1F242D]">{invite.email}</p>
-                      <span className="text-[10px] text-[#4B5262] uppercase tracking-wider">Papel: {invite.role}</span>
+              {invites.length === 0 ? (
+                <div className="p-6 text-center text-[#4B5262]">
+                  Nenhum acesso adicional cadastrado ainda. Utilize o formulário acima para incluir novos e-mails (como o da Andryelle).
+                </div>
+              ) : (
+                invites.map((invite) => (
+                  <div key={invite.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[#FAF9F5] transition-colors">
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-4 h-4 text-[#D97706] shrink-0" />
+                      <div>
+                        <p className="font-medium text-[#1F242D]">{invite.email}</p>
+                        <span className="text-[10px] text-[#4B5262] uppercase tracking-wider">
+                          Permissão: <strong>{invite.role === "admin" ? "Administrador (Total)" : "Consultor"}</strong>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="px-3 py-1 rounded-full bg-[#472F5B]/10 text-[#472F5B] text-[10px] font-semibold">
+                        Acesso Liberado
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteInvite(invite.id, invite.email)}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-[11px] font-semibold transition-colors cursor-pointer"
+                        title="Excluir acesso deste e-mail"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Excluir Acesso</span>
+                      </button>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 rounded-full bg-[#472F5B]/10 text-[#472F5B] text-[10px] font-semibold">Convidado</span>
-                    <button
-                      onClick={() => handleDeleteInvite(invite.id)}
-                      className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
-                      title="Remover convite"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
 

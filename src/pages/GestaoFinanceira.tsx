@@ -140,7 +140,13 @@ export default function GestaoFinanceira() {
               {/* 3 Pilares Operacionais */}
               <div className="space-y-4 mb-6">
                 
-                <div className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
                   <div className="flex items-baseline justify-between mb-1">
                     <h4 className="text-xs font-serif font-medium text-[#1F242D]">
                       BPO Financeiro Padrão
@@ -152,9 +158,15 @@ export default function GestaoFinanceira() {
                   <p className="text-[11px] text-[#4B5262] leading-relaxed">
                     Contas a pagar e receber apuradas diariamente, conciliação de extratos bancários e gateways, e fechamento contábil mensal sem atrasos.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.47, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
                   <div className="flex items-baseline justify-between mb-1">
                     <h4 className="text-xs font-serif font-medium text-[#1F242D]">
                       Assistência Financeira Virtual
@@ -166,9 +178,15 @@ export default function GestaoFinanceira() {
                   <p className="text-[11px] text-[#4B5262] leading-relaxed">
                     Emissão ágil de notas fiscais, cobrança preventiva e amigável de clientes, organização de pastas de comprovantes e conferência de boletos.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.59, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
                   <div className="flex items-baseline justify-between mb-1">
                     <h4 className="text-xs font-serif font-medium text-[#1F242D]">
                       Gestão Financeira Estratégica
@@ -180,7 +198,7 @@ export default function GestaoFinanceira() {
                   <p className="text-[11px] text-[#4B5262] leading-relaxed">
                     Operação integral somada a DRE estruturada, fluxo de caixa projetado e reuniões periódicas para definição segura de pró-labore e investimentos.
                   </p>
-                </div>
+                </motion.div>
 
               </div>
 

@@ -34,8 +34,9 @@ export const operationalPlans: PlanData[] = [
   {
     id: "assistencia",
     name: "Assistência Financeira Virtual",
-    badge: "Processo Padrão + Suporte",
+    badge: "Recomendado • Processo Padrão + Suporte",
     formula: "PROCESSO PADRÃO + SUPORTE",
+    isPopular: true,
     description: "Operação delegada no dia a dia com agendamentos no banco, emissão fiscal, boletos e gestão ativa de cobrança.",
     idealFor: "Ideal para empresários e negócios que querem delegar o operacional bancário, emissão de notas e controle de cartões.",
     features: [
@@ -47,14 +48,14 @@ export const operationalPlans: PlanData[] = [
       "Gestão de cartão de crédito",
       "Fechamento de financeiro mensal",
       "Relatórios mensais de receitas e despesas",
+      "Reunião mensal de apresentação de resultados",
     ]
   },
   {
     id: "gestao",
     name: "Gestão Financeira",
-    badge: "Mais Completo • Recomendado",
+    badge: "Processo Padrão + Suporte + Análise",
     formula: "PROCESSO PADRÃO + SUPORTE + ANÁLISE",
-    isPopular: true,
     description: "A inteligência financeira integral da sua empresa: toda a rotina delegada somada a projeções futuras, gráficos, análise de caixa e metas.",
     idealFor: "Ideal para empresas que exigem visão executiva de alto nível, controle orçamentário profundo e projeções para crescer com segurança.",
     features: [
@@ -71,6 +72,7 @@ export const operationalPlans: PlanData[] = [
       "Análise de geração de caixa mensal",
       "Gráfico de resultados",
       "Controle e elaboração mensal de metas",
+      "Reunião mensal de planejamento e demonstração de resultados",
     ]
   }
 ];
@@ -86,6 +88,7 @@ const comparisonMatrix = [
   { feature: "Apoio na captação de documentos de fornecedores", bpo: false, assistencia: false, gestao: true },
   { feature: "Fechamento de financeiro mensal", bpo: true, assistencia: true, gestao: true },
   { feature: "Relatórios mensais de receitas e despesas", bpo: false, assistencia: true, gestao: true },
+  { feature: "Reunião mensal de apresentação de resultados", bpo: false, assistencia: true, gestao: "Com planejamento estratégico" },
   { feature: "Projeções futuras de caixa", bpo: false, assistencia: false, gestao: true },
   { feature: "Análise de geração de caixa mensal", bpo: false, assistencia: false, gestao: true },
   { feature: "Gráfico executivo de resultados", bpo: false, assistencia: false, gestao: true },

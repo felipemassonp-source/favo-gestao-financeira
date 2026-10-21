@@ -5,12 +5,13 @@ import { cn } from "../lib/utils";
 interface LogoProps {
   className?: string;
   variant?: "light" | "dark";
+  size?: "md" | "lg";
 }
 
-export default function Logo({ className, variant = "dark" }: LogoProps) {
+export default function Logo({ className, variant = "dark", size = "md" }: LogoProps) {
   const [imgError, setImgError] = useState(false);
   const textColor = variant === "dark" ? "text-[#472F5B]" : "text-[#FFFFF0]";
-  const logoSrc = variant === "dark" ? "/logo-dark.png" : "/logo-light.png";
+  const logoSrc = "/logo-favo.png";
 
   if (!imgError) {
     return (
@@ -19,7 +20,10 @@ export default function Logo({ className, variant = "dark" }: LogoProps) {
           src={logoSrc} 
           alt="Favo Gestão Financeira" 
           onError={() => setImgError(true)}
-          className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          className={cn(
+            "w-auto object-contain transition-transform duration-300 group-hover:scale-105",
+            size === "lg" ? "h-16 md:h-20" : "h-14 md:h-16"
+          )}
         />
       </div>
     );

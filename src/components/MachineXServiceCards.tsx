@@ -65,6 +65,7 @@ export const servicePlans: ServicePlan[] = [
     formula: "PADRÃO + SUPORTE",
     shortTag: "Operação Delegada",
     icon: Layers,
+    highlight: true,
     headline: "Rotina bancária delegada com agendamentos e notas",
     summary: "Assumimos a operação diária no internet banking: preparamos os pagamentos para sua aprovação com um toque, emitimos notas fiscais, boletos e gerenciamos cartões.",
     features: [
@@ -76,6 +77,7 @@ export const servicePlans: ServicePlan[] = [
       "Gestão de cartão de crédito",
       "Fechamento de financeiro mensal",
       "Relatórios mensais de receitas e despesas",
+      "Reunião mensal de apresentação de resultados",
     ],
     ctaText: "Escolher Assistência Virtual",
     whatsappMessage: "Olá! Vim pelo site da Favo e tenho interesse na Assistência Financeira Virtual (Padrão + Suporte).",
@@ -87,7 +89,6 @@ export const servicePlans: ServicePlan[] = [
     formula: "PADRÃO + SUPORTE + ANÁLISE",
     shortTag: "Inteligência Integral",
     icon: TrendingUp,
-    highlight: true,
     headline: "Visão executiva de alto nível, projeções e metas",
     summary: "O modelo mais completo da Favo: toda a rotina delegada da Assistência somada a projeções futuras de caixa, gráficos de resultados e acompanhamento de metas.",
     features: [
@@ -104,9 +105,40 @@ export const servicePlans: ServicePlan[] = [
       "Análise de geração de caixa mensal",
       "Gráfico executivo de resultados",
       "Controle e elaboração mensal de metas",
+      "Reunião mensal de planejamento e demonstração de resultados",
     ],
     ctaText: "Escolher Gestão Estratégica",
     whatsappMessage: "Olá! Vim pelo site da Favo e quero contratar a Gestão Financeira Estratégica (Mais Completo).",
+  },
+];
+
+export const additionalServices = [
+  {
+    id: "implementacao-financeiro",
+    title: "Implementação de Financeiro",
+    tag: "Estruturação & Previsibilidade",
+    description:
+      "Nós organizamos seu sistema financeiro, para que você possa organizar sua vida. Através disso você conseguirá ter previsibilidade, controlar a inadimplência e acompanhar os vencimentos.",
+    whatsappMessage:
+      "Olá! Vim pelo site da Favo e tenho interesse no serviço de Implementação de Financeiro.",
+  },
+  {
+    id: "implementacao-conta-azul",
+    title: "Implementação Conta Azul",
+    tag: "Parametrização & Treinamento",
+    description:
+      "Você contratou o Conta Azul, mas agora não sabe como usar e o que fazer? Conte conosco para implementação da ferramenta, parametrização do sistema e treinamento da sua equipe.",
+    whatsappMessage:
+      "Olá! Vim pelo site da Favo e tenho interesse no serviço de Implementação Conta Azul.",
+  },
+  {
+    id: "gestao-contas-pagar",
+    title: "Gestão de Contas a Pagar",
+    tag: "Controle de Vencimentos",
+    description:
+      "Cansada de deixar as contas vencerem por falta de organização? Nós organizamos, controlamos os vencimentos e lançamos para que você só aprove junto ao banco.",
+    whatsappMessage:
+      "Olá! Vim pelo site da Favo e tenho interesse no serviço de Gestão de Contas a Pagar.",
   },
 ];
 
@@ -121,8 +153,8 @@ export default function MachineXServiceCards({
   showHeader = false,
   whatsappBaseNumber = "5548999725750", // Telefone oficial da FAVO: (48) 99972-5750
 }: MachineXServiceCardsProps) {
-  // Inicia com o plano mais completo ("gestao") em destaque expandido
-  const [activeId, setActiveId] = useState<string>("gestao");
+  // Inicia com o plano recomendado ("assistencia") em destaque expandido
+  const [activeId, setActiveId] = useState<string>("assistencia");
 
   const buildWhatsappUrl = (message: string) => {
     return `https://api.whatsapp.com/send?phone=${whatsappBaseNumber}&text=${encodeURIComponent(message)}`;
@@ -150,7 +182,13 @@ export default function MachineXServiceCards({
       )}
 
       {/* DECK MODULAR INTERATIVO (COMPORTAMENTO MACHINEX) */}
-      <div className="flex flex-col lg:flex-row gap-6 items-stretch w-full">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col lg:flex-row gap-6 items-stretch w-full"
+      >
         {servicePlans.map((plan) => {
           const isActive = activeId === plan.id;
           const isHighlight = plan.highlight;
@@ -335,6 +373,61 @@ export default function MachineXServiceCards({
             </motion.div>
           );
         })}
+      </motion.div>
+
+      {/* SERVIÇOS ESPECÍFICOS & IMPLEMENTAÇÃO */}
+      <div className="mt-12 pt-10 border-t border-[#472F5B]/15">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6"
+        >
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D97706] font-mono block mb-1.5">
+            SOLUÇÕES ESPECÍFICAS & IMPLEMENTAÇÃO
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-serif font-light text-[#1F242D]">
+            Outros serviços sob medida para a sua empresa
+          </h3>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {additionalServices.map((srv, idx) => (
+            <motion.div
+              key={srv.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -5 }}
+              className="p-7 rounded-3xl bg-white border border-[#472F5B]/15 hover:border-[#472F5B]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <span className="inline-block px-3 py-1 rounded-full bg-[#472F5B]/10 text-[10px] font-bold uppercase tracking-wider text-[#472F5B] mb-4">
+                  {srv.tag}
+                </span>
+                <h4 className="text-xl sm:text-2xl font-serif font-normal text-[#1F242D] mb-3">
+                  {srv.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed mb-6">
+                  {srv.description}
+                </p>
+              </div>
+
+              <a
+                href={buildWhatsappUrl(srv.whatsappMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 px-5 rounded-full bg-[#FAF9F5] hover:bg-[#472F5B] text-[#472F5B] hover:text-[#FFFFF0] border border-[#472F5B]/20 hover:border-[#472F5B] text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all duration-300 group"
+              >
+                <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                <span>Solicitar este Serviço</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* RODA-PÉ DE CONFIANÇA */}

@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Testimonials from "../components/Testimonials";
-import IntegrationsBar from "../components/IntegrationsBar";
 import TrustBadges from "../components/TrustBadges";
 import InstagramFeed from "../components/InstagramFeed";
 import MachineXServiceCards from "../components/MachineXServiceCards";
@@ -33,8 +32,16 @@ export default function Home() {
     <div className="w-full bg-[#FFFFF0] text-[#1F242D] relative overflow-hidden font-sans">
       
       {/* 1. MESH GLOW BACKGROUND (Gradiente Volumétrico Sofisticado) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-[#472F5B]/10 via-[#D97706]/5 to-transparent blur-[120px] pointer-events-none -z-0" />
-      <div className="absolute top-[400px] right-[-200px] w-[600px] h-[600px] bg-[#472F5B]/5 blur-[140px] pointer-events-none -z-0" />
+      <motion.div
+        animate={{ scale: [1, 1.06, 1], opacity: [0.85, 1, 0.85] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-[#472F5B]/10 via-[#D97706]/5 to-transparent blur-[120px] pointer-events-none -z-0"
+      />
+      <motion.div
+        animate={{ scale: [1, 1.08, 1], x: [0, -20, 0] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[400px] right-[-200px] w-[600px] h-[600px] bg-[#472F5B]/5 blur-[140px] pointer-events-none -z-0"
+      />
 
       {/* Grid Hexagonal Sutil */}
       <div className="absolute inset-0 bg-honeycomb opacity-[0.5] pointer-events-none -z-0" />
@@ -103,18 +110,33 @@ export default function Home() {
 
             {/* Quick Metrics */}
             <div className="mt-14 pt-8 border-t border-[#472F5B]/15 grid grid-cols-3 gap-6 max-w-lg">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35 }}
+                whileHover={{ y: -2 }}
+              >
                 <span className="block text-2xl font-serif font-light text-[#1F242D]">100%</span>
                 <span className="text-xs text-[#4B5262] font-medium tracking-tight">Conciliado diariamente</span>
-              </div>
-              <div>
-                <span className="block text-2xl font-serif font-light text-[#1F242D]">+15 anos</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                whileHover={{ y: -2 }}
+              >
+                <span className="block text-2xl font-serif font-light text-[#1F242D]">+ de 20 anos</span>
                 <span className="text-xs text-[#4B5262] font-medium tracking-tight">Experiência financeira</span>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.55 }}
+                whileHover={{ y: -2 }}
+              >
                 <span className="block text-2xl font-serif font-light text-[#D97706]">Zero</span>
                 <span className="text-xs text-[#4B5262] font-medium tracking-tight">Tempo perdido em planilhas</span>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -128,13 +150,13 @@ export default function Home() {
             <div className="relative p-7 sm:p-9 rounded-3xl bg-white/95 border border-[#472F5B]/15 shadow-[0_24px_60px_rgba(71,47,91,0.08)] backdrop-blur-xl">
               
               <div className="pb-5 border-b border-[#472F5B]/10 mb-6">
-                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#D97706] font-semibold block mb-1.5">
+                <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#D97706] font-semibold block mb-1.5">
                   ASSESSORIA DEDICADA
                 </span>
-                <h3 className="text-xl sm:text-2xl font-serif font-light text-[#1F242D] leading-snug">
+                <h3 className="text-2xl sm:text-3xl font-serif font-light text-[#1F242D] leading-snug">
                   O que a sua empresa recebe na prática
                 </h3>
-                <p className="text-xs text-[#4B5262] mt-1.5">
+                <p className="text-sm text-[#4B5262] mt-1.5">
                   Apoio operacional e estratégico diário conduzido por especialistas.
                 </p>
               </div>
@@ -142,60 +164,78 @@ export default function Home() {
               {/* 3 Entregáveis Reais */}
               <div className="space-y-4 mb-6">
                 
-                <div className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
                   <div className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#472F5B]/10 text-[#472F5B] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-[#472F5B]/10 text-[#472F5B] flex items-center justify-center shrink-0 mt-0.5">
                       <CalendarCheck className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-serif font-medium text-[#1F242D] mb-1">
+                      <h4 className="text-sm sm:text-base font-serif font-medium text-[#1F242D] mb-1">
                         Rotina & Conciliação Diária
                       </h4>
-                      <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                        Conferência rigorosa de cada entrada e saída bancária, agendamento de pagamentos para sua aprovação e emissão pontual de notas fiscais.
+                      <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                        Conferência rigorosa de cada entrada e saída bancária, agendamento de pagamentos para sua aprovação e emissão de notas fiscais.
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.47, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
                   <div className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#472F5B]/10 text-[#472F5B] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-[#472F5B]/10 text-[#472F5B] flex items-center justify-center shrink-0 mt-0.5">
                       <FileText className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-serif font-medium text-[#1F242D] mb-1">
+                      <h4 className="text-sm sm:text-base font-serif font-medium text-[#1F242D] mb-1">
                         Fechamento & Clareza Gerencial
                       </h4>
-                      <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                        DRE gerencial mensal, fluxo de caixa projetado e relatórios explicados com linguagem acessível para guiar contratações e pró-labore.
+                      <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                        DRE gerencial mensal, fluxo de caixa projetado e relatórios explicados com linguagem acessível para guiar suas tomadas de decisões.
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.59, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
                   <div className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#25D366]/15 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-[#25D366]/15 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
                       <MessageCircle className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-serif font-medium text-[#1F242D] mb-1">
+                      <h4 className="text-sm sm:text-base font-serif font-medium text-[#1F242D] mb-1">
                         Parceria Direta no WhatsApp
                       </h4>
-                      <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                        Contato ágil e contínuo com sua analista dedicada. Dúvidas solucionadas no mesmo dia e comunicação sem intermediários burocráticos.
+                      <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                        Contato ágil e humanizado. Dúvidas solucionadas no mesmo dia e comunicação sem intermediários burocráticos.
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
               </div>
 
               {/* Selo de Garantia e Segurança Operacional */}
-              <div className="pt-4 border-t border-[#472F5B]/10 flex items-center gap-2.5 text-[11px] text-[#4B5262]">
-                <Lock className="w-3.5 h-3.5 text-[#D97706] shrink-0" />
-                <span className="leading-tight">
+              <div className="pt-4 border-t border-[#472F5B]/10 flex items-center gap-2.5 text-xs sm:text-sm text-[#4B5262]">
+                <Lock className="w-4 h-4 text-[#D97706] shrink-0" />
+                <span className="leading-snug">
                   Acesso 100% como operador secundário: você mantém o controle máster e autoriza cada transação.
                 </span>
               </div>
@@ -206,13 +246,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BARRA DE INTEGRAÇÕES & LOGOS */}
-      <IntegrationsBar />
-
       {/* SEÇÃO DE SOLUÇÕES: BPO, ASSISTÊNCIA, GESTÃO E CONSULTORIA */}
       <section id="solucoes" className="py-32 px-6 max-w-7xl mx-auto relative z-10">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
+        >
           <div>
             <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#472F5B] font-mono block mb-3">
               SOLUÇÕES SOB MEDIDA
@@ -224,7 +267,7 @@ export default function Home() {
           <p className="text-[#4B5262] text-sm md:text-base max-w-md leading-relaxed">
             Separamos com transparência total nossos modelos operacionais e estratégicos para você escolher exatamente o suporte que sua empresa precisa.
           </p>
-        </div>
+        </motion.div>
 
         {/* DECK INTERATIVO MACHINEX: BPO, ASSISTÊNCIA E GESTÃO ESTRATÉGICA */}
         <div className="mb-14">
@@ -232,7 +275,14 @@ export default function Home() {
         </div>
 
         {/* CARD DESTACADO DA CONSULTORIA FINANCEIRA */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#472F5B]/15 hover:border-[#472F5B]/40 shadow-sm hover:shadow-xl transition-all duration-300">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ y: -4 }}
+          className="p-8 sm:p-10 rounded-3xl bg-white border border-[#472F5B]/15 hover:border-[#472F5B]/40 shadow-sm hover:shadow-xl transition-all duration-300"
+        >
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 mb-3">
@@ -266,14 +316,20 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* SEÇÃO DA FUNDADORA (AUTORIDADE DE NÍVEL PREMIUM) */}
       <section className="py-28 px-6 max-w-7xl mx-auto border-t border-[#472F5B]/15 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
-          <div className="lg:col-span-5 relative">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 relative"
+          >
             <div className="aspect-[4/5] rounded-3xl bg-white border border-[#472F5B]/15 p-4 shadow-xl relative overflow-hidden group">
               <div className="w-full h-full rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#472F5B]/5 to-white flex items-center justify-center border border-[#472F5B]/15">
                 {!founderImgError ? (
@@ -292,7 +348,7 @@ export default function Home() {
                       </p>
                       <div className="mt-2 pt-2 border-t border-[#472F5B]/10 text-[11px] text-[#4B5262] font-medium flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        +15 anos de liderança em finanças empresariais
+                        + de 20 anos de liderança em finanças empresariais
                       </div>
                     </div>
                   </>
@@ -306,17 +362,29 @@ export default function Home() {
                       Fundadora & Estrategista Financeira
                     </p>
                     <div className="mt-6 pt-6 border-t border-[#472F5B]/10 w-full text-xs text-[#4B5262]">
-                      +15 anos de liderança em finanças empresariais
+                      + de 20 anos de liderança em finanças empresariais
                     </div>
                   </div>
                 )}
               </div>
             </div>
-            {/* Elemento de profundidade */}
-            <div className="absolute top-8 -right-4 w-full h-full rounded-3xl border border-[#472F5B]/20 -z-10" />
-          </div>
+            {/* Elemento de profundidade animado */}
+            <motion.div
+              initial={{ opacity: 0, x: -12, y: -12 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-8 -right-4 w-full h-full rounded-3xl border border-[#472F5B]/20 -z-10"
+            />
+          </motion.div>
 
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7"
+          >
             <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#472F5B] font-mono block mb-4">
               QUEM CUIDA DO SEU DINHEIRO
             </span>
@@ -327,13 +395,13 @@ export default function Home() {
 
             <div className="space-y-5 text-[#4B5262] text-sm sm:text-base leading-relaxed">
               <p>
-                Ao longo de mais de 15 anos no mercado financeiro corporativo, vi centenas de empresários brilhantes no que vendem, mas sufocados por planilhas amadoras, misturando contas pessoais e sem saber quanto realmente tiravam de pró-labore.
+                Ao longo de mais de 20 anos no mercado financeiro corporativo, vi centenas de empresários brilhantes no que vendem, mas sufocados por planilhas amadoras, misturando contas pessoais e sem saber se realmente estavam lucrando ou só girando dinheiro em caixa.
               </p>
               <p>
                 A Favo nasceu com um propósito claro: libertar você da prisão operacional do financeiro para que sua energia esteja 100% voltada ao crescimento e às vendas da sua empresa.
               </p>
               <p>
-                Cuidamos de cada nota fiscal, cada conciliação bancária e cada centavo como se a empresa fosse nossa — com o rigor de grandes corporações e a agilidade que o mercado digital e de serviços exige.
+                Cuidamos de cada nota fiscal, cada conciliação bancária e cada centavo como se a empresa fosse nossa — com o rigor de grandes corporações e a agilidade do mercado digital.
               </p>
             </div>
 
@@ -342,26 +410,25 @@ export default function Home() {
                 <p className="font-serif italic text-2xl text-[#1F242D]">Andryelle Niederauer</p>
                 <p className="text-xs uppercase tracking-wider text-[#4B5262] font-medium mt-1">Estrategista Financeira & Fundadora</p>
               </div>
-              <div>
-                <span className="text-xs font-serif italic text-[#472F5B] font-medium">
-                  Atendimento direto & equipe sênior dedicada
-                </span>
-              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Depoimentos e Prova Social */}
-      <section className="py-24 border-t border-[#472F5B]/10 bg-white/40">
-        <Testimonials />
-      </section>
+      <Testimonials />
 
       {/* Feed Curado do Instagram da Favo */}
       <InstagramFeed />
 
       {/* CTA Final */}
-      <section className="py-28 px-6 max-w-5xl mx-auto text-center border-t border-[#472F5B]/15">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="py-28 px-6 max-w-5xl mx-auto text-center border-t border-[#472F5B]/15"
+      >
         <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#472F5B] font-mono block mb-4">
           DIAGNÓSTICO INICIAL SEM COMPROMISSO
         </span>
@@ -387,7 +454,7 @@ export default function Home() {
         <div className="mt-12">
           <TrustBadges />
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

@@ -111,82 +111,94 @@ export default function Consultoria() {
             <div className="p-7 sm:p-9 rounded-3xl bg-white/95 border border-[#472F5B]/15 shadow-[0_24px_60px_rgba(71,47,91,0.08)] backdrop-blur-xl">
               
               <div className="pb-5 border-b border-[#472F5B]/10 mb-6">
-                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#D97706] font-semibold block mb-1.5">
+                <span className="text-xs font-mono uppercase tracking-[0.25em] text-[#D97706] font-semibold block mb-1.5">
                   MÉTODO COMPROVADO
                 </span>
-                <h3 className="text-xl sm:text-2xl font-serif font-light text-[#1F242D] leading-snug">
+                <h3 className="text-2xl sm:text-3xl font-serif font-light text-[#1F242D] leading-snug">
                   Estrutura da Imersão de 08 Semanas
                 </h3>
-                <p className="text-xs text-[#4B5262] mt-1.5">
+                <p className="text-sm text-[#4B5262] mt-1.5">
                   Diagnóstico da causa raiz, ajuste de gargalos e implantação de rotinas.
                 </p>
               </div>
 
               {/* 4 Etapas Estruturais */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3.5 mb-6">
                 
-                <div className="p-3.5 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-serif font-medium text-[#1F242D]">
-                      1. Identificação de Gargalos & Objetivo
-                    </span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-[#D97706] font-semibold">
-                      1º Encontro
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-1.5">
+                    <span className="text-sm sm:text-base font-serif font-medium text-[#1F242D] leading-snug">
+                      1º Encontro: Identificação de gargalos e objetivo do empresário
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                    Alinhamento com o empresário e mapeamento dos pontos críticos que travam a geração de caixa.
+                  <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                    Entender onde estão os principais problemas do financeiro e qual é o objetivo do empresário com o negócio.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-3.5 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-serif font-medium text-[#1F242D]">
-                      2. Mapeamento & Análise de Números
-                    </span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-[#D97706] font-semibold">
-                      2º Encontro
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-1.5">
+                    <span className="text-sm sm:text-base font-serif font-medium text-[#1F242D] leading-snug">
+                      2º Encontro: Mapeamento de processos e análise de números
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                    Auditoria de custos, separação definitiva PF/PJ e verificação da saúde das margens.
+                  <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                    Mapear os processos que já existem na empresa e analisar os números atuais.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-3.5 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-serif font-medium text-[#1F242D]">
-                      3. Apresentação do Raio-X Financeiro
-                    </span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-[#472F5B] font-semibold">
-                      3º Encontro
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-1.5">
+                    <span className="text-sm sm:text-base font-serif font-medium text-[#1F242D] leading-snug">
+                      3º Encontro: Raio-X financeiro e identificação do problema
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                    Diagnóstico objetivo e transparente: identificação clara dos ralos de dinheiro da empresa.
+                  <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                    Apresentar o diagnóstico completo, com os números analisados e o problema central identificado.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-3.5 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-serif font-medium text-[#1F242D]">
-                      4. Mapa Estratégico & Ferramentas
-                    </span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-emerald-800 font-semibold">
-                      4º Encontro
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 hover:border-[#472F5B]/30 hover:shadow-sm transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2 mb-1.5">
+                    <span className="text-sm sm:text-base font-serif font-medium text-[#1F242D] leading-snug">
+                      4º Encontro: Mapa estratégico
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#4B5262] leading-relaxed">
-                    Entrega do plano de melhorias práticas e ferramentas sugeridas para construção de um negócio perene.
+                  <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
+                    Entregar o plano com as melhorias a serem aplicadas e as ferramentas sugeridas.
                   </p>
-                </div>
+                </motion.div>
 
               </div>
 
               {/* Rodapé com entregáveis garantidos */}
-              <div className="pt-4 border-t border-[#472F5B]/10 flex items-center justify-between text-[11px] text-[#4B5262]">
+              <div className="pt-4 border-t border-[#472F5B]/10 flex items-center justify-between text-xs sm:text-sm text-[#4B5262]">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <Video className="w-3.5 h-3.5 text-[#D97706]" />
+                  <Video className="w-4 h-4 text-[#D97706]" />
                   4 sessões ao vivo (até 1h30 cada) gravadas
                 </span>
                 <span className="text-[#25D366] font-semibold">

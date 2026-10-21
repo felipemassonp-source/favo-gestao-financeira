@@ -14,58 +14,45 @@ export default function BeeCursor() {
   const mouseY = useMotionValue(0);
   const rotation = useMotionValue(0);
 
-  // Smooth out the movement slightly for a natural "flying" feel
+  // Movimento suave de voo
   const springX = useSpring(mouseX, { stiffness: 800, damping: 35, mass: 0.5 });
   const springY = useSpring(mouseY, { stiffness: 800, damping: 35, mass: 0.5 });
-  const springRot = useSpring(rotation, { stiffness: 200, damping: 20 });
+  const springRot = useSpring(rotation, { stiffness: 200, damping: 22 });
 
   useEffect(() => {
     let lastX = 0;
     let lastY = 0;
 
     const createPollen = (x: number, y: number) => {
-      // Don't create pollen if bee is hidden/hovering text
       if (isHoveringTextRef.current || !isVisibleRef.current) return;
 
-      const pollen = document.createElement('div');
-      
-      // Random size between 3px and 6px
-      const size = Math.random() * 3 + 3;
+      const pollen = document.createElement("div");
+      const size = Math.random() * 2.5 + 2;
       pollen.style.width = `${size}px`;
       pollen.style.height = `${size}px`;
-      
-      // Styling
-      pollen.style.position = 'fixed';
-      pollen.style.backgroundColor = '#D8B36B'; // Golden color
-      pollen.style.borderRadius = '50%';
-      pollen.style.pointerEvents = 'none';
-      pollen.style.zIndex = '99998'; // Just behind the bee (which is 99999)
-      
-      // Initial position (center)
-      pollen.style.left = `${x - size/2}px`;
-      pollen.style.top = `${y - size/2}px`;
-      pollen.style.opacity = '0.7';
-      
-      // Transition setup
-      pollen.style.transition = 'transform 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98), opacity 0.8s ease-out';
-      
+      pollen.style.position = "fixed";
+      pollen.style.background = "radial-gradient(circle, #F3D999 0%, #D8B36B 100%)";
+      pollen.style.boxShadow = "0 0 6px rgba(216, 179, 107, 0.65)";
+      pollen.style.borderRadius = "50%";
+      pollen.style.pointerEvents = "none";
+      pollen.style.zIndex = "99998";
+      pollen.style.left = `${x - size / 2}px`;
+      pollen.style.top = `${y - size / 2}px`;
+      pollen.style.opacity = "0.75";
+      pollen.style.transition =
+        "transform 0.85s cubic-bezier(0.21, 0.47, 0.32, 0.98), opacity 0.85s ease-out";
+
       document.body.appendChild(pollen);
-      
-      // Trigger reflow to ensure the starting position is registered
       void pollen.offsetWidth;
-      
-      // Randomize destination (drift away slightly)
-      const endX = (Math.random() - 0.5) * 30; // -15px to 15px drift
-      const endY = 15 + Math.random() * 20;    // 15px to 35px fall
-      
-      // Animate
+
+      const endX = (Math.random() - 0.5) * 26;
+      const endY = 12 + Math.random() * 18;
       pollen.style.transform = `translate(${endX}px, ${endY}px) scale(0)`;
-      pollen.style.opacity = '0';
-      
-      // Cleanup after animation finishes
+      pollen.style.opacity = "0";
+
       setTimeout(() => {
         pollen.remove();
-      }, 800);
+      }, 850);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -73,42 +60,41 @@ export default function BeeCursor() {
         setIsVisible(true);
         isVisibleRef.current = true;
       }
-      
+
       const deltaX = e.clientX - lastX;
       const deltaY = e.clientY - lastY;
-      
-      // Calculate angle in degrees if moving fast enough
+
       if (Math.abs(deltaX) > 1.5 || Math.abs(deltaY) > 1.5) {
-        // Offset by 90 degrees because our bee SVG faces UP
         const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI) + 90;
-        
-        // Handle rotation wrapping to prevent spinning (shortest path)
         let currentRot = rotation.get();
         let diff = angle - (currentRot % 360);
         if (diff > 180) diff -= 360;
         if (diff < -180) diff += 360;
-        
         rotation.set(currentRot + diff);
       }
 
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      
-      // Pollen Logic: Drop a pollen every 25 pixels of movement
-      const distSinceLastPollen = Math.hypot(e.clientX - lastPollenPos.current.x, e.clientY - lastPollenPos.current.y);
-      if (distSinceLastPollen > 25) {
+
+      const distSinceLastPollen = Math.hypot(
+        e.clientX - lastPollenPos.current.x,
+        e.clientY - lastPollenPos.current.y
+      );
+      if (distSinceLastPollen > 28) {
         createPollen(e.clientX, e.clientY);
         lastPollenPos.current = { x: e.clientX, y: e.clientY };
       }
-      
+
       lastX = e.clientX;
       lastY = e.clientY;
 
-      // Check what we are hovering
       const target = e.target as HTMLElement;
-      
-      // Check for text inputs
-      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.getAttribute('contenteditable') === 'true') {
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.tagName === "SELECT" ||
+        target.getAttribute("contenteditable") === "true"
+      ) {
         if (!isHoveringTextRef.current) {
           setIsHoveringText(true);
           isHoveringTextRef.current = true;
@@ -119,8 +105,10 @@ export default function BeeCursor() {
           setIsHoveringText(false);
           isHoveringTextRef.current = false;
         }
-        // Check for links and buttons
-        const isInteractive = target.closest('a') !== null || target.closest('button') !== null || target.closest('[role="button"]') !== null;
+        const isInteractive =
+          target.closest("a") !== null ||
+          target.closest("button") !== null ||
+          target.closest('[role="button"]') !== null;
         setIsHoveringInteractive(isInteractive);
       }
     };
@@ -143,9 +131,8 @@ export default function BeeCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [mouseX, mouseY, rotation]); // Dependencies remain stable
+  }, [mouseX, mouseY, rotation]);
 
-  // Don't render on touch devices
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
     return null;
   }
@@ -158,31 +145,222 @@ export default function BeeCursor() {
         y: springY,
         rotate: springRot,
         opacity: isVisible && !isHoveringText ? 1 : 0,
-        // Offset the center of the bee to the cursor position
         translateX: "-50%",
         translateY: "-50%",
+        filter: "drop-shadow(0 2px 5px rgba(31, 36, 45, 0.22))",
       }}
       animate={{
-        scale: isVisible && !isHoveringText ? (isHoveringInteractive ? 1.3 : 1) : 0.5,
+        scale: isVisible && !isHoveringText ? (isHoveringInteractive ? 1.22 : 1) : 0.5,
       }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      transition={{ type: "spring", stiffness: 320, damping: 22 }}
     >
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Left Wing */}
-        <path d="M11 10C8 5 4 4 2 6C0 7.5 1 11 5 11.5C8 12 10 11 11 10Z" fill="#fffff0" stroke="#b2893d" strokeWidth="1" strokeLinejoin="round"/>
-        {/* Right Wing */}
-        <path d="M13 10C16 5 20 4 22 6C24 7.5 23 11 19 11.5C16 12 14 11 13 10Z" fill="#fffff0" stroke="#b2893d" strokeWidth="1" strokeLinejoin="round"/>
-        {/* Body */}
-        <rect x="8" y="7" width="8" height="12" rx="4" fill="#b2893d"/>
-        {/* Stripes */}
-        <line x1="8" y1="11" x2="16" y2="11" stroke="#472f5b" strokeWidth="2"/>
-        <line x1="8" y1="15" x2="16" y2="15" stroke="#472f5b" strokeWidth="2"/>
-        {/* Stinger */}
-        <path d="M12 19L12 22" stroke="#472f5b" strokeWidth="1.5" strokeLinecap="round"/>
-        {/* Head/Antennae */}
-        <circle cx="12" cy="6" r="2.5" fill="#472f5b"/>
-        <path d="M11 4C11 4 9 2 8 2" stroke="#472f5b" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M13 4C13 4 15 2 16 2" stroke="#472f5b" strokeWidth="1.5" strokeLinecap="round"/>
+      {/* Abelha Favo Fineline Inspirada na Logo Oficial */}
+      <svg
+        width="34"
+        height="34"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Antenas delicadas */}
+        <path
+          d="M29.5 14.5C28.5 11.2 26.2 9.5 23.8 9.2"
+          stroke="#23192D"
+          strokeWidth="1.35"
+          strokeLinecap="round"
+        />
+        <circle cx="23.5" cy="9.2" r="1" fill="#D8B36B" />
+        <path
+          d="M34.5 14.5C35.5 11.2 37.8 9.5 40.2 9.2"
+          stroke="#23192D"
+          strokeWidth="1.35"
+          strokeLinecap="round"
+        />
+        <circle cx="40.5" cy="9.2" r="1" fill="#D8B36B" />
+
+        {/* Patinhas dianteiras e traseiras sutis */}
+        <path
+          d="M27.5 20.5C24.8 18.8 23.2 16.8 22.5 14.8"
+          stroke="#23192D"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M36.5 20.5C39.2 18.8 40.8 16.8 41.5 14.8"
+          stroke="#23192D"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M26.8 37.5C24.5 40.5 23.2 43 22.2 45.2"
+          stroke="#23192D"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M37.2 37.5C39.5 40.5 40.8 43 41.8 45.2"
+          stroke="#23192D"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+
+        {/* ================= ASAS ESQUERDAS (Com vitral de favo) ================= */}
+        <g>
+          {/* Asa Superior Esquerda */}
+          <path
+            d="M27.2 25.5C19.5 19.5 10.2 17.2 5.2 19.2C3.2 20 3.2 23.8 6.5 27.5C10.5 31.8 19.2 31.5 27.2 27.8Z"
+            fill="#FFFFF0"
+            fillOpacity="0.92"
+            stroke="#23192D"
+            strokeWidth="1.35"
+            strokeLinejoin="round"
+          />
+          {/* Célula roxa na ponta da asa superior esquerda (fiel à logo) */}
+          <path
+            d="M5.2 19.2C7.8 18.2 11.4 18.5 14.5 19.8L11.8 24.2L6.2 25.2C4 23 3.6 20 5.2 19.2Z"
+            fill="#472F5B"
+          />
+          {/* Veios geométricos internos da asa superior esquerda */}
+          <path
+            d="M14.5 19.8L11.8 24.2L16.5 26.8L21.5 24.5M11.8 24.2L7.2 27.8M16.5 26.8L14.2 30.2M20.5 22.2L25.5 26.2"
+            stroke="#23192D"
+            strokeWidth="1.05"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Asa Inferior Esquerda */}
+          <path
+            d="M27.2 28.2C20.5 30.2 14.8 33.8 14.2 37.8C13.8 40.5 16.8 42.2 20.2 40.8C23.8 39.2 26.2 34.2 27.4 29.8Z"
+            fill="#FFFFF0"
+            fillOpacity="0.92"
+            stroke="#23192D"
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Detalhe roxo na ponta da asa inferior esquerda */}
+          <path
+            d="M14.3 37.2L19.2 36.8L20.8 40.4C17.4 41.9 14.1 40.2 14.3 37.2Z"
+            fill="#472F5B"
+          />
+          <path
+            d="M19.2 36.8L23.5 33.5M19.2 36.8L16.5 34.2"
+            stroke="#23192D"
+            strokeWidth="1"
+            strokeLinecap="round"
+          />
+        </g>
+
+        {/* ================= ASAS DIREITAS (Com vitral de favo) ================= */}
+        <g>
+          {/* Asa Superior Direita */}
+          <path
+            d="M36.8 25.5C44.5 19.5 53.8 17.2 58.8 19.2C60.8 20 60.8 23.8 57.5 27.5C53.5 31.8 44.8 31.5 36.8 27.8Z"
+            fill="#FFFFF0"
+            fillOpacity="0.92"
+            stroke="#23192D"
+            strokeWidth="1.35"
+            strokeLinejoin="round"
+          />
+          {/* Célula roxa na ponta da asa superior direita */}
+          <path
+            d="M58.8 19.2C56.2 18.2 52.6 18.5 49.5 19.8L52.2 24.2L57.8 25.2C60 23 60.4 20 58.8 19.2Z"
+            fill="#472F5B"
+          />
+          {/* Veios geométricos internos da asa superior direita */}
+          <path
+            d="M49.5 19.8L52.2 24.2L47.5 26.8L42.5 24.5M52.2 24.2L56.8 27.8M47.5 26.8L49.8 30.2M43.5 22.2L38.5 26.2"
+            stroke="#23192D"
+            strokeWidth="1.05"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Asa Inferior Direita */}
+          <path
+            d="M36.8 28.2C43.5 30.2 49.2 33.8 49.8 37.8C50.2 40.5 47.2 42.2 43.8 40.8C40.2 39.2 37.8 34.2 36.6 29.8Z"
+            fill="#FFFFF0"
+            fillOpacity="0.92"
+            stroke="#23192D"
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Detalhe roxo na ponta da asa inferior direita */}
+          <path
+            d="M49.7 37.2L44.8 36.8L43.2 40.4C46.6 41.9 49.9 40.2 49.7 37.2Z"
+            fill="#472F5B"
+          />
+          <path
+            d="M44.8 36.8L40.5 33.5M44.8 36.8L47.5 34.2"
+            stroke="#23192D"
+            strokeWidth="1"
+            strokeLinecap="round"
+          />
+        </g>
+
+        {/* ================= CORPO CENTRAL (Cabeça, Tórax e Abdômen) ================= */}
+        {/* Cabeça */}
+        <ellipse
+          cx="32"
+          cy="17.8"
+          rx="4.2"
+          ry="3.6"
+          fill="#FFFFF0"
+          stroke="#23192D"
+          strokeWidth="1.4"
+        />
+
+        {/* Tórax com toque dourado suave */}
+        <ellipse
+          cx="32"
+          cy="24.5"
+          rx="5.2"
+          ry="4.6"
+          fill="#FAF4E4"
+          stroke="#23192D"
+          strokeWidth="1.45"
+        />
+        <path
+          d="M27.4 23.2C30.2 21.8 33.8 21.8 36.6 23.2"
+          stroke="#D8B36B"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+
+        {/* Abdômen orgânico afunilado */}
+        <path
+          d="M26.8 30.2C26.2 37.5 28.2 45.2 32 49.2C35.8 45.2 37.8 37.5 37.2 30.2C35.2 28.8 28.8 28.8 26.8 30.2Z"
+          fill="#FFFFF0"
+          stroke="#23192D"
+          strokeWidth="1.45"
+          strokeLinejoin="round"
+        />
+
+        {/* Listras curvas orgânicas do abdômen (estilo gravura da logo) */}
+        <path
+          d="M26.9 33.2C30.2 34.6 33.8 34.6 37.1 33.2"
+          stroke="#23192D"
+          strokeWidth="1.35"
+          strokeLinecap="round"
+        />
+        <path
+          d="M27.1 36.8C30.3 38.2 33.7 38.2 36.9 36.8"
+          stroke="#472F5B"
+          strokeWidth="1.45"
+          strokeLinecap="round"
+        />
+        <path
+          d="M27.8 40.4C30.5 41.6 33.5 41.6 36.2 40.4"
+          stroke="#23192D"
+          strokeWidth="1.35"
+          strokeLinecap="round"
+        />
+        <path
+          d="M29.1 44C31 44.8 33 44.8 34.9 44"
+          stroke="#D8B36B"
+          strokeWidth="1.35"
+          strokeLinecap="round"
+        />
       </svg>
     </motion.div>
   );
