@@ -3,17 +3,20 @@ Allow: /
 Allow: /gestao-financeira
 Allow: /consultoria
 Disallow: /admin
+Disallow: /obrigado
 
 User-agent: AdsBot-Google
 Allow: /
 Allow: /gestao-financeira
 Allow: /consultoria
+Allow: /obrigado
 Disallow: /admin
 
 User-agent: AdsBot-Google-Mobile
 Allow: /
 Allow: /gestao-financeira
 Allow: /consultoria
+Allow: /obrigado
 Disallow: /admin
 
 Sitemap: https://favogestaofinanceira.com.br/sitemap.xml

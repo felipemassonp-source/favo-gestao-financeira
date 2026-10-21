@@ -12,21 +12,39 @@ export default defineConfig(() => {
       },
     },
     build: {
+      chunkSizeWarningLimit: 600,
       rollupOptions: {
         output: {
-          manualChunks: {
-            vendor: ['react', 'react-dom', 'react-router-dom'],
-            firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
-            animations: ['motion', 'gsap', 'lenis'],
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('firebase/auth') || id.includes('@firebase/auth')) {
+                return 'firebase-auth';
+              }
+              if (id.includes('firebase/firestore') || id.includes('@firebase/firestore')) {
+                return 'firebase-firestore';
+              }
+              if (id.includes('firebase')) {
+                return 'firebase-core';
+              }
+              if (id.includes('gsap')) {
+                return 'gsap';
+              }
+              if (id.includes('motion') || id.includes('framer-motion')) {
+                return 'motion';
+              }
+              if (id.includes('lucide-react')) {
+                return 'icons';
+              }
+              if (id.includes('react-dom') || id.includes('react-router') || id.includes('/react/')) {
+                return 'vendor-react';
+              }
+            }
           },
         },
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };

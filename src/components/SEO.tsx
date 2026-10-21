@@ -39,6 +39,13 @@ const ROUTE_SEO: Record<string, PageSEOConfig> = {
     canonical: `${BASE_URL}/consultoria`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
+  "/obrigado": {
+    title: "Solicitação Recebida com Sucesso | Favo Gestão Financeira",
+    description: "Resumo do seu diagnóstico financeiro enviado para a Favo Gestão Financeira.",
+    keywords: "",
+    canonical: `${BASE_URL}/obrigado`,
+    robots: "noindex, nofollow",
+  },
   "/admin": {
     title: "Acesso Restrito | Favo Gestão Financeira",
     description: "Painel administrativo restrito da Favo Gestão Financeira.",

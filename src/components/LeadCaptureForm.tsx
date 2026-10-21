@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, CheckCircle2, ChevronLeft, MessageCircle, Mail, Phone, ShieldCheck } from "lucide-react";
 import { cn } from "../lib/utils";
 import { db } from "../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { getStoredAdsAttribution } from "./SEO";
+import type { LeadSubmissionSummary } from "../pages/Obrigado";
 
 export type FormType = "bpo" | "assistencia" | "gestao" | "consultoria";
 
@@ -33,6 +35,7 @@ export default function LeadCaptureForm({
     ? "https://api.whatsapp.com/send?phone=5548999725750&text=Olá,%20gostaria%20de%20um%20diagnóstico%20de%20BPO%20Financeiro%20para%20minha%20empresa."
     : "https://api.whatsapp.com/send?phone=5548999725750&text=Olá,%20gostaria%20de%20conversar%20sobre%20a%20Consultoria%20Estratégica%20da%20Favo."
 }: LeadCaptureFormProps) {
+  const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState<FormType>(
     type === "consultoria" ? "consultoria" : "assistencia"
   );
@@ -100,7 +103,30 @@ export default function LeadCaptureForm({
     const encodedText = encodeURIComponent(text);
     const finalWhatsApp = `https://wa.me/${phone}?text=${encodedText}`;
     setCustomWhatsAppUrl(finalWhatsApp);
+
+    const summaryPayload: LeadSubmissionSummary = {
+      nome: formData.nome,
+      empresa: formData.empresa,
+      email: formData.email,
+      whatsapp: formData.whatsapp,
+      tipo: selectedService,
+      plano: currentServiceInfo.name,
+      formula: currentServiceInfo.formula,
+      dorPrincipal: formData.dorPrincipal,
+      volumeOuControle: formData.volumeOuControle,
+      whatsappUrl: finalWhatsApp,
+      classification: getClassification(),
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      sessionStorage.setItem("favo_last_lead", JSON.stringify(summaryPayload));
+    } catch {
+      // ignore
+    }
+
     setStep(3);
+    navigate("/obrigado", { state: summaryPayload });
   };
 
   const bpoQuestions = {
@@ -324,18 +350,26 @@ export default function LeadCaptureForm({
 
         {step === 2 && (
           <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-            {/* Informa o serviço selecionado */}
-            <div className="p-3.5 rounded-xl bg-[#472F5B]/5 border border-[#472F5B]/15 flex items-center justify-between text-xs">
-              <span className="text-[#4B5262]">
-                Plano selecionado: <strong className="text-[#472F5B]">{serviceLabels[selectedService].name}</strong> ({serviceLabels[selectedService].formula})
-              </span>
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="text-[11px] text-[#D97706] font-semibold underline hover:text-[#111827]"
-              >
-                Alterar
-              </button>
+            {/* Resumo dos dados preenchidos no Passo 1 */}
+            <div className="p-4 rounded-2xl bg-[#472F5B]/5 border border-[#472F5B]/15 space-y-2 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[#4B5262]">
+                  Plano selecionado: <strong className="text-[#472F5B]">{serviceLabels[selectedService].name}</strong> ({serviceLabels[selectedService].formula})
+                </span>
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="text-[11px] text-[#D97706] font-semibold underline hover:text-[#111827] cursor-pointer"
+                >
+                  Editar Dados
+                </button>
+              </div>
+              <div className="pt-2 border-t border-[#472F5B]/10 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-[#4B5262]">
+                <span><strong>Nome:</strong> {formData.nome}</span>
+                <span><strong>Empresa:</strong> {formData.empresa}</span>
+                <span><strong>WhatsApp:</strong> {formData.whatsapp}</span>
+                <span><strong>E-mail:</strong> {formData.email}</span>
+              </div>
             </div>
 
             {/* Question 1 */}
@@ -385,6 +419,28 @@ export default function LeadCaptureForm({
                 ))}
               </div>
             </div>
+
+            {/* Resumo Dinâmico antes de enviar */}
+            {(formData.dorPrincipal || formData.volumeOuControle) && (
+              <div className="p-4 rounded-2xl bg-[#FAF9F5] border border-[#D97706]/30 text-xs space-y-1.5">
+                <span className="text-[10px] uppercase tracking-widest font-semibold text-[#D97706] block">
+                  Resumo do seu Diagnóstico
+                </span>
+                <p className="text-[#1F242D]">
+                  <strong>{formData.nome}</strong> ({formData.empresa}) • Plano: <strong className="text-[#472F5B]">{serviceLabels[selectedService].name}</strong>
+                </p>
+                {formData.dorPrincipal && (
+                  <p className="text-[#4B5262]">
+                    • {selectedService === "consultoria" ? "Objetivo:" : "Dificuldade:"} <strong>{formData.dorPrincipal}</strong>
+                  </p>
+                )}
+                {formData.volumeOuControle && (
+                  <p className="text-[#4B5262]">
+                    • {selectedService === "consultoria" ? "Faturamento:" : "Volume mensal:"} <strong>{formData.volumeOuControle}</strong>
+                  </p>
+                )}
+              </div>
+            )}
 
             <div className="pt-6 flex items-center justify-between">
               <button 
