@@ -30,7 +30,7 @@ import FAQ from "../components/FAQ";
 import ServiceTiers from "../components/ServiceTiers";
 
 const platforms = [
-  "Hotmart", "Kiwify", "Eduzz", "Ticto", "Asaas", "Conta Azul", "Omie", "Cora", "Inter PJ", "Itaú Empresas"
+  "Hotmart", "Kiwify", "Eduzz", "Asaas", "Conta Azul", "Omie", "Cora", "Inter PJ", "Itaú Empresas"
 ];
 
 export default function GestaoFinanceira() {
