@@ -1,1 +1,6 @@
-{"name":"Favo Gestão Financeira","description":"Consultoria e gestão financeira corporativa com interatividade moderna e foco em conversão.","requestFramePermissions":[],"majorCapabilities":["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]}
+{
+  "name": "Favo Gestão Financeira",
+  "description": "Consultoria e gestão financeira corporativa com interatividade moderna e foco em conversão.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -3,11 +3,27 @@
 @theme {
   --font-sans: "Montserrat", sans-serif;
   --font-serif: "Cormorant Garamond", serif;
+  --color-berinjela: #472F5B;
+  --color-berinjela-dark: #321B42;
+  --color-berinjela-light: #5C3D74;
+  --color-grafite: #1F242D;
+  --color-grafite-muted: #4B5262;
+  --color-offwhite: #FFFFF0;
+  --color-offwhite-alt: #FAF9F5;
+  --color-dourado: #D97706;
 }
 
 body {
-  background-color: #F7F6EE;
-  color: #232A1B;
+  background-color: #FFFFF0;
+  color: #1F242D;
+}
+
+.bg-honeycomb {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 96 L56 80 L56 48 L28 64 L0 48 L0 80 Z' fill='none' stroke='%23472F5B' stroke-width='1' stroke-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.bg-honeycomb-amber {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 96 L56 80 L56 48 L28 64 L0 48 L0 80 Z' fill='none' stroke='%23D97706' stroke-width='1' stroke-opacity='0.08'/%3E%3C/svg%3E");
 }
 
 @media (pointer: fine) {
@@ -17,4 +33,19 @@ body {
   input, textarea, [contenteditable="true"] {
     cursor: text !important;
   }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
 }

@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "Leads preenchendo o formulario de diagnostico",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string", "description": "Nome completo" },
+        "whatsapp": { "type": "string", "description": "Numero de WhatsApp" },
+        "email": { "type": "string", "description": "E-mail profissional" },
+        "empresa": { "type": "string", "description": "Nome da empresa" },
+        "tipo": { "type": "string", "description": "Tipo de servico (bpo ou consultoria)" },
+        "dorPrincipal": { "type": "string", "description": "Maior dificuldade ou objetivo" },
+        "volumeOuControle": { "type": "string", "description": "Volume ou faturamento" },
+        "status": { "type": "string", "description": "Status do lead" },
+        "createdAt": { "type": "string", "description": "Data de criacao" }
+      },
+      "required": ["nome", "whatsapp", "email", "empresa", "tipo", "createdAt"]
+    },
+    "Invite": {
+      "title": "Invite",
+      "description": "E-mails convidados para acessar o painel administrativo",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "E-mail autorizado" },
+        "role": { "type": "string", "description": "Papel do usuario (admin, consultor)" },
+        "createdAt": { "type": "string", "description": "Data de criacao do convite" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Colecao de leads capturados pelo site"
+    },
+    "/invites/{inviteId}": {
+      "schema": "Invite",
+      "description": "Lista de e-mails convidados para acesso admin"
+    }
+  }
+}

@@ -1,107 +1,99 @@
 import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { ArrowRight, TrendingUp, Clock, Target } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from "motion/react";
+import { TrendingUp, Clock, Target } from "lucide-react";
 
 export default function CaseStudy() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const elements = gsap.utils.toArray('.case-animate');
-    
-    gsap.from(elements, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-      },
-      opacity: 0,
-      y: 30,
-      duration: 1.2,
-      stagger: 0.2,
-      ease: "power3.out"
-    });
-  }, { scope: containerRef });
-
   return (
-    <section ref={containerRef} className="py-24 bg-[#472f5b] text-[#fffff0] my-20">
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={containerRef} className="py-28 bg-[#472F5B] text-[#FFFFF0] my-20 rounded-3xl relative overflow-hidden shadow-2xl">
+      {/* Decorative subtle honeycomb grid on berinjela background */}
+      <div className="absolute inset-0 bg-honeycomb opacity-10 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
           
           {/* Narrative / Context */}
-          <div className="w-full lg:w-1/2">
-            <div className="case-animate flex items-center gap-4 mb-8">
-              <span className="h-[1px] w-12 bg-[#D8B36B]"></span>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-light text-[#D8B36B]">Estudo de Caso Real</span>
-            </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full lg:w-1/2"
+          >
+            <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#D97706] font-mono block mb-4">
+              ESTUDO DE CASO REAL
+            </span>
             
-            <h2 className="case-animate text-4xl md:text-5xl font-serif font-light uppercase tracking-widest mb-8">
-              Do Caos à <br/><span className="italic lowercase text-[#D8B36B]">Previsibilidade</span>
+            <h2 className="text-3xl sm:text-5xl font-serif font-light tracking-tight leading-tight mb-8">
+              Do Caos à <br/><span className="italic text-[#D97706] font-medium">Previsibilidade Total</span>
             </h2>
             
-            <div className="case-animate space-y-8">
+            <div className="space-y-8">
               <div>
-                <h4 className="text-xs uppercase tracking-widest text-[#D8B36B] mb-3 font-medium">O Cenário (Antes)</h4>
-                <p className="text-sm font-normal text-[#fffff0]/90 leading-relaxed tracking-wide">
-                  Uma agência de marketing digital que crescia rápido, mas os sócios não sabiam se a empresa dava lucro. 
-                  Mistura de contas pessoais e jurídicas, precificação baseada no "feeling" e muito tempo gasto apagando incêndios financeiros.
+                <h4 className="text-xs uppercase tracking-widest text-[#D97706] mb-3 font-semibold">O Cenário (Antes)</h4>
+                <p className="text-sm font-normal text-[#FFFFF0]/85 leading-relaxed">
+                  Uma empresa de serviços que crescia rápido, mas os sócios enfrentavam desorganização nas contas a pagar e receber, falta de conciliação bancária diária e muito tempo gasto apagando incêndios financeiros.
                 </p>
               </div>
               
               <div>
-                <h4 className="text-xs uppercase tracking-widest text-[#D8B36B] mb-3 font-medium">A Solução Favo (6 Semanas)</h4>
-                <p className="text-sm font-normal text-[#fffff0]/90 leading-relaxed tracking-wide">
-                  Implantamos um BPO Financeiro integrado ao Conta Azul. Mapeamos os custos fixos, separamos o pró-labore 
-                  e desenhamos DREs gerenciais semanais. Passamos a atuar como um CFO virtual, guiando as tomadas de decisão.
+                <h4 className="text-xs uppercase tracking-widest text-[#D97706] mb-3 font-semibold">A Solução Favo (Consultoria & Gestão)</h4>
+                <p className="text-sm font-normal text-[#FFFFF0]/85 leading-relaxed">
+                  Estruturamos a conciliação bancária, organizamos o contas a pagar e a receber e entregamos relatórios mensais de receitas e despesas com fechamento rigoroso. A consultoria em 4 encontros destravou os gargalos e entregou um mapa estratégico definitivo.
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Metrics */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center gap-8">
-            <div className="case-animate bg-[#fffff0]/5 border border-[#D8B36B]/20 p-8 hover:bg-[#fffff0]/10 transition-colors">
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full lg:w-1/2 flex flex-col justify-center gap-6"
+          >
+            <div className="bg-[#FFFFF0]/5 border border-[#FFFFF0]/15 rounded-3xl p-8 hover:bg-[#FFFFF0]/10 transition-colors shadow-sm">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#D8B36B]/20 flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-[#D8B36B]" />
+                <div className="w-10 h-10 rounded-2xl bg-[#D97706]/20 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-[#D97706]" />
                 </div>
-                <h4 className="text-sm font-serif uppercase tracking-widest">Lucratividade</h4>
+                <h4 className="text-sm font-serif uppercase tracking-widest font-medium">Lucratividade</h4>
               </div>
               <div className="flex items-end gap-3">
-                <span className="text-5xl font-serif font-light text-[#D8B36B]">+45%</span>
-                <span className="text-xs font-normal text-[#fffff0] tracking-wide pb-1">de margem líquida</span>
+                <span className="text-5xl font-serif font-light text-[#D97706]">+45%</span>
+                <span className="text-xs font-normal text-[#FFFFF0]/80 tracking-wide pb-1">de margem líquida real</span>
               </div>
             </div>
 
-            <div className="case-animate bg-[#fffff0]/5 border border-[#D8B36B]/20 p-8 hover:bg-[#fffff0]/10 transition-colors">
+            <div className="bg-[#FFFFF0]/5 border border-[#FFFFF0]/15 rounded-3xl p-8 hover:bg-[#FFFFF0]/10 transition-colors shadow-sm">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#D8B36B]/20 flex items-center justify-center">
-                  <Clock className="w-5 h-5 text-[#D8B36B]" />
+                <div className="w-10 h-10 rounded-2xl bg-[#D97706]/20 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-[#D97706]" />
                 </div>
-                <h4 className="text-sm font-serif uppercase tracking-widest">Tempo Livre</h4>
+                <h4 className="text-sm font-serif uppercase tracking-widest font-medium">Tempo Livre</h4>
               </div>
               <div className="flex items-end gap-3">
-                <span className="text-5xl font-serif font-light text-[#D8B36B]">-30h</span>
-                <span className="text-xs font-normal text-[#fffff0] tracking-wide pb-1">operacionais por mês</span>
+                <span className="text-5xl font-serif font-light text-[#D97706]">-30h</span>
+                <span className="text-xs font-normal text-[#FFFFF0]/80 tracking-wide pb-1">operacionais por mês devolvidas</span>
               </div>
             </div>
 
-            <div className="case-animate bg-[#fffff0]/5 border border-[#D8B36B]/20 p-8 hover:bg-[#fffff0]/10 transition-colors">
+            <div className="bg-[#FFFFF0]/5 border border-[#FFFFF0]/15 rounded-3xl p-8 hover:bg-[#FFFFF0]/10 transition-colors shadow-sm">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#D8B36B]/20 flex items-center justify-center">
-                  <Target className="w-5 h-5 text-[#D8B36B]" />
+                <div className="w-10 h-10 rounded-2xl bg-[#D97706]/20 flex items-center justify-center">
+                  <Target className="w-5 h-5 text-[#D97706]" />
                 </div>
-                <h4 className="text-sm font-serif uppercase tracking-widest">Clareza</h4>
+                <h4 className="text-sm font-serif uppercase tracking-widest font-medium">Clareza</h4>
               </div>
               <div className="flex items-end gap-3">
-                <span className="text-5xl font-serif font-light text-[#D8B36B]">100%</span>
-                <span className="text-xs font-normal text-[#fffff0] tracking-wide pb-1">de previsibilidade de caixa</span>
+                <span className="text-5xl font-serif font-light text-[#D97706]">100%</span>
+                <span className="text-xs font-normal text-[#FFFFF0]/80 tracking-wide pb-1">de previsibilidade de fluxo de caixa</span>
               </div>
             </div>
-          </div>
+          </motion.div>
           
         </div>
       </div>

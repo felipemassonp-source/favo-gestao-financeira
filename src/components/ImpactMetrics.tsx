@@ -1,9 +1,5 @@
-import { useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "motion/react";
 
 const metrics = [
   { endValue: 50, prefix: "+", suffix: "", label: "Empresas Atendidas", desc: "Negócios rodando no piloto automático." },
@@ -13,62 +9,59 @@ const metrics = [
 
 const AnimatedNumber = ({ endValue, prefix, suffix }: { endValue: number, prefix: string, suffix: string }) => {
   const [value, setValue] = useState(0);
-  const numberRef = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
 
-  useGSAP(() => {
-    const proxy = { val: 0 };
-    gsap.to(proxy, {
-      val: endValue,
-      duration: 2.5,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: numberRef.current,
-        start: "top 85%",
-      },
-      onUpdate: () => setValue(Math.round(proxy.val))
-    });
-  }, { scope: numberRef });
+  useEffect(() => {
+    if (!isInView) return;
+    let startTimestamp: number | null = null;
+    const duration = 2000;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setValue(Math.round(ease * endValue));
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }, [isInView, endValue]);
 
   return (
-    <span ref={numberRef} className="text-6xl md:text-7xl font-serif text-[#b2893d] mb-6 block font-light">
+    <span ref={ref} className="text-6xl md:text-7xl font-serif text-[#472F5B] mb-6 block font-light">
       {prefix}{new Intl.NumberFormat('pt-BR').format(value)}{suffix}
     </span>
   );
 };
 
 export default function ImpactMetrics() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    const items = gsap.utils.toArray('.metric-item');
-    gsap.from(items, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 85%",
-      },
-      opacity: 0,
-      y: 30,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out"
-    });
-  }, { scope: containerRef });
-
   return (
-    <section ref={containerRef} className="py-24 border-t border-[#472f5b]/10">
+    <section className="py-24 border-t border-[#472F5B]/15">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
         {metrics.map((metric, i) => (
-          <div key={i} className="metric-item flex flex-col items-center text-center px-4">
+          <motion.div 
+            key={i} 
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="metric-item flex flex-col items-center text-center px-4"
+          >
             <AnimatedNumber endValue={metric.endValue} prefix={metric.prefix} suffix={metric.suffix} />
-            <span className="text-[10px] uppercase tracking-[0.2em] font-light text-[#472f5b] mb-4 block border-b border-[#D8B36B]/30 pb-4 w-12">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-light text-[#472F5B] mb-4 block border-b border-[#472F5B]/20 pb-4 w-12">
             </span>
-            <span className="text-sm font-serif uppercase tracking-widest text-[#472f5b] mb-3 block">
+            <span className="text-base font-serif font-medium text-[#1F242D] mb-2 block">
               {metric.label}
             </span>
-            <p className="text-xs text-[#2a3a1e] font-light tracking-wide leading-relaxed max-w-[220px]">
+            <p className="text-xs text-[#4B5262] font-normal leading-relaxed max-w-[220px]">
               {metric.desc}
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

@@ -1,126 +1,111 @@
-import { useRef } from "react";
-import { Instagram, Heart, MessageCircle } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { Instagram, ArrowUpRight } from "lucide-react";
+import post1Img from "../assets/instagram/post1.jpg";
+import post2Img from "../assets/instagram/post2.jpg";
+import post3Img from "../assets/instagram/post3.jpg";
+import post4Img from "../assets/instagram/post4.jpg";
 
-gsap.registerPlugin(ScrollTrigger);
+interface InstagramPost {
+  id: number;
+  image: string;
+  link: string;
+  title: string;
+  alt: string;
+}
+
+const posts: InstagramPost[] = [
+  {
+    id: 1,
+    image: post1Img,
+    link: "https://instagram.com/favogestaofinanceira",
+    title: "O que Marcelo Távola, Bárbara Bruna, Micha Menezes e a Favo têm em comum?",
+    alt: "Post Favo - O que grandes nomes do mercado têm em comum com a Favo",
+  },
+  {
+    id: 2,
+    image: post2Img,
+    link: "https://instagram.com/favogestaofinanceira",
+    title: "3 erros financeiros que travam seu crescimento",
+    alt: "Post Favo - 3 erros financeiros que travam o crescimento do seu negócio",
+  },
+  {
+    id: 3,
+    image: post3Img,
+    link: "https://instagram.com/favogestaofinanceira",
+    title: "Aqui, a gente não trabalha com achismo",
+    alt: "Post Favo - Gestão baseada em dados: achismo não constrói margem",
+  },
+  {
+    id: 4,
+    image: post4Img,
+    link: "https://instagram.com/favogestaofinanceira",
+    title: "A diferença entre quem fatura 7 dígitos e quem trava nos 6",
+    alt: "Post Favo - A verdadeira diferença do fluxo de caixa inteligente",
+  },
+];
 
 export default function InstagramFeed() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const posts = [
-    {
-      id: 1,
-      img: "https://images.unsplash.com/photo-1554415707-6e8cfc938c22?auto=format&fit=crop&q=80&w=500&h=500",
-      likes: 124,
-      comments: 18
-    },
-    {
-      id: 2,
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=500&h=500",
-      likes: 89,
-      comments: 5
-    },
-    {
-      id: 3,
-      img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=500&h=500",
-      likes: 256,
-      comments: 42
-    },
-    {
-      id: 4,
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=500&h=500",
-      likes: 145,
-      comments: 12
-    },
-    {
-      id: 5,
-      img: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=500&h=500",
-      likes: 198,
-      comments: 27
-    }
-  ];
-
-  useGSAP(() => {
-    const headerElements = gsap.utils.toArray('.insta-header > *');
-    const postsElements = gsap.utils.toArray('.insta-post');
-
-    gsap.from(headerElements, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 85%",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.1,
-      ease: "power3.out"
-    });
-
-    gsap.from(postsElements, {
-      scrollTrigger: {
-        trigger: ".insta-grid",
-        start: "top 85%",
-      },
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "power3.out"
-    });
-  }, { scope: containerRef });
-
   return (
-    <section ref={containerRef} className="py-24 border-t border-[#472f5b]/10 bg-[#FFFFFF]">
+    <section id="instagram-feed" className="py-24 border-t border-[#111827]/10 bg-[#FAF9F5] relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header */}
-        <div className="insta-header flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
-          <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-full border border-[#D8B36B] p-1 flex items-center justify-center bg-[#fffff0]">
-              <Instagram className="w-6 h-6 text-[#b2893d]" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-serif font-light text-[#472f5b] tracking-wider uppercase">@favogestao</h2>
-              <p className="text-sm font-normal text-[#2a3a1e] tracking-wide mt-2">Dicas, bastidores e inteligência financeira.</p>
-            </div>
+        {/* Top Header Editorial */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-14 gap-6">
+          <div className="max-w-2xl">
+            <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#D97706] font-mono block mb-3">
+              COMUNIDADE & BASTIDORES
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#111827] tracking-tight leading-[1.2]">
+              Acompanhe a Favo no <span className="italic font-medium text-[#D97706]">Instagram</span>
+            </h2>
+            <p className="text-[#4B5262] text-sm sm:text-base font-normal mt-3">
+              Bastidores, análises financeiras práticas e dicas de gestão de alto nível para empresários.
+            </p>
           </div>
+
           <a 
-            href="https://instagram.com/favogestao" 
+            href="https://instagram.com/favogestaofinanceira" 
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-[#472f5b]/20 px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-light text-[#472f5b] hover:border-[#D8B36B] hover:text-[#b2893d] transition-colors rounded-full"
+            className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-[#111827]/15 bg-[#FFFFFF] text-[#111827] text-xs font-medium uppercase tracking-[0.15em] hover:bg-[#111827] hover:text-[#FAF9F5] hover:border-[#111827] transition-all duration-300 shadow-sm"
           >
-            Seguir no Instagram
+            <div className="w-6 h-6 rounded-full bg-[#D97706]/10 flex items-center justify-center text-[#D97706] group-hover:bg-[#D97706] group-hover:text-[#FAF9F5] transition-colors duration-300">
+              <Instagram className="w-3.5 h-3.5" />
+            </div>
+            <span>@favogestaofinanceira</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#4B5262] group-hover:text-[#FAF9F5] transition-colors duration-300" />
           </a>
         </div>
 
-        {/* Feed Grid */}
-        <div className="insta-grid grid grid-cols-2 md:grid-cols-5 gap-4">
+        {/* Curated Static Instagram Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {posts.map((post) => (
             <a 
               key={post.id}
-              href="https://instagram.com/favogestao"
+              href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="insta-post group relative aspect-square bg-[#fffff0] overflow-hidden block"
+              className="group relative aspect-square rounded-2xl overflow-hidden border border-[#E5E7EB] bg-[#FFFFFF] shadow-sm hover:shadow-xl transition-all duration-500 block"
             >
               <img 
-                src={post.img} 
-                alt="Favo Instagram Post" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src={post.image} 
+                alt={post.alt} 
+                loading="eager"
+                decoding="async"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-[#472f5b]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-6 backdrop-blur-[2px]">
-                <div className="flex items-center gap-2 text-[#fffff0]">
-                  <Heart className="w-5 h-5 fill-current" />
-                  <span className="text-sm font-normal">{post.likes}</span>
+
+              {/* Elegant Dark Overlay on Hover */}
+              <div className="absolute inset-0 bg-[#111827]/80 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-12 h-12 rounded-full bg-[#FFFFFF]/10 border border-[#FFFFFF]/20 flex items-center justify-center text-[#FAF9F5] mb-3 transform transition-transform duration-300 group-hover:scale-110 shadow-lg">
+                  <Instagram className="w-6 h-6 text-[#D97706]" />
                 </div>
-                <div className="flex items-center gap-2 text-[#fffff0]">
-                  <MessageCircle className="w-5 h-5 fill-current" />
-                  <span className="text-sm font-normal">{post.comments}</span>
-                </div>
+                <p className="text-white text-xs font-serif font-light mb-3 max-w-[220px] line-clamp-2 leading-relaxed">
+                  {post.title}
+                </p>
+                <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#FAF9F5] flex items-center gap-1.5 bg-[#FFFFFF]/10 px-3.5 py-1.5 rounded-full border border-white/15">
+                  Ver no Instagram
+                  <ArrowUpRight className="w-3 h-3 text-[#D97706]" />
+                </span>
               </div>
             </a>
           ))}

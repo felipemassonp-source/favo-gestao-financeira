@@ -1,36 +1,41 @@
 import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { MessageCircle, Check } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from "motion/react";
+import { MessageCircle, CheckCircle2, FileText, Video, Search } from "lucide-react";
 
 const timelineSteps = [
   {
-    title: "1º Encontro",
-    time: "Semana 1",
-    description: "Identificação de gargalos e melhorias a serem aplicadas. Vamos entender a fundo o seu cenário atual."
+    encounter: "1º Encontro",
+    title: "Identificação de Gargalos e Objetivo do Empresário",
+    timing: "Semana 1",
+    description: "Identificação aprofundada dos gargalos do seu financeiro e alinhamento do objetivo do empresário para direcionar o plano.",
+    icon: Search
   },
   {
-    title: "2º Encontro",
-    time: "Semana 2",
-    description: "Apontamento de estratégias e mapeamento de processos. Estruturamos o plano de ação ideal para você."
+    encounter: "2º Encontro",
+    title: "Mapeamento de Processos Já Existentes e Análise de Números da Empresa",
+    timing: "Semana 3",
+    description: "Mapeamento dos processos já existentes na sua empresa e análise detalhada dos números para entender a real operação.",
+    icon: FileText
   },
   {
-    title: "3º Encontro",
-    time: "Semana 4",
-    description: "Aplicação das estratégias e ferramentas que podem auxiliar na sua rotina para ganhar produtividade."
+    encounter: "3º Encontro",
+    title: "Apresentação do Raio-X Financeiro e Identificação do Problema",
+    timing: "Semana 5",
+    description: "Apresentação do Raio-X financeiro da empresa, com diagnóstico completo e identificação precisa do problema central.",
+    icon: CheckCircle2
   },
   {
-    title: "4º Encontro",
-    time: "Semana 6",
-    description: "Revisão do que já foi aplicado e auxílio direto nos pontos que ainda são travas no seu dia a dia."
+    encounter: "4º Encontro",
+    title: "Mapa Estratégico com as Melhorias a Serem Aplicadas e Ferramentas Sugeridas",
+    timing: "Semana 7",
+    description: "Apresentação e entrega do mapa estratégico com as melhorias a serem aplicadas na prática e lista de ferramentas sugeridas.",
+    icon: Video
   },
   {
-    title: "Acompanhamento",
-    time: "90 Dias Seguintes",
-    description: "Suporte direto durante 90 dias via WhatsApp para tirar dúvidas e destravar processos sempre que precisar.",
+    encounter: "Suporte Contínuo",
+    title: "60 Dias de Suporte via WhatsApp",
+    timing: "08 semanas & 60 dias de suporte",
+    description: "Acompanhamento e suporte de 60 dias via WhatsApp para tirar dúvidas e assegurar a execução prática das ferramentas.",
     icon: MessageCircle,
     highlight: true
   }
@@ -39,83 +44,64 @@ const timelineSteps = [
 export default function ConsultingTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const items = gsap.utils.toArray('.timeline-item');
-    const line = document.querySelector('.timeline-line-progress');
-
-    // Animate line drawing down as you scroll
-    if (line) {
-      gsap.to(line, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top center",
-          end: "bottom center",
-          scrub: 1,
-        },
-        height: "100%",
-        ease: "none"
-      });
-    }
-
-    // Animate items fading in and sliding from sides
-    items.forEach((item: any, i) => {
-      const isEven = i % 2 === 0;
-      gsap.fromTo(item, 
-        { opacity: 0, x: isEven ? -40 : 40 },
-        {
-          scrollTrigger: {
-            trigger: item,
-            start: "top 85%",
-          },
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out"
-        }
-      );
-    });
-  }, { scope: containerRef });
-
   return (
     <div ref={containerRef} className="relative w-full max-w-4xl mx-auto py-10 mt-10">
       {/* Background Static Line */}
-      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[1px] bg-[#472f5b]/10 -translate-x-1/2"></div>
+      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[1px] bg-[#472F5B]/15 -translate-x-1/2"></div>
       
-      {/* Animated Fill Line */}
-      <div className="timeline-line-progress absolute left-[27px] md:left-[50%] top-0 w-[1px] bg-[#D8B36B] -translate-x-1/2 h-0"></div>
+      {/* Subtle Warm Accent Line */}
+      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#D97706] via-[#472F5B]/30 to-[#25D366] -translate-x-1/2 opacity-70"></div>
 
       <div className="space-y-16">
         {timelineSteps.map((step, idx) => {
           const isEven = idx % 2 === 0;
           return (
-            <div key={idx} className={`timeline-item relative flex flex-col md:flex-row items-start md:items-center w-full ${isEven ? 'md:flex-row-reverse' : ''}`}>
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className={`timeline-item relative flex flex-col md:flex-row items-start md:items-center w-full ${isEven ? 'md:flex-row-reverse' : ''}`}
+            >
               
               {/* Central Node */}
-              <div className="absolute left-[27px] md:left-[50%] w-12 h-12 -translate-x-1/2 rounded-full border border-[#D8B36B] bg-[#fffff0] flex items-center justify-center z-10 shadow-sm transition-transform duration-500 hover:scale-110">
-                {step.icon ? (
-                  <step.icon className={`w-5 h-5 ${step.highlight ? 'text-[#b2893d]' : 'text-[#472f5b]'}`} strokeWidth={1.5} />
+              <div className="absolute left-[27px] md:left-[50%] w-12 h-12 -translate-x-1/2 rounded-full border-2 border-[#D97706] bg-[#FFFFF0] flex items-center justify-center z-10 shadow-sm transition-transform duration-500 hover:scale-110">
+                {step.highlight ? (
+                  <MessageCircle className="w-5 h-5 text-[#25D366]" strokeWidth={2} />
                 ) : (
-                  <span className="text-xs font-serif text-[#b2893d]">{idx + 1}</span>
+                  <span className="text-xs font-serif font-bold text-[#472F5B]">{idx + 1}</span>
                 )}
               </div>
 
-              {/* Content Box */}
-              <div className={`w-full md:w-1/2 pl-20 md:pl-0 ${isEven ? 'md:pr-20 text-left md:text-right' : 'md:pl-20 text-left'}`}>
-                <div className="bg-[#FFFFFF] border border-[#472f5b]/10 p-8 shadow-md hover:border-[#D8B36B]/40 transition-colors group">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-light text-[#b2893d] mb-3 block">
-                    {step.time}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-serif uppercase tracking-widest font-light text-[#472f5b] mb-4 group-hover:text-[#b2893d] transition-colors">
+              {/* Content Card */}
+              <div className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? 'md:pl-10 text-left' : 'md:pr-10 md:text-right'}`}>
+                <div className={`p-6 sm:p-8 rounded-2xl bg-white border ${step.highlight ? 'border-[#25D366]/40 shadow-lg' : 'border-[#472F5B]/15 shadow-sm'} hover:shadow-md transition-shadow relative overflow-hidden`}>
+                  {step.highlight && (
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#25D366]/10 to-transparent rounded-full pointer-events-none" />
+                  )}
+
+                  <div className={`flex items-center gap-2 mb-2 ${isEven ? 'justify-start' : 'md:justify-end'}`}>
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#D97706] bg-[#D97706]/10 px-2.5 py-0.5 rounded-full border border-[#D97706]/20">
+                      {step.encounter}
+                    </span>
+                    <span className="text-[11px] text-[#4B5262] font-medium">
+                      • {step.timing}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg font-serif font-medium text-[#1F242D] mb-2 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-sm font-normal text-[#2a3a1e] leading-relaxed tracking-wide">
+
+                  <p className="text-xs sm:text-sm text-[#4B5262] leading-relaxed">
                     {step.description}
                   </p>
                 </div>
               </div>
 
-            </div>
-          )
+            </motion.div>
+          );
         })}
       </div>
     </div>
