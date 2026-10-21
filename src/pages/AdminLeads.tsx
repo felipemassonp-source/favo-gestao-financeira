@@ -35,8 +35,15 @@ import {
   TrendingUp, 
   AlertCircle,
   Trash2,
-  Phone
+  Phone,
+  Columns3,
+  List,
+  GripVertical,
+  ChevronRight,
+  ChevronLeft
 } from "lucide-react";
+
+type LeadStatus = "novo" | "em_contato" | "proposta" | "convertido" | "arquivado";
 
 interface Lead {
   id: string;
@@ -45,11 +52,60 @@ interface Lead {
   email: string;
   empresa: string;
   tipo: string;
+  plano?: string;
+  formula?: string;
   dorPrincipal: string;
   volumeOuControle: string;
-  status?: "novo" | "em_contato" | "proposta" | "convertido" | "arquivado";
+  origem?: string;
+  campanha?: string;
+  palavraChave?: string;
+  status?: LeadStatus;
   createdAt: string;
 }
+
+const KANBAN_COLUMNS: {
+  id: LeadStatus;
+  title: string;
+  badgeColor: string;
+  headerBorder: string;
+  dotColor: string;
+}[] = [
+  {
+    id: "novo",
+    title: "Novo Lead",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
+    headerBorder: "border-t-4 border-t-amber-500",
+    dotColor: "bg-amber-500",
+  },
+  {
+    id: "em_contato",
+    title: "Em Contato",
+    badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+    headerBorder: "border-t-4 border-t-blue-500",
+    dotColor: "bg-blue-500",
+  },
+  {
+    id: "proposta",
+    title: "Proposta Enviada",
+    badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
+    headerBorder: "border-t-4 border-t-[#472F5B]",
+    dotColor: "bg-[#472F5B]",
+  },
+  {
+    id: "convertido",
+    title: "Convertido / Cliente",
+    badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
+    headerBorder: "border-t-4 border-t-emerald-500",
+    dotColor: "bg-emerald-500",
+  },
+  {
+    id: "arquivado",
+    title: "Arquivado",
+    badgeColor: "bg-gray-100 text-gray-700 border-gray-200",
+    headerBorder: "border-t-4 border-t-gray-400",
+    dotColor: "bg-gray-400",
+  },
+];
 
 interface Invite {
   id: string;
@@ -94,6 +150,9 @@ export default function AdminLeads() {
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState<"leads" | "invites">("leads");
+  const [viewMode, setViewMode] = useState<"kanban" | "lista">("kanban");
+  const [draggedLeadId, setDraggedLeadId] = useState<string | null>(null);
+  const [dragOverColumn, setDragOverColumn] = useState<LeadStatus | null>(null);
 
   // New Invite Form
   const [newInviteEmail, setNewInviteEmail] = useState("");
@@ -295,12 +354,23 @@ export default function AdminLeads() {
 
   // Update Lead Status
   const handleUpdateStatus = async (leadId: string, newStatus: Lead["status"]) => {
+    setLeads(prev => prev.map(l => l.id === leadId ? { ...l, status: newStatus } : l));
     try {
       const leadRef = doc(db, "leads", leadId);
       await updateDoc(leadRef, { status: newStatus });
-      setLeads(prev => prev.map(l => l.id === leadId ? { ...l, status: newStatus } : l));
     } catch (err) {
       console.error("Erro ao atualizar status:", err);
+    }
+  };
+
+  // Delete Lead
+  const handleDeleteLead = async (leadId: string, leadName?: string) => {
+    if (!window.confirm(`Deseja realmente excluir o lead "${leadName || "selecionado"}"?`)) return;
+    setLeads(prev => prev.filter(l => l.id !== leadId));
+    try {
+      await deleteDoc(doc(db, "leads", leadId));
+    } catch (err) {
+      console.error("Erro ao excluir lead:", err);
     }
   };
 
@@ -554,7 +624,7 @@ export default function AdminLeads() {
   // PAINEL DE CONTROLE ADMINISTRATIVO
   // -------------------------------------------------------------
   return (
-    <div className="min-h-screen py-28 px-6 max-w-7xl mx-auto font-sans">
+    <div className="min-h-screen py-28 px-6 max-w-[1560px] mx-auto font-sans">
       
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-[#472F5B]/15">
@@ -576,7 +646,7 @@ export default function AdminLeads() {
           <button
             onClick={fetchLeads}
             disabled={loading}
-            className="inline-flex items-center gap-2 bg-white border border-[#472F5B]/20 text-[#472F5B] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#472F5B]/5 transition-all shadow-xs"
+            className="inline-flex items-center gap-2 bg-white border border-[#472F5B]/20 text-[#472F5B] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#472F5B]/5 transition-all shadow-xs cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
             <span>Atualizar</span>
@@ -584,7 +654,7 @@ export default function AdminLeads() {
 
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 bg-[#FAF9F5] border border-[#472F5B]/20 text-[#1F242D] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-white transition-all shadow-xs"
+            className="inline-flex items-center gap-2 bg-[#FAF9F5] border border-[#472F5B]/20 text-[#1F242D] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-white transition-all shadow-xs cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-[#D97706]" />
             <span>Exportar CSV</span>
@@ -592,7 +662,7 @@ export default function AdminLeads() {
 
           <button
             onClick={handleLogout}
-            className="inline-flex items-center gap-2 bg-red-50 text-red-700 border border-red-200 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-red-100 transition-all"
+            className="inline-flex items-center gap-2 bg-red-50 text-red-700 border border-red-200 px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-red-100 transition-all cursor-pointer"
             title="Sair do painel"
           >
             <LogOut className="w-3.5 h-3.5" />
@@ -628,20 +698,52 @@ export default function AdminLeads() {
         </div>
       </div>
 
-      {/* Tabs: Leads vs Convites */}
-      <div className="flex border-b border-[#472F5B]/15 mb-8">
-        <button
-          onClick={() => setActiveTab("leads")}
-          className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all ${activeTab === "leads" ? "border-[#472F5B] text-[#472F5B]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
-        >
-          Leads Recebidos ({leads.length})
-        </button>
-        <button
-          onClick={() => setActiveTab("invites")}
-          className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all ${activeTab === "invites" ? "border-[#472F5B] text-[#472F5B]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
-        >
-          Convites & Acessos ({invites.length + DEFAULT_ALLOWED_EMAILS.length})
-        </button>
+      {/* Tabs: Leads vs Convites + Seletor Kanban / Lista */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#472F5B]/15 mb-8 gap-4">
+        <div className="flex">
+          <button
+            onClick={() => setActiveTab("leads")}
+            className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all cursor-pointer ${activeTab === "leads" ? "border-[#472F5B] text-[#472F5B]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
+          >
+            Leads Recebidos ({leads.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("invites")}
+            className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all cursor-pointer ${activeTab === "invites" ? "border-[#472F5B] text-[#472F5B]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
+          >
+            Convites & Acessos ({invites.length + DEFAULT_ALLOWED_EMAILS.length})
+          </button>
+        </div>
+
+        {/* Alternador de Visualização: Kanban vs Lista */}
+        {activeTab === "leads" && (
+          <div className="flex items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#472F5B]/15 mb-3 sm:mb-2 self-start sm:self-auto shadow-2xs">
+            <button
+              type="button"
+              onClick={() => setViewMode("kanban")}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+                viewMode === "kanban"
+                  ? "bg-[#472F5B] text-[#FFFFF0] shadow-xs"
+                  : "text-[#4B5262] hover:text-[#1F242D]"
+              }`}
+            >
+              <Columns3 className="w-3.5 h-3.5" />
+              <span>Kanban</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode("lista")}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+                viewMode === "lista"
+                  ? "bg-[#472F5B] text-[#FFFFF0] shadow-xs"
+                  : "text-[#4B5262] hover:text-[#1F242D]"
+              }`}
+            >
+              <List className="w-3.5 h-3.5" />
+              <span>Lista</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* TAB 1: LEADS VIEW */}
@@ -663,55 +765,285 @@ export default function AdminLeads() {
             <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#472F5B]/15">
               <button
                 onClick={() => setFilterType("all")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${filterType === "all" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "all" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Todos
               </button>
               <button
                 onClick={() => setFilterType("bpo")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${filterType === "bpo" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "bpo" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 BPO
               </button>
               <button
                 onClick={() => setFilterType("assistencia")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${filterType === "assistencia" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "assistencia" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Assistência
               </button>
               <button
                 onClick={() => setFilterType("gestao")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${filterType === "gestao" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "gestao" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Gestão
               </button>
               <button
                 onClick={() => setFilterType("consultoria")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${filterType === "consultoria" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "consultoria" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Consultoria
               </button>
             </div>
 
-            <select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="bg-white border border-[#472F5B]/15 rounded-2xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
-            >
-              <option value="all">Todos os Status</option>
-              <option value="novo">Novo</option>
-              <option value="em_contato">Em Contato</option>
-              <option value="proposta">Proposta Enviada</option>
-              <option value="convertido">Convertido / Cliente</option>
-              <option value="arquivado">Arquivado</option>
-            </select>
+            {viewMode === "lista" && (
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="bg-white border border-[#472F5B]/15 rounded-2xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+              >
+                <option value="all">Todos os Status</option>
+                <option value="novo">Novo</option>
+                <option value="em_contato">Em Contato</option>
+                <option value="proposta">Proposta Enviada</option>
+                <option value="convertido">Convertido / Cliente</option>
+                <option value="arquivado">Arquivado</option>
+              </select>
+            )}
           </div>
 
-          {/* Leads Cards */}
+          {/* Leads Content: Kanban or Lista */}
           {loading && leads.length === 0 ? (
             <div className="text-center py-24 bg-white rounded-3xl border border-[#472F5B]/15">
               <RefreshCw className="w-8 h-8 text-[#472F5B] animate-spin mx-auto mb-4" />
               <p className="text-sm text-[#4B5262]">Carregando leads do banco de dados...</p>
+            </div>
+          ) : viewMode === "kanban" ? (
+            /* ============================================================
+               VISÃO KANBAN POR COLUNAS DE STATUS (COM DRAG & DROP)
+               ============================================================ */
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs text-[#4B5262] px-1">
+                <span>💡 Dica: Arraste os cards entre as colunas ou use o seletor/setas para mover o status do lead.</span>
+                <span className="hidden sm:inline font-medium">{filteredLeads.length} lead(s) exibido(s)</span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-start overflow-x-auto pb-6">
+                {KANBAN_COLUMNS.map((col, colIdx) => {
+                  // No Kanban, ignoramos o filterStatus dropdown para mostrar todas as 5 colunas
+                  const columnLeads = leads.filter((lead) => {
+                    const lStatus: LeadStatus = (lead.status as LeadStatus) || "novo";
+                    const matchesType = filterType === "all" || lead.tipo === filterType;
+                    const matchesSearch =
+                      !searchTerm ||
+                      (lead.nome && lead.nome.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                      (lead.empresa && lead.empresa.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                      (lead.email && lead.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                      (lead.whatsapp && lead.whatsapp.includes(searchTerm));
+                    return lStatus === col.id && matchesType && matchesSearch;
+                  });
+
+                  const isDragOver = dragOverColumn === col.id;
+
+                  return (
+                    <div
+                      key={col.id}
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        if (dragOverColumn !== col.id) setDragOverColumn(col.id);
+                      }}
+                      onDragLeave={() => {
+                        if (dragOverColumn === col.id) setDragOverColumn(null);
+                      }}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        setDragOverColumn(null);
+                        const droppedLeadId = e.dataTransfer.getData("text/plain") || draggedLeadId;
+                        if (droppedLeadId) {
+                          handleUpdateStatus(droppedLeadId, col.id);
+                        }
+                        setDraggedLeadId(null);
+                      }}
+                      className={`rounded-3xl bg-[#FAF9F5] border transition-all duration-200 flex flex-col min-h-[540px] ${col.headerBorder} ${
+                        isDragOver
+                          ? "border-[#D97706] bg-[#FEF3C7]/25 ring-2 ring-[#D97706]/30"
+                          : "border-[#472F5B]/15"
+                      }`}
+                    >
+                      {/* Cabeçalho da Coluna Kanban */}
+                      <div className="p-4 border-b border-[#472F5B]/10 flex items-center justify-between bg-white/80 rounded-t-3xl">
+                        <div className="flex items-center gap-2">
+                          <span className={`w-2.5 h-2.5 rounded-full ${col.dotColor}`} />
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-[#1F242D]">
+                            {col.title}
+                          </h3>
+                        </div>
+                        <span
+                          className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${col.badgeColor}`}
+                        >
+                          {columnLeads.length}
+                        </span>
+                      </div>
+
+                      {/* Lista de Cards dentro da Coluna */}
+                      <div className="p-3 space-y-3 flex-1">
+                        {columnLeads.length === 0 ? (
+                          <div className="h-44 rounded-2xl border border-dashed border-[#472F5B]/15 flex flex-col items-center justify-center text-center p-4 text-[11px] text-[#4B5262]/70">
+                            <span>Nenhum lead em</span>
+                            <strong className="text-[#472F5B]/80 mt-0.5">{col.title}</strong>
+                          </div>
+                        ) : (
+                          columnLeads.map((lead) => {
+                            const prevCol = colIdx > 0 ? KANBAN_COLUMNS[colIdx - 1] : null;
+                            const nextCol =
+                              colIdx < KANBAN_COLUMNS.length - 1 ? KANBAN_COLUMNS[colIdx + 1] : null;
+
+                            return (
+                              <div
+                                key={lead.id}
+                                draggable
+                                onDragStart={(e) => {
+                                  setDraggedLeadId(lead.id);
+                                  e.dataTransfer.setData("text/plain", lead.id);
+                                }}
+                                onDragEnd={() => {
+                                  setDraggedLeadId(null);
+                                  setDragOverColumn(null);
+                                }}
+                                className={`bg-white rounded-2xl border border-[#472F5B]/15 p-4 shadow-xs hover:shadow-md transition-all cursor-grab active:cursor-grabbing ${
+                                  draggedLeadId === lead.id ? "opacity-50 scale-95" : ""
+                                }`}
+                              >
+                                {/* Topo do Card: Serviço + Botão Excluir */}
+                                <div className="flex items-center justify-between gap-2 mb-2.5">
+                                  <span className="inline-flex items-center gap-1 uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#D97706]/10 text-[#D97706] font-bold text-[9px]">
+                                    <GripVertical className="w-3 h-3 text-[#472F5B]/40" />
+                                    {getServiceLabel(lead.tipo)}
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDeleteLead(lead.id, lead.nome)}
+                                    className="text-gray-400 hover:text-red-600 transition-colors p-1 cursor-pointer"
+                                    title="Excluir lead"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+
+                                {/* Nome e Empresa */}
+                                <h4 className="text-base font-serif font-semibold text-[#1F242D] leading-snug">
+                                  {lead.nome || "Lead sem nome"}
+                                </h4>
+                                <p className="text-xs font-semibold text-[#472F5B] flex items-center gap-1.5 mt-0.5 mb-3">
+                                  <Building2 className="w-3.5 h-3.5 shrink-0 text-[#D97706]" />
+                                  <span className="truncate">{lead.empresa || "Empresa não informada"}</span>
+                                </p>
+
+                                {/* Dados de Contato */}
+                                <div className="space-y-1 text-[11px] text-[#333A48] bg-[#FAF9F5] p-2.5 rounded-xl border border-[#472F5B]/10 mb-3">
+                                  <p className="flex items-center gap-1.5 truncate">
+                                    <Phone className="w-3 h-3 text-[#25D366] shrink-0" />
+                                    <span className="font-medium">{lead.whatsapp || "—"}</span>
+                                  </p>
+                                  <p className="flex items-center gap-1.5 truncate">
+                                    <Mail className="w-3 h-3 text-[#D97706] shrink-0" />
+                                    <span className="truncate">{lead.email || "—"}</span>
+                                  </p>
+                                </div>
+
+                                {/* Respostas do Diagnóstico */}
+                                <div className="space-y-2 text-[11px] text-[#333A48] mb-3">
+                                  <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#472F5B]/10">
+                                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#472F5B] block mb-0.5">
+                                      {lead.tipo === "consultoria" ? "Objetivo:" : "Dificuldade:"}
+                                    </span>
+                                    <p className="leading-snug">{lead.dorPrincipal || "Não informado"}</p>
+                                  </div>
+                                  <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#472F5B]/10">
+                                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#472F5B] block mb-0.5">
+                                      {lead.tipo === "consultoria" ? "Faturamento:" : "Volume Mensal:"}
+                                    </span>
+                                    <p className="leading-snug">{lead.volumeOuControle || "Não informado"}</p>
+                                  </div>
+                                </div>
+
+                                {/* Ações Rápidas: WhatsApp + Mover Coluna */}
+                                <div className="pt-2.5 border-t border-[#472F5B]/10 space-y-2">
+                                  <a
+                                    href={`https://wa.me/55${lead.whatsapp?.replace(/\D/g, "")}?text=Olá%20${encodeURIComponent(lead.nome || "")},%20aqui%20é%20da%20Favo%20Gestão%20Financeira!%20Recebemos%20seu%20diagnóstico.`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full inline-flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white py-2 px-3 rounded-xl text-[11px] font-semibold uppercase tracking-wider shadow-2xs transition-all"
+                                  >
+                                    <MessageCircle className="w-3.5 h-3.5" />
+                                    <span>Chamar no WhatsApp</span>
+                                  </a>
+
+                                  {/* Controles de Movimentação entre Colunas */}
+                                  <div className="flex items-center justify-between gap-1 pt-1">
+                                    <button
+                                      type="button"
+                                      disabled={!prevCol}
+                                      onClick={() => prevCol && handleUpdateStatus(lead.id, prevCol.id)}
+                                      className="p-1.5 rounded-lg border border-[#472F5B]/15 text-[#472F5B] hover:bg-[#472F5B]/10 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                                      title={prevCol ? `Voltar para ${prevCol.title}` : ""}
+                                    >
+                                      <ChevronLeft className="w-3.5 h-3.5" />
+                                    </button>
+
+                                    <select
+                                      value={col.id}
+                                      onChange={(e) =>
+                                        handleUpdateStatus(lead.id, e.target.value as LeadStatus)
+                                      }
+                                      className="flex-1 bg-[#FAF9F5] border border-[#472F5B]/15 rounded-lg px-2 py-1 text-[10px] font-semibold text-[#1F242D] focus:outline-none"
+                                    >
+                                      <option value="novo">🟡 Novo Lead</option>
+                                      <option value="em_contato">🔵 Em Contato</option>
+                                      <option value="proposta">🟣 Proposta</option>
+                                      <option value="convertido">🟢 Convertido</option>
+                                      <option value="arquivado">⚪ Arquivado</option>
+                                    </select>
+
+                                    <button
+                                      type="button"
+                                      disabled={!nextCol}
+                                      onClick={() => nextCol && handleUpdateStatus(lead.id, nextCol.id)}
+                                      className="p-1.5 rounded-lg border border-[#472F5B]/15 text-[#472F5B] hover:bg-[#472F5B]/10 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                                      title={nextCol ? `Avançar para ${nextCol.title}` : ""}
+                                    >
+                                      <ChevronRight className="w-3.5 h-3.5" />
+                                    </button>
+                                  </div>
+                                </div>
+
+                                {/* Data no rodapé do card */}
+                                <div className="mt-2.5 pt-2 border-t border-[#472F5B]/5 flex items-center justify-between text-[10px] text-[#4B5262]">
+                                  <span className="flex items-center gap-1">
+                                    <Calendar className="w-3 h-3 text-[#472F5B]" />
+                                    {lead.createdAt
+                                      ? new Date(lead.createdAt).toLocaleDateString("pt-BR", {
+                                          day: "2-digit",
+                                          month: "2-digit",
+                                          hour: "2-digit",
+                                          minute: "2-digit",
+                                        })
+                                      : "—"}
+                                  </span>
+                                  {lead.origem && lead.origem !== "organico_direto" && (
+                                    <span className="px-1.5 py-0.5 rounded bg-amber-50 text-[#D97706] font-mono text-[9px]">
+                                      Ads: {lead.origem}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ) : filteredLeads.length === 0 ? (
             <div className="text-center py-24 bg-white rounded-3xl border border-[#472F5B]/15">
@@ -720,6 +1052,9 @@ export default function AdminLeads() {
               <p className="text-xs text-[#4B5262]">Nenhum contato corresponde aos filtros de busca aplicados.</p>
             </div>
           ) : (
+            /* ============================================================
+               VISÃO EM LISTA (DETALHADA)
+               ============================================================ */
             <div className="space-y-6">
               {filteredLeads.map((lead) => {
                 const currentStatus = lead.status || "novo";
@@ -754,7 +1089,7 @@ export default function AdminLeads() {
                             onChange={(e) => handleUpdateStatus(lead.id, e.target.value as any)}
                             className="bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-3 py-2 text-xs font-medium text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
                           >
-                            <option value="novo">🟡 Novo</option>
+                            <option value="novo">🟡 Novo Lead</option>
                             <option value="em_contato">🔵 Em Contato</option>
                             <option value="proposta">🟣 Proposta Enviada</option>
                             <option value="convertido">🟢 Convertido</option>
@@ -771,6 +1106,15 @@ export default function AdminLeads() {
                           <MessageCircle className="w-4 h-4" />
                           <span>Chamar no WhatsApp</span>
                         </a>
+
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteLead(lead.id, lead.nome)}
+                          className="p-2.5 rounded-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                          title="Excluir lead"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
 
@@ -784,14 +1128,14 @@ export default function AdminLeads() {
 
                       <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#472F5B]/10">
                         <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#472F5B]">
-                          {lead.tipo === "bpo" ? "Maior Dificuldade Hoje" : "Objetivo com a Consultoria"}
+                          {lead.tipo === "consultoria" ? "Objetivo com a Consultoria" : "Maior Dificuldade Hoje"}
                         </span>
                         <p className="leading-relaxed">{lead.dorPrincipal || "Não informado"}</p>
                       </div>
 
                       <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#472F5B]/10">
                         <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#472F5B]">
-                          {lead.tipo === "bpo" ? "Volume de Movimentações" : "Faturamento Médio Mensal"}
+                          {lead.tipo === "consultoria" ? "Faturamento Médio Mensal" : "Volume de Movimentações"}
                         </span>
                         <p className="leading-relaxed">{lead.volumeOuControle || "Não informado"}</p>
                       </div>
