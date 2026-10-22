@@ -171,7 +171,7 @@ for (const item of routes) {
   );
   html = html.replace(
     /<div id="root">[\s\S]*?<\/div>\s*<script type="module"/,
-    `<div id="root">${item.bodyContent}</div>\n    <script type="module"`
+    `<div id="root"><div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">${item.bodyContent}</div></div>\n    <script type="module"`
   );
 
   const routeDir = path.join(distDir, item.route);
