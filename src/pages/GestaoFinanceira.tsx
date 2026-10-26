@@ -40,24 +40,16 @@ export default function GestaoFinanceira() {
       {/* HERO SECTION DE ALTO IMPACTO */}
       <div className="max-w-7xl mx-auto px-6 pt-28 sm:pt-36 pb-20 relative z-10">
         
-        {/* Kicker Editorial Tipográfico */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 sm:mb-8"
-        >
-          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] sm:tracking-[0.28em] text-[#38183A]/85 font-mono block">
-            FAVO GESTÃO FINANCEIRA · BPO & ASSISTÊNCIA EXECUTIVA
-          </span>
-        </motion.div>
-
+        {/* Título Principal com Kicker Semântico Integrado */}
         <motion.h1 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-serif font-light tracking-tight leading-[1.16] text-[#1F242D] max-w-5xl mb-8 pb-2 text-balance"
         >
+          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] sm:tracking-[0.28em] text-[#38183A]/85 font-mono block mb-6 sm:mb-8">
+            BPO FINANCEIRO, ASSISTÊNCIA FINANCEIRA VIRTUAL &amp; GESTÃO ESTRATÉGICA
+          </span>
           Sua rotina financeira delegada.{" "}
           <span className="sm:whitespace-nowrap">
             Seu tempo <span className="italic font-medium text-[#38183A]">devolvido.</span>

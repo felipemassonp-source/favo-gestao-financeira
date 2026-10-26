@@ -14,7 +14,7 @@ const baseHtml = fs.readFileSync(baseHtmlPath, "utf-8");
 const routes = [
   {
     route: "gestao-financeira",
-    title: "BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo Gestão Financeira",
+    title: "Planos de BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo — Florianópolis e Brasil",
     description:
       "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DFC mensal e implementação Conta Azul.",
     canonical: "https://favogestaofinanceira.com.br/gestao-financeira",
@@ -149,8 +149,8 @@ for (const item of routes) {
     `<meta name="description" content="${item.description}" />`
   );
   html = html.replace(
-    /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="robots" content="${item.robots}" />`
+    /<meta\s+name="robots"[^>]*content="[^"]*"\s*\/?>/,
+    `<meta name="robots" id="robots-meta" content="${item.robots}" />`
   );
   html = html.replace(
     /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,

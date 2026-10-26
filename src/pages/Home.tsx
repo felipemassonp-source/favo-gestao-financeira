@@ -70,25 +70,16 @@ export default function Home() {
       {/* HERO SECTION DE ALTO IMPACTO */}
       <section className="relative pt-28 sm:pt-36 pb-20 sm:pb-24 px-6 max-w-7xl mx-auto z-10">
         
-        {/* Kicker Editorial Tipográfico */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 sm:mb-8"
-        >
-          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] sm:tracking-[0.28em] text-[#38183A]/85 font-mono block">
-            FAVO GESTÃO FINANCEIRA · ASSESSORIA, BPO & ESTRATÉGIA
-          </span>
-        </motion.div>
-
-        {/* Título Principal com Tipografia Editorial */}
+        {/* Título Principal com Tipografia Editorial e Kicker Semântico Integrado */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-serif font-light tracking-tight leading-[1.16] text-[#1F242D] max-w-5xl mb-8 pb-2 text-balance"
         >
+          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] sm:tracking-[0.28em] text-[#38183A]/85 font-mono block mb-6 sm:mb-8">
+            FAVO GESTÃO FINANCEIRA · BPO FINANCEIRO, ASSISTÊNCIA VIRTUAL &amp; ESTRATÉGIA
+          </span>
           Seu financeiro no piloto automático.{" "}
           <span className="sm:whitespace-nowrap">
             Seu foco no <span className="italic font-medium text-[#D97706]">lucro real.</span>

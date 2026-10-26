@@ -13,20 +13,20 @@ const BASE_URL = "https://favogestaofinanceira.com.br";
 
 const ROUTE_SEO: Record<string, PageSEOConfig> = {
   "/": {
-    title: "Favo Gestão Financeira | BPO Financeiro, Assistência Financeira Virtual e Consultoria Empresarial",
+    title: "BPO Financeiro e Gestão Financeira Estratégica | Favo Gestão Financeira — Florianópolis e Todo o Brasil",
     description:
-      "Terceirização e gestão financeira empresarial com mais de 20 anos de experiência. BPO Financeiro, Assistência Financeira Virtual, Consultoria Financeira, Implementação Conta Azul e Gestão de Contas a Pagar.",
+      "Terceirização e gestão financeira empresarial com mais de 20 anos de experiência. BPO Financeiro, Assistência Financeira Virtual, Consultoria Financeira e Implementação Conta Azul em Florianópolis e em todo o Brasil.",
     keywords:
-      "BPO financeiro, terceirização financeira, assistência financeira virtual, gestão financeira empresarial, consultoria financeira empresarial, implementação Conta Azul, implementação de financeiro, gestão de contas a pagar, conciliação bancária diária, Favo Gestão Financeira, Florianópolis",
+      "BPO financeiro, BPO financeiro Florianópolis, terceirização financeira, assistência financeira virtual, gestão financeira empresarial, consultoria financeira empresarial, implementação Conta Azul, implementação de financeiro, gestão de contas a pagar, conciliação bancária diária, DFC mensal, Favo Gestão Financeira",
     canonical: `${BASE_URL}/`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   "/gestao-financeira": {
-    title: "BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo Gestão Financeira",
+    title: "Planos de BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo — Florianópolis e Brasil",
     description:
-      "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DFC mensal e implementação Conta Azul.",
+      "Compare nossos planos de BPO Financeiro, Assistência Financeira Virtual e Gestão Estratégica: contas a pagar e receber, agendamento bancário, notas fiscais, boletos, DFC mensal e Implementação Conta Azul.",
     keywords:
-      "BPO financeiro para empresas, assistência financeira virtual, terceirizar financeiro, gestão de contas a pagar e receber, conciliação bancária diária, emissão de notas fiscais e boletos, implementação Conta Azul, gestão financeira terceirizada",
+      "BPO financeiro para empresas, BPO financeiro Florianópolis, assistência financeira virtual, terceirizar financeiro, gestão de contas a pagar e receber, conciliação bancária diária, emissão de notas fiscais e boletos, implementação Conta Azul, gestão financeira terceirizada",
     canonical: `${BASE_URL}/gestao-financeira`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
@@ -88,13 +88,20 @@ export default function SEO() {
   useEffect(() => {
     const path = location.pathname;
     const config = ROUTE_SEO[path] || ROUTE_SEO["/"];
+    const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+    const isPreviewHost =
+      hostname.endsWith(".workers.dev") || hostname.endsWith(".pages.dev");
 
     document.title = config.title;
     setMetaTag("name", "description", config.description);
     if (config.keywords) {
       setMetaTag("name", "keywords", config.keywords);
     }
-    setMetaTag("name", "robots", config.robots || "index, follow");
+    setMetaTag(
+      "name",
+      "robots",
+      isPreviewHost ? "noindex, nofollow" : config.robots || "index, follow"
+    );
 
     setMetaTag("property", "og:title", config.title);
     setMetaTag("property", "og:description", config.description);

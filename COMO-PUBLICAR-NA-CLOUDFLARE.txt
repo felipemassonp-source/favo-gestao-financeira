@@ -1,0 +1,36 @@
+﻿========================================================================
+GUIA DE PUBLICACAO DO SITE - FAVO GESTAO FINANCEIRA (CLOUDFLARE PAGES)
+========================================================================
+
+Existem 2 formas super simples de colocar o site no ar na conta Cloudflare da Favo:
+
+------------------------------------------------------------------------
+OPCAO 1: UPLOAD DIRETO (MAIS RAPIDO - NAO PRECISA PROGRAMACAO)
+------------------------------------------------------------------------
+Use o arquivo: FAVO-SITE-PRONTO-UPLOAD-CLOUDFLARE.zip (ou a pasta 'dist')
+
+1. Acesse o painel da Cloudflare -> Workers & Pages -> Create -> Pages -> "Upload assets" (Enviar ativos).
+2. Digite o nome do projeto (ex: favo-gestao-financeira).
+3. Arraste o arquivo 'FAVO-SITE-PRONTO-UPLOAD-CLOUDFLARE.zip' (ou o conteudo de dentro da pasta 'dist').
+4. Clique em "Deploy site". O site ja estara no ar imediatamente!
+5. Na aba "Custom domains" (Dominios personalizados), adicione:
+   - favogestaofinanceira.com.br
+   - www.favogestaofinanceira.com.br
+
+------------------------------------------------------------------------
+OPCAO 2: CONECTANDO AO GITHUB OU EDITANDO O CODIGO-FONTE
+------------------------------------------------------------------------
+Use o arquivo: FAVO-CODIGO-FONTE-COMPLETO.zip
+
+Configuracoes de Build na Cloudflare Pages (caso conecte via Git):
+- Framework preset: Vite
+- Build command: npm run build
+- Build output directory: dist
+- Node.js version: 20 (ou 18+)
+
+Para rodar no computador localmente:
+1. Extraia o arquivo FAVO-CODIGO-FONTE-COMPLETO.zip
+2. Rode: npm install
+3. Para testar localmente: npm run dev
+4. Para gerar a pasta final de producao (dist): npm run build
+========================================================================

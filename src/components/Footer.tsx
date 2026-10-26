@@ -64,7 +64,7 @@ export default function Footer() {
               <span className="leading-relaxed">
                 Rodovia Francisco Magno Vieira (SC-405), 4397 – sala 202 - Torre Sol - Oka Shopping - Campeche, Florianópolis – SC
                 <br />
-                CEP: 88065-000
+                CEP: 88065-000 • Atendimento em todo o Brasil
               </span>
             </li>
           </ul>
