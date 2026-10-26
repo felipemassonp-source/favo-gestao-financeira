@@ -14,9 +14,9 @@ const baseHtml = fs.readFileSync(baseHtmlPath, "utf-8");
 const routes = [
   {
     route: "gestao-financeira",
-    title: "Planos de BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo — Florianópolis e Brasil",
+    title: "Planos de BPO, Assistência Virtual e Gestão | Favo Finanças",
     description:
-      "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DFC mensal e implementação Conta Azul.",
+      "Compare os planos de BPO Financeiro, Assistência Virtual e Gestão Estratégica em Florianópolis e Brasil: agendamentos no banco, notas, boletos e DFC mensal.",
     canonical: "https://favogestaofinanceira.com.br/gestao-financeira",
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     bodyContent: `
@@ -30,9 +30,9 @@ const routes = [
       </header>
       <main>
         <article>
-          <h1>Terceirização Financeira &amp; BPO: Sua rotina financeira delegada. O seu tempo devolvido.</h1>
+          <h1>BPO Financeiro, Assistência Financeira Virtual e Gestão Estratégica — Sua rotina financeira delegada. O seu tempo devolvido.</h1>
           <p>
-            Assumimos a operação diária do financeiro da sua empresa com rigor corporativo. Você para de perder horas lançando boletos,
+            Assumimos a operação diária do financeiro da sua empresa em Florianópolis e em todo o Brasil com rigor corporativo. Você para de perder horas lançando boletos,
             emitindo notas e conciliando extratos, e passa a apenas aprovar pagamentos no aplicativo do seu banco com 1 clique.
           </p>
           <section>
@@ -76,9 +76,9 @@ const routes = [
   },
   {
     route: "perguntas-frequentes",
-    title: "Perguntas Frequentes sobre BPO e Gestão Financeira | Favo Gestão Financeira",
+    title: "Perguntas Frequentes sobre BPO e Gestão Financeira | Favo",
     description:
-      "Tire suas dúvidas sobre segurança bancária, diferença entre BPO, Assistência Financeira e Gestão Financeira, sistemas utilizados, prazos e propriedade dos seus dados na Favo.",
+      "Tire suas dúvidas sobre BPO Financeiro, Assistência Virtual e Gestão Financeira: segurança bancária em dupla alçada, sistemas, prazos e posse dos seus dados.",
     canonical: "https://favogestaofinanceira.com.br/perguntas-frequentes",
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     bodyContent: `
@@ -111,9 +111,9 @@ const routes = [
   },
   {
     route: "privacidade",
-    title: "Política de Privacidade e Proteção de Dados (LGPD) | Favo Gestão Financeira",
+    title: "Política de Privacidade e LGPD | Favo Gestão Financeira",
     description:
-      "Política de Privacidade e conformidade com a LGPD da Favo Gestão Financeira. Transparência sobre coleta, retenção e segurança dos dados.",
+      "Política de Privacidade e conformidade com a LGPD da Favo Gestão Financeira. Transparência sobre coleta e proteção de dados no diagnóstico financeiro.",
     canonical: "https://favogestaofinanceira.com.br/privacidade",
     robots: "index, follow",
     bodyContent: `

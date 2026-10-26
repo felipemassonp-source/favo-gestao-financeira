@@ -13,36 +13,36 @@ const BASE_URL = "https://favogestaofinanceira.com.br";
 
 const ROUTE_SEO: Record<string, PageSEOConfig> = {
   "/": {
-    title: "BPO Financeiro e Gestão Financeira Estratégica | Favo Gestão Financeira — Florianópolis e Todo o Brasil",
+    title: "BPO Financeiro e Gestão Estratégica em Florianópolis | Favo",
     description:
-      "Terceirização e gestão financeira empresarial com mais de 20 anos de experiência. BPO Financeiro, Assistência Financeira Virtual, Consultoria Financeira e Implementação Conta Azul em Florianópolis e em todo o Brasil.",
+      "Terceirização e gestão financeira para empresas em Florianópolis e todo o Brasil. Contas a pagar, conciliação D+1, DFC mensal e consultoria com dupla alçada.",
     keywords:
       "BPO financeiro, BPO financeiro Florianópolis, terceirização financeira, assistência financeira virtual, gestão financeira empresarial, consultoria financeira empresarial, implementação Conta Azul, implementação de financeiro, gestão de contas a pagar, conciliação bancária diária, DFC mensal, Favo Gestão Financeira",
     canonical: `${BASE_URL}/`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   "/gestao-financeira": {
-    title: "Planos de BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo — Florianópolis e Brasil",
+    title: "Planos de BPO, Assistência Virtual e Gestão | Favo Finanças",
     description:
-      "Compare nossos planos de BPO Financeiro, Assistência Financeira Virtual e Gestão Estratégica: contas a pagar e receber, agendamento bancário, notas fiscais, boletos, DFC mensal e Implementação Conta Azul.",
+      "Compare os planos de BPO Financeiro, Assistência Virtual e Gestão Estratégica em Florianópolis e Brasil: agendamentos no banco, notas, boletos e DFC mensal.",
     keywords:
       "BPO financeiro para empresas, BPO financeiro Florianópolis, assistência financeira virtual, terceirizar financeiro, gestão de contas a pagar e receber, conciliação bancária diária, emissão de notas fiscais e boletos, implementação Conta Azul, gestão financeira terceirizada",
     canonical: `${BASE_URL}/gestao-financeira`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   "/perguntas-frequentes": {
-    title: "Perguntas Frequentes sobre BPO e Gestão Financeira | Favo Gestão Financeira",
+    title: "Perguntas Frequentes sobre BPO e Gestão Financeira | Favo",
     description:
-      "Tire suas dúvidas sobre segurança bancária, diferença entre BPO, Assistência Financeira e Gestão Financeira, sistemas utilizados, prazos e propriedade dos seus dados na Favo.",
+      "Tire suas dúvidas sobre BPO Financeiro, Assistência Virtual e Gestão Financeira: segurança bancária em dupla alçada, sistemas, prazos e posse dos seus dados.",
     keywords:
       "dúvidas BPO financeiro, como funciona terceirização financeira, diferença BPO e gestão financeira, segurança BPO financeiro, perguntas frequentes Favo Gestão Financeira",
     canonical: `${BASE_URL}/perguntas-frequentes`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   "/privacidade": {
-    title: "Política de Privacidade e Proteção de Dados (LGPD) | Favo Gestão Financeira",
+    title: "Política de Privacidade e LGPD | Favo Gestão Financeira",
     description:
-      "Política de Privacidade e conformidade com a LGPD da Favo Gestão Financeira. Transparência sobre coleta e uso de dados no diagnóstico financeiro.",
+      "Política de Privacidade e conformidade com a LGPD da Favo Gestão Financeira. Transparência sobre coleta e proteção de dados no diagnóstico financeiro.",
     keywords: "política de privacidade favo, lgpd favo gestão financeira",
     canonical: `${BASE_URL}/privacidade`,
     robots: "index, follow",
