@@ -16,7 +16,7 @@ const routes = [
     route: "gestao-financeira",
     title: "BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo Gestão Financeira",
     description:
-      "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DRE gerencial e implementação Conta Azul.",
+      "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DFC mensal e implementação Conta Azul.",
     canonical: "https://favogestaofinanceira.com.br/gestao-financeira",
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     bodyContent: `
@@ -24,13 +24,13 @@ const routes = [
         <nav aria-label="Navegação Principal Favo Gestão Financeira">
           <a href="/">Favo Gestão Financeira — Início</a>
           <a href="/gestao-financeira">Serviços &amp; Planos</a>
-          <a href="/consultoria">Consultoria Financeira</a>
+          <a href="/perguntas-frequentes">Perguntas Frequentes</a>
           <a href="/privacidade">Política de Privacidade</a>
         </nav>
       </header>
       <main>
         <article>
-          <h1>Terceirização Financeira &amp; BPO: O fim da escravidão operacional. O seu tempo devolvido.</h1>
+          <h1>Terceirização Financeira &amp; BPO: Sua rotina financeira delegada. O seu tempo devolvido.</h1>
           <p>
             Assumimos a operação diária do financeiro da sua empresa com rigor corporativo. Você para de perder horas lançando boletos,
             emitindo notas e conciliando extratos, e passa a apenas aprovar pagamentos no aplicativo do seu banco com 1 clique.
@@ -39,7 +39,7 @@ const routes = [
             <h2>Compare nossos 3 Planos de Gestão e Terceirização Financeira</h2>
             <h3>1. BPO Financeiro (Processo Padrão)</h3>
             <ul>
-              <li>Gestão de contas a pagar e contas a receber (sem agendamento bancário)</li>
+              <li>Organização de contas a pagar e contas a receber (sem agendamento bancário)</li>
               <li>Conciliação bancária diária (D+1)</li>
               <li>Relatórios semanais para programação de pagamentos</li>
               <li>Fechamento financeiro mensal</li>
@@ -49,13 +49,14 @@ const routes = [
               <li>Gestão de contas a pagar com agendamento direto no banco (perfil operador secundário)</li>
               <li>Gestão de contas a receber e conciliação bancária diária</li>
               <li>Emissão de notas fiscais (NFS-e) e boletos</li>
+              <li>Apoio para captação de documentos de fornecedores</li>
               <li>Gestão de inadimplência e controle de cartão de crédito</li>
-              <li>Relatórios semanais, DRE mensal e Reunião mensal de apresentação de resultados</li>
+              <li>Relatórios semanais, DFC mensal e Reunião mensal de apresentação de resultados</li>
             </ul>
             <h3>3. Gestão Financeira Estratégica (Padrão + Suporte + Análise)</h3>
             <ul>
               <li>Todas as entregas da Assistência Financeira Virtual</li>
-              <li>Captação ativa de documentos junto a fornecedores</li>
+              <li>Apoio para captação de documentos de fornecedores</li>
               <li>Elaboração de metas financeiras e projeções de fluxo de caixa futuro</li>
               <li>Gráficos de desempenho, análise de geração de caixa e Reunião mensal de planejamento e resultados</li>
             </ul>
@@ -74,38 +75,32 @@ const routes = [
     `,
   },
   {
-    route: "consultoria",
-    title: "Consultoria Financeira Empresarial e Diagnóstico Raio-X | Favo Gestão Financeira",
+    route: "perguntas-frequentes",
+    title: "Perguntas Frequentes sobre BPO e Gestão Financeira | Favo Gestão Financeira",
     description:
-      "Consultoria financeira empresarial de 08 semanas com 04 encontros ao vivo e 60 dias de suporte no WhatsApp. Identificação de gargalos, mapeamento de processos, Raio-X financeiro e mapa estratégico.",
-    canonical: "https://favogestaofinanceira.com.br/consultoria",
+      "Tire suas dúvidas sobre segurança bancária, diferença entre BPO, Assistência Financeira e Gestão Financeira, sistemas utilizados, prazos e propriedade dos seus dados na Favo.",
+    canonical: "https://favogestaofinanceira.com.br/perguntas-frequentes",
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     bodyContent: `
       <header>
         <nav aria-label="Navegação Principal Favo Gestão Financeira">
           <a href="/">Favo Gestão Financeira — Início</a>
           <a href="/gestao-financeira">Serviços &amp; Planos</a>
-          <a href="/consultoria">Consultoria Financeira</a>
+          <a href="/perguntas-frequentes">Perguntas Frequentes</a>
           <a href="/privacidade">Política de Privacidade</a>
         </nav>
       </header>
       <main>
         <article>
-          <h1>Consultoria Financeira Personalizada: clareza estratégica para decisões seguras.</h1>
-          <p>
-            Acompanhamento individualizado com duração de 08 semanas, 04 encontros estratégicos ao vivo e 60 dias de suporte direto no WhatsApp
-            para empresários que desejam identificar gargalos, estancar vazamentos de caixa e construir um negócio sólido e lucrativo.
-          </p>
+          <h1>Dúvidas Frequentes sobre BPO Financeiro, Assistência Virtual e Gestão Financeira — Favo Gestão Financeira</h1>
+          <p>Transparência total desde o primeiro contato sobre segurança bancária, transição do financeiro, diferença entre BPO, Assistência Financeira e Gestão Financeira, consultoria de 08 semanas, prazos e propriedade dos seus dados.</p>
           <section>
-            <h2>Cronograma dos 04 Encontros Estratégicos (08 Semanas)</h2>
-            <h3>Encontro 01 — Alinhamento Inicial</h3>
-            <p>Identificação de gargalos operacionais e definição dos objetivos financeiros do negócio.</p>
-            <h3>Encontro 02 — Mapeamento e Análise</h3>
-            <p>Mapeamento detalhado de processos internos e análise profunda dos números da empresa.</p>
-            <h3>Encontro 03 — Raio-X Financeiro</h3>
-            <p>Apresentação do diagnóstico completo (Raio-X financeiro), margem real e pontos críticos.</p>
-            <h3>Encontro 04 — Mapa Estratégico</h3>
-            <p>Entrega do Mapa Estratégico de ação e ferramentas práticas para manter o negócio sólido e previsível.</p>
+            <h2>Qual a diferença entre BPO, Assistência Financeira e Gestão Financeira?</h2>
+            <p>A principal diferença está no nível de envolvimento da nossa equipe com a sua empresa: operacional no dia a dia (BPO), suporte ativo de uma equipe na rotina bancária, emissão de notas e boletos (Assistência Financeira), ou especialista na área acompanhando estrategicamente os números, projeções e metas do negócio (Gestão Financeira).</p>
+            <h2>Como a Favo garante a segurança e o sigilo das minhas informações financeiras?</h2>
+            <p>Contratos de Confidencialidade (NDA), conformidade com a LGPD e operação bancária em dupla alçada com perfil de operador secundário (a Favo agenda e somente o titular aprova no aplicativo do banco).</p>
+            <h2>Se eu desistir do serviço, posso cancelar? Como ficam meus dados?</h2>
+            <p>Prazo mínimo de 90 dias e, após isso, cancelamento sem juros ou multa com aviso prévio de 30 dias. Seus dados serão sempre seus, mantendo acesso integral ao seu banco de dados.</p>
           </section>
         </article>
       </main>

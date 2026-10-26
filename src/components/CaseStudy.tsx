@@ -6,7 +6,7 @@ export default function CaseStudy() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} className="py-28 bg-[#472F5B] text-[#FFFFF0] my-20 rounded-3xl relative overflow-hidden shadow-2xl">
+    <section ref={containerRef} className="py-28 bg-[#38183A] text-[#FFFFF0] my-20 rounded-3xl relative overflow-hidden shadow-2xl">
       {/* Decorative subtle honeycomb grid on berinjela background */}
       <div className="absolute inset-0 bg-honeycomb opacity-10 pointer-events-none" />
 
@@ -41,7 +41,7 @@ export default function CaseStudy() {
               <div>
                 <h4 className="text-xs uppercase tracking-widest text-[#D97706] mb-3 font-semibold">A Solução Favo (Consultoria & Gestão)</h4>
                 <p className="text-sm font-normal text-[#FFFFF0]/85 leading-relaxed">
-                  Estruturamos a conciliação bancária em D+1, separamos despesas PF/PJ, organizamos o contas a pagar e a receber e entregamos relatórios mensais de DRE com fechamento rigoroso. A consultoria em 4 encontros destravou os gargalos e entregou um mapa estratégico definitivo.
+                  Estruturamos a conciliação bancária em D+1, separamos despesas PF/PJ, organizamos o contas a pagar e a receber e entregamos relatórios de DFC mensal com fechamento rigoroso. A consultoria em 4 encontros destravou os gargalos e entregou um mapa estratégico definitivo.
                 </p>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function CaseStudy() {
               </div>
               <div className="flex items-end gap-3">
                 <span className="text-5xl font-serif font-light text-[#D97706]">+45%</span>
-                <span className="text-xs font-normal text-[#FFFFF0]/80 tracking-wide pb-1">de evolução na margem líquida em 90 dias (DRE)</span>
+                <span className="text-xs font-normal text-[#FFFFF0]/80 tracking-wide pb-1">de evolução na margem líquida em 90 dias (DFC mensal)</span>
               </div>
             </div>
 

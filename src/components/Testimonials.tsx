@@ -157,26 +157,26 @@ export default function Testimonials({ showPricing = false }: { showPricing?: bo
   };
 
   return (
-    <section ref={containerRef} className="py-32 border-t border-[#472F5B]/15 overflow-hidden bg-[#FFFFF0]">
+    <section ref={containerRef} className="py-32 border-t border-[#38183A]/15 overflow-hidden bg-[#FFFFF0]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <span className="text-[#472F5B] text-[10px] uppercase tracking-[0.3em] mb-4 block font-semibold bg-[#472F5B]/10 px-3.5 py-1 rounded-full border border-[#472F5B]/20 w-fit">Casos Reais</span>
+            <span className="text-[#38183A] text-[10px] uppercase tracking-[0.3em] mb-4 block font-semibold bg-[#38183A]/10 px-3.5 py-1 rounded-full border border-[#38183A]/20 w-fit">Casos Reais</span>
             <h2 className="text-4xl md:text-6xl font-serif font-light tracking-wide text-[#1F242D] mt-2">
-              Empresários que voltaram a <br/><span className="italic text-[#472F5B] font-medium">dormir tranquilos.</span>
+              Empresários que voltaram a <br className="hidden sm:block" /><span className="italic text-[#38183A] font-medium">dormir tranquilos.</span>
             </h2>
           </div>
 
           <div className="flex items-center gap-6">
             <div className="hidden md:flex items-center gap-2 text-xs uppercase tracking-widest text-[#4B5262]">
-              <Hand className="w-4 h-4 animate-pulse text-[#472F5B]" />
+              <Hand className="w-4 h-4 animate-pulse text-[#38183A]" />
               <span>Arraste para explorar</span>
             </div>
             <div className="flex items-center gap-3">
               <button 
                 onClick={handlePrev}
                 aria-label="Depoimento anterior"
-                className="w-12 h-12 rounded-full border border-[#472F5B]/20 flex items-center justify-center text-[#472F5B] hover:bg-[#472F5B] hover:text-[#FFFFF0] hover:border-[#472F5B] transition-all duration-300 disabled:opacity-30"
+                className="w-12 h-12 rounded-full border border-[#38183A]/20 flex items-center justify-center text-[#38183A] hover:bg-[#38183A] hover:text-[#FFFFF0] hover:border-[#38183A] transition-all duration-300 disabled:opacity-30"
                 disabled={activeIndex === 0}
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -184,7 +184,7 @@ export default function Testimonials({ showPricing = false }: { showPricing?: bo
               <button 
                 onClick={handleNext}
                 aria-label="Próximo depoimento"
-                className="w-12 h-12 rounded-full border border-[#472F5B]/20 flex items-center justify-center text-[#472F5B] hover:bg-[#472F5B] hover:text-[#FFFFF0] hover:border-[#472F5B] transition-all duration-300 disabled:opacity-30"
+                className="w-12 h-12 rounded-full border border-[#38183A]/20 flex items-center justify-center text-[#38183A] hover:bg-[#38183A] hover:text-[#FFFFF0] hover:border-[#38183A] transition-all duration-300 disabled:opacity-30"
                 disabled={activeIndex === testimonials.length - 1}
               >
                 <ChevronRight className="w-5 h-5" />
@@ -199,21 +199,21 @@ export default function Testimonials({ showPricing = false }: { showPricing?: bo
             {testimonials.map((item, idx) => (
               <div 
                 key={idx} 
-                className={`testimonial-card shrink-0 w-[360px] md:w-[420px] bg-[#FFFFFF] rounded-3xl border p-10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.06)] relative group transition-all duration-500 ${activeIndex === idx ? 'border-[#472F5B] shadow-xl scale-[1.02]' : 'border-[#472F5B]/15 hover:border-[#472F5B]/40'}`}
+                className={`testimonial-card shrink-0 w-[84vw] max-w-[340px] sm:w-[360px] sm:max-w-none md:w-[420px] bg-[#FFFFFF] rounded-3xl border p-6 sm:p-10 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.06)] relative group transition-all duration-500 ${activeIndex === idx ? 'border-[#38183A] shadow-xl scale-[1.02]' : 'border-[#38183A]/15 hover:border-[#38183A]/40'}`}
               >
                 {/* Highlight Badge */}
-                <div className="inline-flex items-center gap-2 bg-[#472F5B]/10 text-[#472F5B] border border-[#472F5B]/20 px-3.5 py-1.5 rounded-full mb-8">
+                <div className="inline-flex items-center gap-2 bg-[#38183A]/10 text-[#38183A] border border-[#38183A]/20 px-3.5 py-1.5 rounded-full mb-8">
                   <TrendingUp className="w-3.5 h-3.5" />
                   <span className="text-[9px] uppercase tracking-widest font-semibold">{item.highlight}</span>
                 </div>
 
-                <Quote className="w-10 h-10 text-[#472F5B]/15 absolute top-10 right-10" />
+                <Quote className="w-10 h-10 text-[#38183A]/15 absolute top-10 right-10" />
 
                 <p className="text-sm md:text-base text-[#4B5262] font-normal leading-[1.8] tracking-wide mb-10 min-h-[120px]">
                   "{item.text}"
                 </p>
                 
-                <div className="flex flex-col gap-1.5 pt-6 border-t border-[#472F5B]/10">
+                <div className="flex flex-col gap-1.5 pt-6 border-t border-[#38183A]/10">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-base font-serif font-medium text-[#1F242D]">{item.author}</span>
                     <div className="flex gap-1 shrink-0">
@@ -222,7 +222,7 @@ export default function Testimonials({ showPricing = false }: { showPricing?: bo
                       ))}
                     </div>
                   </div>
-                  <span className="text-[10px] uppercase tracking-widest text-[#472F5B] font-semibold">{item.role}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-[#38183A] font-semibold">{item.role}</span>
                   <span className="text-xs font-normal text-[#4B5262]">{item.company}</span>
                 </div>
               </div>
@@ -251,7 +251,7 @@ export default function Testimonials({ showPricing = false }: { showPricing?: bo
                 }
               }}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                activeIndex === idx ? "w-8 bg-[#472F5B]" : "w-2 bg-[#472F5B]/20 hover:bg-[#472F5B]/40"
+                activeIndex === idx ? "w-8 bg-[#38183A]" : "w-2 bg-[#38183A]/20 hover:bg-[#38183A]/40"
               }`}
               aria-label={`Ir para depoimento ${idx + 1}`}
             />

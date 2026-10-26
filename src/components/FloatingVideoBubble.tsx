@@ -31,7 +31,7 @@ export default function FloatingVideoBubble() {
               onClick={() => setIsOpen(true)}
             >
               <div className="absolute -bottom-2 right-6 w-4 h-4 bg-[#fffff0] border-r border-b border-[#866428]/20 rotate-45"></div>
-              <p className="text-xs font-medium text-[#472f5b] whitespace-nowrap relative z-10">
+              <p className="text-xs font-medium text-[#38183A] whitespace-nowrap relative z-10">
                 Aperte o <span className="text-[#866428]">play</span> 👋
               </p>
             </motion.div>
@@ -50,9 +50,9 @@ export default function FloatingVideoBubble() {
             alt="Andryelle"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#472f5b]/40 group-hover:bg-[#472f5b]/20 transition-colors flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#38183A]/40 group-hover:bg-[#38183A]/20 transition-colors flex items-center justify-center">
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#D8B36B] flex items-center justify-center animate-pulse shadow-lg">
-              <Play className="w-3 h-3 md:w-4 md:h-4 text-[#472f5b] ml-1" />
+              <Play className="w-3 h-3 md:w-4 md:h-4 text-[#38183A] ml-1" />
             </div>
           </div>
         </button>
@@ -67,7 +67,7 @@ export default function FloatingVideoBubble() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-[#472f5b]/90 backdrop-blur-md"
+              className="absolute inset-0 bg-[#38183A]/90 backdrop-blur-md"
             />
             
             <motion.div 
@@ -79,7 +79,7 @@ export default function FloatingVideoBubble() {
               {/* Close Button */}
               <button 
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#fffff0] md:bg-[#472f5b]/10 flex items-center justify-center text-[#472f5b] hover:bg-[#D8B36B] hover:text-[#fffff0] transition-colors shadow-sm md:shadow-none"
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#fffff0] md:bg-[#38183A]/10 flex items-center justify-center text-[#38183A] hover:bg-[#D8B36B] hover:text-[#fffff0] transition-colors shadow-sm md:shadow-none"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -97,7 +97,7 @@ export default function FloatingVideoBubble() {
                    {/* Mock Player UI */}
                    <div className="absolute inset-0 flex items-center justify-center">
                      <div className="w-20 h-20 rounded-full bg-[#D8B36B] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
-                       <Play className="w-8 h-8 text-[#472f5b] ml-2" />
+                       <Play className="w-8 h-8 text-[#38183A] ml-2" />
                      </div>
                    </div>
                    
@@ -120,7 +120,7 @@ export default function FloatingVideoBubble() {
                 <p className="text-[10px] uppercase tracking-widest text-[#866428] mb-3 font-medium">
                   Mensagem da Fundadora
                 </p>
-                <h3 className="text-2xl font-serif text-[#472f5b] mb-4 leading-tight">
+                <h3 className="text-2xl font-serif text-[#38183A] mb-4 leading-tight">
                   "O financeiro virou uma dor de cabeça?"
                 </h3>
                 <p className="text-sm text-[#2a3a1e] font-light leading-relaxed mb-8">
@@ -129,7 +129,7 @@ export default function FloatingVideoBubble() {
                 
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="w-full bg-[#472f5b] text-[#fffff0] py-4 text-xs uppercase tracking-widest hover:bg-[#2a3a1e] transition-colors"
+                  className="w-full bg-[#38183A] text-[#fffff0] py-4 text-xs uppercase tracking-widest hover:bg-[#2a3a1e] transition-colors"
                 >
                   Continuar no site
                 </button>

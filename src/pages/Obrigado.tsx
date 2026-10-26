@@ -84,7 +84,7 @@ export default function Obrigado() {
   return (
     <div className="w-full min-h-screen bg-[#FFFFF0] text-[#1F242D] relative overflow-hidden font-sans pt-32 pb-24 px-6">
       {/* Glow de fundo */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-[#472F5B]/12 via-[#D97706]/5 to-transparent blur-[120px] pointer-events-none -z-0" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-[#38183A]/12 via-[#D97706]/5 to-transparent blur-[120px] pointer-events-none -z-0" />
       <div className="absolute inset-0 bg-honeycomb opacity-[0.4] pointer-events-none -z-0" />
 
       <div className="max-w-3xl mx-auto relative z-10">
@@ -92,7 +92,7 @@ export default function Obrigado() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-white rounded-[2.5rem] border border-[#472F5B]/15 shadow-[0_24px_60px_rgba(71,47,91,0.08)] p-8 sm:p-12"
+          className="bg-white rounded-[2.5rem] border border-[#38183A]/15 shadow-[0_24px_60px_rgba(71,47,91,0.08)] p-8 sm:p-12"
         >
           {/* Cabeçalho de Confirmação */}
           <div className="flex flex-col items-center text-center mb-10">
@@ -110,7 +110,7 @@ export default function Obrigado() {
             </span>
 
             <h1 className="text-3xl sm:text-5xl font-serif font-light text-[#1F242D] leading-tight">
-              Obrigado, <span className="italic font-medium text-[#472F5B]">{firstName}!</span>
+              Obrigado, <span className="italic font-medium text-[#38183A]">{firstName}!</span>
             </h1>
 
             <p className="text-sm sm:text-base text-[#4B5262] mt-3 max-w-xl leading-relaxed">
@@ -119,7 +119,7 @@ export default function Obrigado() {
           </div>
 
           {/* CTA Principal de Encaminhamento para o WhatsApp */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#301A3F] via-[#472F5B] to-[#20102B] text-[#FFFFF0] shadow-xl mb-8 text-center relative overflow-hidden">
+          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#38183A] via-[#38183A] to-[#220D24] text-[#FFFFF0] shadow-xl mb-8 text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#D97706]/20 to-transparent rounded-full blur-2xl pointer-events-none" />
 
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#D97706] font-mono font-semibold block mb-2">
@@ -145,36 +145,36 @@ export default function Obrigado() {
           </div>
 
           {/* Resumo Completo do Preenchimento do Formulário */}
-          <div className="rounded-3xl bg-[#FAF9F5] border border-[#472F5B]/15 p-6 sm:p-8 mb-8">
-            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#472F5B]/10">
+          <div className="rounded-3xl bg-[#FAF9F5] border border-[#38183A]/15 p-6 sm:p-8 mb-8">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#38183A]/10">
               <div className="flex items-center gap-2.5">
                 <FileText className="w-4 h-4 text-[#D97706]" />
                 <h3 className="text-base sm:text-lg font-serif font-medium text-[#1F242D]">
                   Resumo do que você preencheu
                 </h3>
               </div>
-              <span className="text-[10px] uppercase tracking-widest font-semibold text-[#472F5B] bg-[#472F5B]/10 px-3 py-1 rounded-full">
+              <span className="text-[10px] uppercase tracking-widest font-semibold text-[#38183A] bg-[#38183A]/10 px-3 py-1 rounded-full">
                 {lead.formula}
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm mb-6">
-              <div className="p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                 <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold flex items-center gap-1.5 mb-1">
-                  <User className="w-3.5 h-3.5 text-[#472F5B]" /> Nome
+                  <User className="w-3.5 h-3.5 text-[#38183A]" /> Nome
                 </span>
                 <p className="font-medium text-[#1F242D]">{lead.nome || "—"}</p>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                 <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold flex items-center gap-1.5 mb-1">
-                  <Building2 className="w-3.5 h-3.5 text-[#472F5B]" /> Empresa
+                  <Building2 className="w-3.5 h-3.5 text-[#38183A]" /> Empresa
                 </span>
                 <p className="font-medium text-[#1F242D]">{lead.empresa || "—"}</p>
               </div>
 
               {lead.whatsapp && (
-                <div className="p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+                <div className="p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                   <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold flex items-center gap-1.5 mb-1">
                     <Phone className="w-3.5 h-3.5 text-[#25D366]" /> WhatsApp Informado
                   </span>
@@ -183,29 +183,29 @@ export default function Obrigado() {
               )}
 
               {lead.email && (
-                <div className="p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+                <div className="p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                   <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold flex items-center gap-1.5 mb-1">
                     <Mail className="w-3.5 h-3.5 text-[#D97706]" /> E-mail Profissional
                   </span>
-                  <p className="font-medium text-[#1F242D] break-all">{lead.email}</p>
+                  <p className="font-medium text-[#1F242D] break-words">{lead.email}</p>
                 </div>
               )}
             </div>
 
-            <div className="space-y-3 pt-4 border-t border-[#472F5B]/10 text-xs sm:text-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+            <div className="space-y-3 pt-4 border-t border-[#38183A]/10 text-xs sm:text-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                 <span className="text-[#4B5262] font-medium">Solução selecionada:</span>
-                <strong className="text-[#472F5B]">{lead.plano} ({lead.formula})</strong>
+                <strong className="text-[#38183A]">{lead.plano} ({lead.formula})</strong>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                 <span className="text-[#4B5262] font-medium">
                   {lead.tipo === "consultoria" ? "Objetivo principal:" : "Maior dificuldade atual:"}
                 </span>
                 <strong className="text-[#1F242D]">{lead.dorPrincipal || "—"}</strong>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3.5 rounded-2xl bg-white border border-[#472F5B]/10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 p-3.5 rounded-2xl bg-white border border-[#38183A]/10">
                 <span className="text-[#4B5262] font-medium">
                   {lead.tipo === "consultoria" ? "Faturamento médio mensal:" : "Volume médio mensal:"}
                 </span>
@@ -214,11 +214,11 @@ export default function Obrigado() {
             </div>
 
             {lead.classification && (
-              <div className="mt-5 p-4 rounded-2xl bg-[#472F5B]/5 border border-[#472F5B]/15">
+              <div className="mt-5 p-4 rounded-2xl bg-[#38183A]/5 border border-[#38183A]/15">
                 <span className="text-[#D97706] text-[10px] uppercase tracking-[0.2em] font-semibold flex items-center gap-1.5 mb-1">
                   <Sparkles className="w-3.5 h-3.5" /> Diagnóstico Preliminar
                 </span>
-                <p className="text-sm font-serif font-semibold text-[#472F5B]">
+                <p className="text-sm font-serif font-semibold text-[#38183A]">
                   {lead.classification.tag}
                 </p>
                 <p className="text-xs text-[#4B5262] mt-1 leading-relaxed">
@@ -229,7 +229,7 @@ export default function Obrigado() {
           </div>
 
           {/* Aviso de Garantia de Retorno */}
-          <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#FFFFF0] border border-[#472F5B]/10 text-xs text-[#4B5262] mb-8">
+          <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#FFFFF0] border border-[#38183A]/10 text-xs text-[#4B5262] mb-8">
             <ShieldCheck className="w-5 h-5 text-[#D97706] shrink-0 mt-0.5" />
             <p className="leading-relaxed">
               Caso prefira aguardar, nossa equipe também entrará em contato ativamente pelo WhatsApp ou e-mail informados acima para apresentar a melhor proposta para a <strong>{lead.empresa || "sua empresa"}</strong>.
@@ -240,7 +240,7 @@ export default function Obrigado() {
           <div className="flex items-center justify-center">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#472F5B] hover:text-[#D97706] transition-colors"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#38183A] hover:text-[#D97706] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Voltar para a Página Inicial</span>

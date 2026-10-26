@@ -11,9 +11,9 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://favogestaofinanceira.com.br/consultoria</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://favogestaofinanceira.com.br/perguntas-frequentes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://favogestaofinanceira.com.br/privacidade</loc>

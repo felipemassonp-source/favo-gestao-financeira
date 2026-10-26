@@ -88,8 +88,8 @@ const KANBAN_COLUMNS: {
     id: "proposta",
     title: "Proposta Enviada",
     badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
-    headerBorder: "border-t-4 border-t-[#472F5B]",
-    dotColor: "bg-[#472F5B]",
+    headerBorder: "border-t-4 border-t-[#38183A]",
+    dotColor: "bg-[#38183A]",
   },
   {
     id: "convertido",
@@ -505,10 +505,10 @@ export default function AdminLeads() {
   if (!isUserLoggedIn) {
     return (
       <div className="min-h-[85vh] flex items-center justify-center px-6 py-24 bg-[#FAF9F5]">
-        <div className="w-full max-w-md bg-white p-8 sm:p-10 rounded-3xl border border-[#472F5B]/15 shadow-xl relative overflow-hidden">
+        <div className="w-full max-w-md bg-white p-8 sm:p-10 rounded-3xl border border-[#38183A]/15 shadow-xl relative overflow-hidden">
           
           <div className="text-center mb-8">
-            <div className="w-12 h-12 rounded-2xl bg-[#472F5B]/10 text-[#472F5B] flex items-center justify-center mb-4 mx-auto border border-[#472F5B]/20">
+            <div className="w-12 h-12 rounded-2xl bg-[#38183A]/10 text-[#38183A] flex items-center justify-center mb-4 mx-auto border border-[#38183A]/20">
               <Lock className="w-5 h-5" />
             </div>
             <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D97706] block mb-1">
@@ -530,18 +530,18 @@ export default function AdminLeads() {
           )}
 
           {/* Abas de método de login */}
-          <div className="flex p-1 bg-[#FAF9F5] rounded-xl border border-[#472F5B]/10 mb-6">
+          <div className="flex p-1 bg-[#FAF9F5] rounded-xl border border-[#38183A]/10 mb-6">
             <button
               type="button"
               onClick={() => setLoginMethod("google")}
-              className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all ${loginMethod === "google" ? "bg-white text-[#472F5B] shadow-xs" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+              className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all ${loginMethod === "google" ? "bg-white text-[#38183A] shadow-xs" : "text-[#4B5262] hover:text-[#1F242D]"}`}
             >
               Google (Convite)
             </button>
             <button
               type="button"
               onClick={() => setLoginMethod("email")}
-              className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all ${loginMethod === "email" ? "bg-white text-[#472F5B] shadow-xs" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+              className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all ${loginMethod === "email" ? "bg-white text-[#38183A] shadow-xs" : "text-[#4B5262] hover:text-[#1F242D]"}`}
             >
               E-mail & Senha
             </button>
@@ -564,7 +564,7 @@ export default function AdminLeads() {
                 <span>{isSubmittingAuth ? "Autenticando..." : "Entrar com Conta Google"}</span>
               </button>
 
-              <div className="pt-4 border-t border-[#472F5B]/10 text-center">
+              <div className="pt-4 border-t border-[#38183A]/10 text-center">
                 <p className="text-[11px] text-[#4B5262] leading-relaxed">
                   ✦ Seu endereço de e-mail precisa estar cadastrado na lista de convites para ter o acesso liberado.
                 </p>
@@ -582,7 +582,7 @@ export default function AdminLeads() {
                   onChange={(e) => setEmailInput(e.target.value)}
                   placeholder="seu@favogestao.com.br"
                   required
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#38183A]"
                 />
               </div>
 
@@ -596,21 +596,21 @@ export default function AdminLeads() {
                   onChange={(e) => setPasswordInput(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#38183A]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmittingAuth}
-                className="w-full bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] py-3.5 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-md transition-all mt-2 disabled:opacity-60"
+                className="w-full bg-[#38183A] hover:bg-[#2B112D] text-[#FFFFF0] py-3.5 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-md transition-all mt-2 disabled:opacity-60"
               >
                 {isSubmittingAuth ? "Entrando..." : "Acessar Painel"}
               </button>
             </form>
           )}
 
-          <div className="mt-8 pt-6 border-t border-[#472F5B]/10 flex items-center justify-between text-[11px] text-[#4B5262]">
+          <div className="mt-8 pt-6 border-t border-[#38183A]/10 flex items-center justify-between text-[11px] text-[#4B5262]">
             <span>Favo Gestão Financeira</span>
             <span className="text-[#D97706] font-medium">Área Restrita</span>
           </div>
@@ -627,10 +627,10 @@ export default function AdminLeads() {
     <div className="min-h-screen py-28 px-6 max-w-[1560px] mx-auto font-sans">
       
       {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-[#472F5B]/15">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-[#38183A]/15">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D97706] bg-[#472F5B]/10 px-3 py-1 rounded-full">
+            <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D97706] bg-[#38183A]/10 px-3 py-1 rounded-full">
               Portal da Equipe Favo
             </span>
             <span className="text-xs text-[#4B5262] font-medium">
@@ -646,7 +646,7 @@ export default function AdminLeads() {
           <button
             onClick={fetchLeads}
             disabled={loading}
-            className="inline-flex items-center gap-2 bg-white border border-[#472F5B]/20 text-[#472F5B] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#472F5B]/5 transition-all shadow-xs cursor-pointer"
+            className="inline-flex items-center gap-2 bg-white border border-[#38183A]/20 text-[#38183A] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#38183A]/5 transition-all shadow-xs cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
             <span>Atualizar</span>
@@ -654,7 +654,7 @@ export default function AdminLeads() {
 
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 bg-[#FAF9F5] border border-[#472F5B]/20 text-[#1F242D] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-white transition-all shadow-xs cursor-pointer"
+            className="inline-flex items-center gap-2 bg-[#FAF9F5] border border-[#38183A]/20 text-[#1F242D] px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-white transition-all shadow-xs cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-[#D97706]" />
             <span>Exportar CSV</span>
@@ -680,36 +680,36 @@ export default function AdminLeads() {
 
       {/* Metric Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
-        <div className="p-5 rounded-2xl bg-white border border-[#472F5B]/15 shadow-xs">
+        <div className="p-5 rounded-2xl bg-white border border-[#38183A]/15 shadow-xs">
           <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold block mb-1">Total de Leads</span>
           <span className="text-3xl font-serif font-light text-[#1F242D]">{totalLeads}</span>
         </div>
-        <div className="p-5 rounded-2xl bg-white border border-[#472F5B]/15 shadow-xs">
+        <div className="p-5 rounded-2xl bg-white border border-[#38183A]/15 shadow-xs">
           <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold block mb-1">Operacional (BPO/Gestão)</span>
-          <span className="text-3xl font-serif font-light text-[#472F5B]">{operationalCount}</span>
+          <span className="text-3xl font-serif font-light text-[#38183A]">{operationalCount}</span>
         </div>
-        <div className="p-5 rounded-2xl bg-white border border-[#472F5B]/15 shadow-xs">
+        <div className="p-5 rounded-2xl bg-white border border-[#38183A]/15 shadow-xs">
           <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold block mb-1">Interesse Consultoria</span>
           <span className="text-3xl font-serif font-light text-[#D97706]">{consultoriaCount}</span>
         </div>
-        <div className="p-5 rounded-2xl bg-white border border-[#472F5B]/15 shadow-xs">
+        <div className="p-5 rounded-2xl bg-white border border-[#38183A]/15 shadow-xs">
           <span className="text-[10px] uppercase tracking-wider text-[#4B5262] font-semibold block mb-1">Últimos 7 dias</span>
           <span className="text-3xl font-serif font-light text-emerald-600">+{recentCount}</span>
         </div>
       </div>
 
       {/* Tabs: Leads vs Convites + Seletor Kanban / Lista */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#472F5B]/15 mb-8 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#38183A]/15 mb-8 gap-4">
         <div className="flex">
           <button
             onClick={() => setActiveTab("leads")}
-            className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all cursor-pointer ${activeTab === "leads" ? "border-[#472F5B] text-[#472F5B]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
+            className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all cursor-pointer ${activeTab === "leads" ? "border-[#38183A] text-[#38183A]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
           >
             Leads Recebidos ({leads.length})
           </button>
           <button
             onClick={() => setActiveTab("invites")}
-            className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all cursor-pointer ${activeTab === "invites" ? "border-[#472F5B] text-[#472F5B]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
+            className={`pb-4 px-6 text-xs uppercase tracking-widest font-semibold border-b-2 transition-all cursor-pointer ${activeTab === "invites" ? "border-[#38183A] text-[#38183A]" : "border-transparent text-[#4B5262] hover:text-[#1F242D]"}`}
           >
             Convites & Acessos ({invites.length + DEFAULT_ALLOWED_EMAILS.length})
           </button>
@@ -717,13 +717,13 @@ export default function AdminLeads() {
 
         {/* Alternador de Visualização: Kanban vs Lista */}
         {activeTab === "leads" && (
-          <div className="flex items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#472F5B]/15 mb-3 sm:mb-2 self-start sm:self-auto shadow-2xs">
+          <div className="flex items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#38183A]/15 mb-3 sm:mb-2 self-start sm:self-auto shadow-2xs">
             <button
               type="button"
               onClick={() => setViewMode("kanban")}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                 viewMode === "kanban"
-                  ? "bg-[#472F5B] text-[#FFFFF0] shadow-xs"
+                  ? "bg-[#38183A] text-[#FFFFF0] shadow-xs"
                   : "text-[#4B5262] hover:text-[#1F242D]"
               }`}
             >
@@ -735,7 +735,7 @@ export default function AdminLeads() {
               onClick={() => setViewMode("lista")}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                 viewMode === "lista"
-                  ? "bg-[#472F5B] text-[#FFFFF0] shadow-xs"
+                  ? "bg-[#38183A] text-[#FFFFF0] shadow-xs"
                   : "text-[#4B5262] hover:text-[#1F242D]"
               }`}
             >
@@ -758,38 +758,38 @@ export default function AdminLeads() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar por nome, empresa, e-mail ou WhatsApp..."
-                className="w-full bg-white border border-[#472F5B]/15 rounded-2xl pl-11 pr-4 py-3 text-sm text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                className="w-full bg-white border border-[#38183A]/15 rounded-2xl pl-11 pr-4 py-3 text-sm text-[#1F242D] focus:outline-none focus:border-[#38183A]"
               />
             </div>
 
-            <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#472F5B]/15">
+            <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-[#38183A]/15">
               <button
                 onClick={() => setFilterType("all")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "all" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "all" ? "bg-[#38183A] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Todos
               </button>
               <button
                 onClick={() => setFilterType("bpo")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "bpo" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "bpo" ? "bg-[#38183A] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 BPO
               </button>
               <button
                 onClick={() => setFilterType("assistencia")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "assistencia" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "assistencia" ? "bg-[#38183A] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Assistência
               </button>
               <button
                 onClick={() => setFilterType("gestao")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "gestao" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "gestao" ? "bg-[#38183A] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Gestão
               </button>
               <button
                 onClick={() => setFilterType("consultoria")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "consultoria" ? "bg-[#472F5B] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${filterType === "consultoria" ? "bg-[#38183A] text-white" : "text-[#4B5262] hover:text-[#1F242D]"}`}
               >
                 Consultoria
               </button>
@@ -799,7 +799,7 @@ export default function AdminLeads() {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="bg-white border border-[#472F5B]/15 rounded-2xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                className="bg-white border border-[#38183A]/15 rounded-2xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#38183A]"
               >
                 <option value="all">Todos os Status</option>
                 <option value="novo">Novo</option>
@@ -813,8 +813,8 @@ export default function AdminLeads() {
 
           {/* Leads Content: Kanban or Lista */}
           {loading && leads.length === 0 ? (
-            <div className="text-center py-24 bg-white rounded-3xl border border-[#472F5B]/15">
-              <RefreshCw className="w-8 h-8 text-[#472F5B] animate-spin mx-auto mb-4" />
+            <div className="text-center py-24 bg-white rounded-3xl border border-[#38183A]/15">
+              <RefreshCw className="w-8 h-8 text-[#38183A] animate-spin mx-auto mb-4" />
               <p className="text-sm text-[#4B5262]">Carregando leads do banco de dados...</p>
             </div>
           ) : viewMode === "kanban" ? (
@@ -866,11 +866,11 @@ export default function AdminLeads() {
                       className={`rounded-3xl bg-[#FAF9F5] border transition-all duration-200 flex flex-col min-h-[540px] ${col.headerBorder} ${
                         isDragOver
                           ? "border-[#D97706] bg-[#FEF3C7]/25 ring-2 ring-[#D97706]/30"
-                          : "border-[#472F5B]/15"
+                          : "border-[#38183A]/15"
                       }`}
                     >
                       {/* Cabeçalho da Coluna Kanban */}
-                      <div className="p-4 border-b border-[#472F5B]/10 flex items-center justify-between bg-white/80 rounded-t-3xl">
+                      <div className="p-4 border-b border-[#38183A]/10 flex items-center justify-between bg-white/80 rounded-t-3xl">
                         <div className="flex items-center gap-2">
                           <span className={`w-2.5 h-2.5 rounded-full ${col.dotColor}`} />
                           <h3 className="text-xs font-bold uppercase tracking-wider text-[#1F242D]">
@@ -887,9 +887,9 @@ export default function AdminLeads() {
                       {/* Lista de Cards dentro da Coluna */}
                       <div className="p-3 space-y-3 flex-1">
                         {columnLeads.length === 0 ? (
-                          <div className="h-44 rounded-2xl border border-dashed border-[#472F5B]/15 flex flex-col items-center justify-center text-center p-4 text-[11px] text-[#4B5262]/70">
+                          <div className="h-44 rounded-2xl border border-dashed border-[#38183A]/15 flex flex-col items-center justify-center text-center p-4 text-[11px] text-[#4B5262]/70">
                             <span>Nenhum lead em</span>
-                            <strong className="text-[#472F5B]/80 mt-0.5">{col.title}</strong>
+                            <strong className="text-[#38183A]/80 mt-0.5">{col.title}</strong>
                           </div>
                         ) : (
                           columnLeads.map((lead) => {
@@ -909,14 +909,14 @@ export default function AdminLeads() {
                                   setDraggedLeadId(null);
                                   setDragOverColumn(null);
                                 }}
-                                className={`bg-white rounded-2xl border border-[#472F5B]/15 p-4 shadow-xs hover:shadow-md transition-all cursor-grab active:cursor-grabbing ${
+                                className={`bg-white rounded-2xl border border-[#38183A]/15 p-4 shadow-xs hover:shadow-md transition-all cursor-grab active:cursor-grabbing ${
                                   draggedLeadId === lead.id ? "opacity-50 scale-95" : ""
                                 }`}
                               >
                                 {/* Topo do Card: Serviço + Botão Excluir */}
                                 <div className="flex items-center justify-between gap-2 mb-2.5">
                                   <span className="inline-flex items-center gap-1 uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#D97706]/10 text-[#D97706] font-bold text-[9px]">
-                                    <GripVertical className="w-3 h-3 text-[#472F5B]/40" />
+                                    <GripVertical className="w-3 h-3 text-[#38183A]/40" />
                                     {getServiceLabel(lead.tipo)}
                                   </span>
                                   <button
@@ -933,13 +933,13 @@ export default function AdminLeads() {
                                 <h4 className="text-base font-serif font-semibold text-[#1F242D] leading-snug">
                                   {lead.nome || "Lead sem nome"}
                                 </h4>
-                                <p className="text-xs font-semibold text-[#472F5B] flex items-center gap-1.5 mt-0.5 mb-3">
+                                <p className="text-xs font-semibold text-[#38183A] flex items-center gap-1.5 mt-0.5 mb-3">
                                   <Building2 className="w-3.5 h-3.5 shrink-0 text-[#D97706]" />
                                   <span className="truncate">{lead.empresa || "Empresa não informada"}</span>
                                 </p>
 
                                 {/* Dados de Contato */}
-                                <div className="space-y-1 text-[11px] text-[#333A48] bg-[#FAF9F5] p-2.5 rounded-xl border border-[#472F5B]/10 mb-3">
+                                <div className="space-y-1 text-[11px] text-[#333A48] bg-[#FAF9F5] p-2.5 rounded-xl border border-[#38183A]/10 mb-3">
                                   <p className="flex items-center gap-1.5 truncate">
                                     <Phone className="w-3 h-3 text-[#25D366] shrink-0" />
                                     <span className="font-medium">{lead.whatsapp || "—"}</span>
@@ -952,14 +952,14 @@ export default function AdminLeads() {
 
                                 {/* Respostas do Diagnóstico */}
                                 <div className="space-y-2 text-[11px] text-[#333A48] mb-3">
-                                  <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#472F5B]/10">
-                                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#472F5B] block mb-0.5">
+                                  <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#38183A]/10">
+                                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#38183A] block mb-0.5">
                                       {lead.tipo === "consultoria" ? "Objetivo:" : "Dificuldade:"}
                                     </span>
                                     <p className="leading-snug">{lead.dorPrincipal || "Não informado"}</p>
                                   </div>
-                                  <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#472F5B]/10">
-                                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#472F5B] block mb-0.5">
+                                  <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#38183A]/10">
+                                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#38183A] block mb-0.5">
                                       {lead.tipo === "consultoria" ? "Faturamento:" : "Volume Mensal:"}
                                     </span>
                                     <p className="leading-snug">{lead.volumeOuControle || "Não informado"}</p>
@@ -967,7 +967,7 @@ export default function AdminLeads() {
                                 </div>
 
                                 {/* Ações Rápidas: WhatsApp + Mover Coluna */}
-                                <div className="pt-2.5 border-t border-[#472F5B]/10 space-y-2">
+                                <div className="pt-2.5 border-t border-[#38183A]/10 space-y-2">
                                   <a
                                     href={`https://wa.me/55${lead.whatsapp?.replace(/\D/g, "")}?text=Olá%20${encodeURIComponent(lead.nome || "")},%20aqui%20é%20da%20Favo%20Gestão%20Financeira!%20Recebemos%20seu%20diagnóstico.`}
                                     target="_blank"
@@ -984,7 +984,7 @@ export default function AdminLeads() {
                                       type="button"
                                       disabled={!prevCol}
                                       onClick={() => prevCol && handleUpdateStatus(lead.id, prevCol.id)}
-                                      className="p-1.5 rounded-lg border border-[#472F5B]/15 text-[#472F5B] hover:bg-[#472F5B]/10 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                                      className="p-1.5 rounded-lg border border-[#38183A]/15 text-[#38183A] hover:bg-[#38183A]/10 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                                       title={prevCol ? `Voltar para ${prevCol.title}` : ""}
                                     >
                                       <ChevronLeft className="w-3.5 h-3.5" />
@@ -995,7 +995,7 @@ export default function AdminLeads() {
                                       onChange={(e) =>
                                         handleUpdateStatus(lead.id, e.target.value as LeadStatus)
                                       }
-                                      className="flex-1 bg-[#FAF9F5] border border-[#472F5B]/15 rounded-lg px-2 py-1 text-[10px] font-semibold text-[#1F242D] focus:outline-none"
+                                      className="flex-1 bg-[#FAF9F5] border border-[#38183A]/15 rounded-lg px-2 py-1 text-[10px] font-semibold text-[#1F242D] focus:outline-none"
                                     >
                                       <option value="novo">🟡 Novo Lead</option>
                                       <option value="em_contato">🔵 Em Contato</option>
@@ -1008,7 +1008,7 @@ export default function AdminLeads() {
                                       type="button"
                                       disabled={!nextCol}
                                       onClick={() => nextCol && handleUpdateStatus(lead.id, nextCol.id)}
-                                      className="p-1.5 rounded-lg border border-[#472F5B]/15 text-[#472F5B] hover:bg-[#472F5B]/10 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                                      className="p-1.5 rounded-lg border border-[#38183A]/15 text-[#38183A] hover:bg-[#38183A]/10 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                                       title={nextCol ? `Avançar para ${nextCol.title}` : ""}
                                     >
                                       <ChevronRight className="w-3.5 h-3.5" />
@@ -1017,9 +1017,9 @@ export default function AdminLeads() {
                                 </div>
 
                                 {/* Data no rodapé do card */}
-                                <div className="mt-2.5 pt-2 border-t border-[#472F5B]/5 flex items-center justify-between text-[10px] text-[#4B5262]">
+                                <div className="mt-2.5 pt-2 border-t border-[#38183A]/5 flex items-center justify-between text-[10px] text-[#4B5262]">
                                   <span className="flex items-center gap-1">
-                                    <Calendar className="w-3 h-3 text-[#472F5B]" />
+                                    <Calendar className="w-3 h-3 text-[#38183A]" />
                                     {lead.createdAt
                                       ? new Date(lead.createdAt).toLocaleDateString("pt-BR", {
                                           day: "2-digit",
@@ -1046,8 +1046,8 @@ export default function AdminLeads() {
               </div>
             </div>
           ) : filteredLeads.length === 0 ? (
-            <div className="text-center py-24 bg-white rounded-3xl border border-[#472F5B]/15">
-              <User className="w-10 h-10 text-[#472F5B]/30 mx-auto mb-4" />
+            <div className="text-center py-24 bg-white rounded-3xl border border-[#38183A]/15">
+              <User className="w-10 h-10 text-[#38183A]/30 mx-auto mb-4" />
               <h3 className="text-lg font-serif text-[#1F242D] mb-1">Nenhum lead encontrado</h3>
               <p className="text-xs text-[#4B5262]">Nenhum contato corresponde aos filtros de busca aplicados.</p>
             </div>
@@ -1059,17 +1059,17 @@ export default function AdminLeads() {
               {filteredLeads.map((lead) => {
                 const currentStatus = lead.status || "novo";
                 return (
-                  <div key={lead.id} className="bg-white rounded-3xl border border-[#472F5B]/15 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all">
+                  <div key={lead.id} className="bg-white rounded-3xl border border-[#38183A]/15 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all">
                     
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-[#472F5B]/10">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-[#38183A]/10">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-[#472F5B]/10 text-[#472F5B] flex items-center justify-center font-serif text-lg font-medium border border-[#472F5B]/15">
+                        <div className="w-12 h-12 rounded-2xl bg-[#38183A]/10 text-[#38183A] flex items-center justify-center font-serif text-lg font-medium border border-[#38183A]/15">
                           {lead.nome ? lead.nome.substring(0, 2).toUpperCase() : "LV"}
                         </div>
                         <div>
                           <h3 className="text-xl font-serif font-medium text-[#1F242D]">{lead.nome || "Lead sem nome"}</h3>
                           <div className="flex flex-wrap items-center gap-3 text-xs text-[#4B5262] mt-1">
-                            <span className="flex items-center gap-1 font-semibold text-[#472F5B]">
+                            <span className="flex items-center gap-1 font-semibold text-[#38183A]">
                               <Building2 className="w-3.5 h-3.5" /> {lead.empresa || "Empresa não informada"}
                             </span>
                             <span>•</span>
@@ -1087,7 +1087,7 @@ export default function AdminLeads() {
                           <select
                             value={currentStatus}
                             onChange={(e) => handleUpdateStatus(lead.id, e.target.value as any)}
-                            className="bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-3 py-2 text-xs font-medium text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                            className="bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-3 py-2 text-xs font-medium text-[#1F242D] focus:outline-none focus:border-[#38183A]"
                           >
                             <option value="novo">🟡 Novo Lead</option>
                             <option value="em_contato">🔵 Em Contato</option>
@@ -1120,30 +1120,30 @@ export default function AdminLeads() {
 
                     {/* Respostas do Quiz / Diagnóstico */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#4B5262]">
-                      <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#472F5B]/10">
-                        <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#472F5B]">Contato</span>
+                      <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#38183A]/10">
+                        <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#38183A]">Contato</span>
                         <p className="mb-1 flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-[#D97706]" /> <strong>{lead.whatsapp}</strong></p>
                         <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-[#D97706]" /> <strong>{lead.email}</strong></p>
                       </div>
 
-                      <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#472F5B]/10">
-                        <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#472F5B]">
+                      <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#38183A]/10">
+                        <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#38183A]">
                           {lead.tipo === "consultoria" ? "Objetivo com a Consultoria" : "Maior Dificuldade Hoje"}
                         </span>
                         <p className="leading-relaxed">{lead.dorPrincipal || "Não informado"}</p>
                       </div>
 
-                      <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#472F5B]/10">
-                        <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#472F5B]">
+                      <div className="bg-[#FAF9F5] p-4 rounded-2xl border border-[#38183A]/10">
+                        <span className="font-semibold text-[#1F242D] block mb-1 uppercase tracking-wider text-[10px] text-[#38183A]">
                           {lead.tipo === "consultoria" ? "Faturamento Médio Mensal" : "Volume de Movimentações"}
                         </span>
                         <p className="leading-relaxed">{lead.volumeOuControle || "Não informado"}</p>
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-4 border-t border-[#472F5B]/10 flex items-center justify-between text-[11px] text-[#4B5262]">
+                    <div className="mt-4 pt-4 border-t border-[#38183A]/10 flex items-center justify-between text-[11px] text-[#4B5262]">
                       <span className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#472F5B]" />
+                        <Calendar className="w-3.5 h-3.5 text-[#38183A]" />
                         Capturado em: {lead.createdAt ? new Date(lead.createdAt).toLocaleString("pt-BR") : "Data não disponível"}
                       </span>
                       <span className="font-mono text-[10px] text-gray-400">ID: {lead.id}</span>
@@ -1162,7 +1162,7 @@ export default function AdminLeads() {
         <div className="space-y-8">
           
           {/* Card: Adicionar Novo Convite */}
-          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#472F5B]/15 shadow-xs">
+          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#38183A]/15 shadow-xs">
             <h3 className="text-xl font-serif font-medium text-[#1F242D] mb-2 flex items-center gap-2">
               <UserPlus className="w-5 h-5 text-[#D97706]" />
               Convidar Novo Consultor / Administrador
@@ -1179,7 +1179,7 @@ export default function AdminLeads() {
                   onChange={(e) => setNewInviteEmail(e.target.value)}
                   placeholder="E-mail do convidado (ex: andryelle@gmail.com)"
                   required
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#38183A]"
                 />
               </div>
 
@@ -1189,14 +1189,14 @@ export default function AdminLeads() {
                   value={newInvitePassword}
                   onChange={(e) => setNewInvitePassword(e.target.value)}
                   placeholder="Senha opcional (padrão: favo2026)"
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#38183A]"
                 />
               </div>
 
               <select
                 value={newInviteRole}
                 onChange={(e) => setNewInviteRole(e.target.value as any)}
-                className="bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#472F5B]"
+                className="bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3 text-xs text-[#1F242D] focus:outline-none focus:border-[#38183A]"
               >
                 <option value="admin">Administrador (Total)</option>
                 <option value="consultor">Consultor (Visualizar e Tratar)</option>
@@ -1205,7 +1205,7 @@ export default function AdminLeads() {
               <button
                 type="submit"
                 disabled={isAddingInvite}
-                className="bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-6 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold transition-all disabled:opacity-60 shrink-0"
+                className="bg-[#38183A] hover:bg-[#2B112D] text-[#FFFFF0] px-6 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold transition-all disabled:opacity-60 shrink-0"
               >
                 {isAddingInvite ? "Concedendo..." : "Liberar Convite"}
               </button>
@@ -1213,13 +1213,13 @@ export default function AdminLeads() {
           </div>
 
           {/* Lista de Acessos Autorizados */}
-          <div className="bg-white rounded-3xl border border-[#472F5B]/15 overflow-hidden shadow-xs">
-            <div className="p-6 border-b border-[#472F5B]/10">
+          <div className="bg-white rounded-3xl border border-[#38183A]/15 overflow-hidden shadow-xs">
+            <div className="p-6 border-b border-[#38183A]/10">
               <h4 className="text-base font-serif font-medium text-[#1F242D]">E-mails com Acesso Ativo</h4>
               <p className="text-xs text-[#4B5262]">Somente estas contas Google e e-mails podem abrir a área restrita.</p>
             </div>
 
-            <div className="divide-y divide-[#472F5B]/10 text-xs">
+            <div className="divide-y divide-[#38183A]/10 text-xs">
               {/* E-mails padrão da liderança */}
               {DEFAULT_ALLOWED_EMAILS.map((email, idx) => (
                 <div key={idx} className="p-5 flex items-center justify-between bg-emerald-50/30">
@@ -1252,7 +1252,7 @@ export default function AdminLeads() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="px-3 py-1 rounded-full bg-[#472F5B]/10 text-[#472F5B] text-[10px] font-semibold">
+                      <span className="px-3 py-1 rounded-full bg-[#38183A]/10 text-[#38183A] text-[10px] font-semibold">
                         Acesso Liberado
                       </span>
                       <button

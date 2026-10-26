@@ -11,8 +11,8 @@ import Preloader from "./components/Preloader";
 import SEO from "./components/SEO";
 
 // Code-splitting das rotas secundárias e área restrita para carregamento instantâneo
-const Consultoria = lazy(() => import("./pages/Consultoria"));
 const GestaoFinanceira = lazy(() => import("./pages/GestaoFinanceira"));
+const PerguntasFrequentes = lazy(() => import("./pages/PerguntasFrequentes"));
 const Obrigado = lazy(() => import("./pages/Obrigado"));
 const Privacidade = lazy(() => import("./pages/Privacidade"));
 const AdminLeads = lazy(() => import("./pages/AdminLeads"));
@@ -26,14 +26,14 @@ export default function App() {
         <Suspense
           fallback={
             <div className="min-h-screen w-full bg-[#FFFFF0] flex items-center justify-center">
-              <div className="w-8 h-8 rounded-full border-2 border-[#472F5B]/20 border-t-[#D97706] animate-spin" />
+              <div className="w-8 h-8 rounded-full border-2 border-[#38183A]/20 border-t-[#D97706] animate-spin" />
             </div>
           }
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/consultoria" element={<Consultoria />} />
             <Route path="/gestao-financeira" element={<GestaoFinanceira />} />
+            <Route path="/perguntas-frequentes" element={<PerguntasFrequentes />} />
             <Route path="/obrigado" element={<Obrigado />} />
             <Route path="/privacidade" element={<Privacidade />} />
             <Route path="/admin" element={<AdminLeads />} />

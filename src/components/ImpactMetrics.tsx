@@ -51,7 +51,7 @@ const AnimatedNumber = ({ endValue, prefix, suffix }: { endValue: number; prefix
   }, [isInView, endValue]);
 
   return (
-    <span ref={ref} className="text-6xl md:text-7xl font-serif text-[#472F5B] mb-6 block font-light">
+    <span ref={ref} className="text-6xl md:text-7xl font-serif text-[#38183A] mb-6 block font-light">
       {prefix}
       {new Intl.NumberFormat("pt-BR").format(value)}
       {suffix}
@@ -61,7 +61,7 @@ const AnimatedNumber = ({ endValue, prefix, suffix }: { endValue: number; prefix
 
 export default function ImpactMetrics() {
   return (
-    <section className="py-24 border-t border-[#472F5B]/15">
+    <section className="py-24 border-t border-[#38183A]/15">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
         {metrics.map((metric, i) => (
           <motion.div
@@ -73,7 +73,7 @@ export default function ImpactMetrics() {
             className="metric-item flex flex-col items-center text-center px-4"
           >
             <AnimatedNumber endValue={metric.endValue} prefix={metric.prefix} suffix={metric.suffix} />
-            <span className="text-[10px] uppercase tracking-[0.2em] font-light text-[#472F5B] mb-4 block border-b border-[#472F5B]/20 pb-4 w-12" />
+            <span className="text-[10px] uppercase tracking-[0.2em] font-light text-[#38183A] mb-4 block border-b border-[#38183A]/20 pb-4 w-12" />
             <span className="text-base font-serif font-medium text-[#1F242D] mb-2 block">
               {metric.label}
             </span>

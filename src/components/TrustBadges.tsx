@@ -31,10 +31,10 @@ export default function TrustBadges() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="trust-badge flex flex-col items-center justify-center text-center p-6 bg-[#FFFFFF] border border-[#472F5B]/15 rounded-2xl hover:border-[#472F5B]/40 transition-colors shadow-sm"
+            className="trust-badge flex flex-col items-center justify-center text-center p-6 bg-[#FFFFFF] border border-[#38183A]/15 rounded-2xl hover:border-[#38183A]/40 transition-colors shadow-sm"
           >
-            <div className="w-12 h-12 rounded-full bg-[#472F5B]/10 flex items-center justify-center mb-4">
-              <Icon className="w-5 h-5 text-[#472F5B]" />
+            <div className="w-12 h-12 rounded-full bg-[#38183A]/10 flex items-center justify-center mb-4">
+              <Icon className="w-5 h-5 text-[#38183A]" />
             </div>
             <span className="text-xs font-serif uppercase tracking-widest text-[#1F242D] font-medium mb-1.5">
               {badge.title}

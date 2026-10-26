@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Check, ArrowRight, ShieldCheck, TrendingUp, HelpCircle } from "lucide-react";
 import { cn } from "../lib/utils";
 import MachineXServiceCards from "./MachineXServiceCards";
 
@@ -46,6 +45,7 @@ export const operationalPlans: PlanData[] = [
       "Gestão de inadimplência (com ou sem cobrança)",
       "Emissão de notas fiscais e boletos",
       "Gestão de cartão de crédito",
+      "Apoio para captação de documentos de fornecedores",
       "Fechamento de financeiro mensal",
       "Relatórios mensais de receitas e despesas",
       "Reunião mensal de apresentação de resultados",
@@ -79,7 +79,7 @@ export const operationalPlans: PlanData[] = [
 
 const comparisonMatrix = [
   { feature: "Para quem é indicado", bpo: "Empresas que pagam contas internamente", assistencia: "Empresas que querem delegar a rotina bancária", gestao: "Empresas em expansão com foco em metas" },
-  { feature: "O que fica com o cliente", bpo: "Agendar e pagar no banco", assistencia: "Apenas aprovar os agendamentos no app", gestao: "Aprovar no app + reunião estratégica" },
+  { feature: "O que fica com o cliente", bpo: "Agendar e pagar no banco", assistencia: "Apenas aprovar os agendamentos no app", gestao: "Apenas aprovar os agendamentos no app" },
   { feature: "Organização de contas a pagar", bpo: "Sem agendamento bancário", assistencia: "Com agendamento bancário", gestao: "Com agendamento bancário" },
   { feature: "Organização / Gestão de contas a receber", bpo: true, assistencia: true, gestao: true },
   { feature: "Conciliação bancária diária", bpo: true, assistencia: true, gestao: true },
@@ -87,7 +87,7 @@ const comparisonMatrix = [
   { feature: "Gestão de inadimplência (com/sem cobrança)", bpo: "Apenas relatório", assistencia: true, gestao: true },
   { feature: "Emissão de notas fiscais e boletos", bpo: false, assistencia: true, gestao: true },
   { feature: "Gestão e controle de cartão de crédito", bpo: false, assistencia: true, gestao: true },
-  { feature: "Apoio na captação de documentos de fornecedores", bpo: false, assistencia: false, gestao: true },
+  { feature: "Apoio na captação de documentos de fornecedores", bpo: false, assistencia: true, gestao: true },
   { feature: "Fechamento de financeiro mensal", bpo: true, assistencia: true, gestao: true },
   { feature: "Relatórios mensais de receitas e despesas", bpo: false, assistencia: true, gestao: true },
   { feature: "Reunião mensal de apresentação de resultados", bpo: false, assistencia: true, gestao: "Com planejamento estratégico" },
@@ -98,10 +98,9 @@ const comparisonMatrix = [
 ];
 
 export default function ServiceTiers() {
-  const [selectedPlan, setSelectedPlan] = useState<string>("gestao");
   const [showMatrix, setShowMatrix] = useState(false);
 
-  const scrollToContact = (planName: string) => {
+  const scrollToContact = () => {
     const el = document.getElementById("formulario-bpo") || document.getElementById("formulario");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -111,12 +110,12 @@ export default function ServiceTiers() {
   return (
     <div id="planos-servicos" className="w-full">
       {/* Header da Seção */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#472F5B] font-mono block mb-4">
+      <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#38183A] font-mono block mb-4">
           ESCOPO SOB MEDIDA
         </span>
 
-        <h2 className="text-3xl sm:text-5xl font-serif font-light text-[#1F242D] tracking-tight leading-[1.15]">
+        <h2 className="text-3xl sm:text-5xl font-serif font-light text-[#1F242D] tracking-tight leading-[1.15] text-balance">
           Três níveis de serviço. <br className="hidden sm:block" />
           <span className="italic text-[#D97706] font-medium">A mesma excelência</span> para o seu caixa.
         </h2>
@@ -126,12 +125,12 @@ export default function ServiceTiers() {
         </p>
 
         {/* Botão de Alternância para Matriz Comparativa */}
-        <div className="mt-8 inline-flex p-1.5 rounded-full bg-white border border-[#472F5B]/15 shadow-xs">
+        <div className="mt-8 inline-flex p-1.5 rounded-full bg-white border border-[#38183A]/15 shadow-xs max-w-full">
           <button
             onClick={() => setShowMatrix(false)}
             className={cn(
-              "px-5 py-2 text-xs uppercase tracking-wider font-semibold rounded-full transition-all duration-300",
-              !showMatrix ? "bg-[#472F5B] text-[#FFFFF0] shadow-sm" : "text-[#4B5262] hover:text-[#1F242D]"
+              "px-4 sm:px-5 py-2.5 text-[11px] sm:text-xs uppercase tracking-wider font-semibold rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer",
+              !showMatrix ? "bg-[#38183A] text-[#FFFFF0] shadow-sm" : "text-[#4B5262] hover:text-[#1F242D]"
             )}
           >
             Visualizar Cards
@@ -139,8 +138,8 @@ export default function ServiceTiers() {
           <button
             onClick={() => setShowMatrix(true)}
             className={cn(
-              "px-5 py-2 text-xs uppercase tracking-wider font-semibold rounded-full transition-all duration-300",
-              showMatrix ? "bg-[#472F5B] text-[#FFFFF0] shadow-sm" : "text-[#4B5262] hover:text-[#1F242D]"
+              "px-4 sm:px-5 py-2.5 text-[11px] sm:text-xs uppercase tracking-wider font-semibold rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer",
+              showMatrix ? "bg-[#38183A] text-[#FFFFF0] shadow-sm" : "text-[#4B5262] hover:text-[#1F242D]"
             )}
           >
             Comparativo Completo
@@ -153,12 +152,16 @@ export default function ServiceTiers() {
         <MachineXServiceCards className="px-0 py-0" />
       ) : (
         /* TABELA MATRIZ COMPARATIVA DETALHADA */
-        <div className="bg-white rounded-3xl border border-[#472F5B]/15 shadow-xl overflow-hidden">
+        <div className="bg-white rounded-3xl border border-[#38183A]/15 shadow-xl overflow-hidden">
+          <div className="px-5 py-2.5 bg-[#FAF9F5] border-b border-[#38183A]/10 text-[11px] text-[#4B5262] sm:hidden flex items-center justify-between">
+            <span>Deslize a tabela para o lado para comparar</span>
+            <span className="text-[#38183A] font-semibold">→</span>
+          </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[700px]">
+            <table className="w-full text-left border-collapse min-w-[680px]">
               <thead>
-                <tr className="bg-[#FAF9F5] border-b border-[#472F5B]/15">
-                  <th className="py-5 px-6 text-xs font-bold uppercase tracking-wider text-[#472F5B] w-2/5">
+                <tr className="bg-[#FAF9F5] border-b border-[#38183A]/15">
+                  <th className="py-5 px-6 text-xs font-bold uppercase tracking-wider text-[#38183A] w-2/5">
                     Funcionalidade / Escopo
                   </th>
                   <th className="py-5 px-4 text-xs font-bold uppercase tracking-wider text-[#1F242D] text-center w-1/5">
@@ -175,7 +178,7 @@ export default function ServiceTiers() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#472F5B]/10 text-xs">
+              <tbody className="divide-y divide-[#38183A]/10 text-xs">
                 {comparisonMatrix.map((row, idx) => (
                   <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-[#FAF9F5]/50"}>
                     <td className="py-4 px-6 font-medium text-[#1F242D]">
@@ -214,13 +217,13 @@ export default function ServiceTiers() {
             </table>
           </div>
 
-          <div className="p-6 bg-[#FAF9F5] border-t border-[#472F5B]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs text-[#333A48]">
+          <div className="p-6 bg-[#FAF9F5] border-t border-[#38183A]/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span className="text-xs text-[#333A48] text-center sm:text-left">
               ✦ Todos os planos operam com perfil bancário de operador secundário (a Favo agenda e somente o titular autoriza no app do banco).
             </span>
             <button
-              onClick={() => scrollToContact("Assistência Financeira Virtual")}
-              className="px-6 py-3 bg-[#472F5B] text-[#FFFFF0] rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-[#361F48] transition-all cursor-pointer"
+              onClick={scrollToContact}
+              className="w-full sm:w-auto px-6 py-3.5 bg-[#38183A] text-[#FFFFF0] rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-[#2B112D] transition-all cursor-pointer shrink-0"
             >
               Solicitar Proposta no Formulário
             </button>

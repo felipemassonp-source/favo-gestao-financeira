@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { Check, ArrowRight, MessageCircle, ShieldCheck, Layers, TrendingUp, ChevronRight } from "lucide-react";
 import { cn } from "../lib/utils";
 
 // ============================================================================
 // 🎛️ 1. PARÂMETROS DE CURVA ELÁSTICA (SPRING PHYSICS - PADRÃO MACHINEX BY KOTO)
-// Calibre aqui para ajustar a velocidade e a elasticidade de expansão dos cards:
 // ============================================================================
 export const SPRING_CONFIG = {
   type: "spring" as const,
-  stiffness: 300, // 👈 RIGIDEZ: valores maiores = expansão mais rápida (ex: 280 a 380)
-  damping: 28,    // 👈 AMORTECIMENTO: valores menores = mais elástico/mola (ex: 22 a 32)
-  mass: 0.85,     // 👈 MASSA: inércia física do card
+  stiffness: 300,
+  damping: 28,
+  mass: 0.85,
 };
 
 // ============================================================================
@@ -19,7 +18,7 @@ export const SPRING_CONFIG = {
 // ============================================================================
 export const CONTENT_FADE_TRANSITION = {
   duration: 0.28,
-  ease: [0.22, 1, 0.36, 1], // 👈 Curva cubic-bezier suave estilo Koto/Linear
+  ease: [0.22, 1, 0.36, 1] as const,
 };
 
 export interface ServicePlan {
@@ -75,6 +74,7 @@ export const servicePlans: ServicePlan[] = [
       "Gestão de inadimplência (com ou sem cobrança)",
       "Emissão de notas fiscais e boletos",
       "Gestão de cartão de crédito",
+      "Apoio para captação de documentos de fornecedores",
       "Fechamento de financeiro mensal",
       "Relatórios mensais de receitas e despesas",
       "Reunião mensal de apresentação de resultados",
@@ -151,9 +151,8 @@ interface MachineXServiceCardsProps {
 export default function MachineXServiceCards({
   className = "",
   showHeader = false,
-  whatsappBaseNumber = "5548999725750", // Telefone oficial da FAVO: (48) 99972-5750
+  whatsappBaseNumber = "5548999725750",
 }: MachineXServiceCardsProps) {
-  // Inicia com o plano recomendado ("assistencia") em destaque expandido
   const [activeId, setActiveId] = useState<string>("assistencia");
 
   const buildWhatsappUrl = (message: string) => {
@@ -166,11 +165,11 @@ export default function MachineXServiceCards({
       {/* CABEÇALHO OPCIONAL (Quando usado standalone) */}
       {showHeader && (
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#472F5B] font-mono block mb-4">
+          <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-[#38183A] font-mono block mb-4">
             ESTRUTURA TRANSPARENTE DE PLANOS
           </span>
 
-          <h2 className="text-3xl sm:text-5xl font-serif font-light text-[#1F242D] tracking-tight leading-[1.15]">
+          <h2 className="text-3xl sm:text-5xl font-serif font-light text-[#1F242D] tracking-tight leading-[1.15] text-balance">
             Escolha o nível de suporte <br className="hidden sm:block" />
             <span className="italic font-medium text-[#D97706]">ideal para o seu momento</span>
           </h2>
@@ -197,8 +196,8 @@ export default function MachineXServiceCards({
           return (
             <motion.div
               key={plan.id}
-              layout // 👈 Habilita o morphing contínuo de dimensões da Framer Motion
-              transition={SPRING_CONFIG} // 👈 Aplica a física spring calibrada
+              layout
+              transition={SPRING_CONFIG}
               onClick={() => setActiveId(plan.id)}
               onMouseEnter={() => {
                 if (typeof window !== "undefined" && window.innerWidth >= 1024) {
@@ -206,40 +205,38 @@ export default function MachineXServiceCards({
                 }
               }}
               className={cn(
-                "relative rounded-3xl cursor-pointer overflow-hidden border flex flex-col justify-between p-7 sm:p-9 select-none transition-all duration-300",
-                // Proporção de expansão elástica: o ativo expande para flex 2.5, os outros mantêm flex 1
+                "relative rounded-3xl cursor-pointer overflow-hidden border flex flex-col justify-between p-6 sm:p-9 select-none transition-all duration-300",
                 isActive ? "lg:flex-[2.4] shadow-2xl" : "lg:flex-[1] shadow-sm hover:shadow-md",
                 isActive && isHighlight
-                  ? "bg-gradient-to-b from-[#301A3F] to-[#20102B] text-[#FFFFF0] border-[#D97706]/70 shadow-[#472F5B]/20"
+                  ? "bg-gradient-to-b from-[#38183A] to-[#220D24] text-[#FFFFF0] border-[#D97706]/70 shadow-[#38183A]/20"
                   : isActive && !isHighlight
-                  ? "bg-[#FFFFFF] text-[#1F242D] border-[#472F5B]/40 shadow-xl"
+                  ? "bg-[#FFFFFF] text-[#1F242D] border-[#38183A]/40 shadow-xl"
                   : isHighlight
-                  ? "bg-gradient-to-b from-[#301A3F]/95 to-[#20102B]/95 text-[#FFFFF0]/90 border-[#472F5B]/30 hover:border-[#D97706]/50"
-                  : "bg-[#FFFFFF] text-[#1F242D] border-[#472F5B]/15 hover:border-[#472F5B]/35"
+                  ? "bg-gradient-to-b from-[#38183A]/95 to-[#220D24]/95 text-[#FFFFF0]/90 border-[#38183A]/30 hover:border-[#D97706]/50"
+                  : "bg-[#FFFFFF] text-[#1F242D] border-[#38183A]/15 hover:border-[#38183A]/35"
               )}
             >
-              {/* Badge de Destaque no topo para o plano Gestão */}
-              {isHighlight && (
-                <div className="absolute top-4 right-4 bg-[#D97706] text-white text-[9px] uppercase font-mono tracking-[0.22em] font-semibold px-3 py-1 rounded-full shadow-sm">
-                  PLANO RECOMENDADO
-                </div>
-              )}
-
               {/* CONTEÚDO DO CARD */}
               <div className="relative z-10 w-full">
                 
-                {/* Header do Card: Tag da Fórmula e Ícone */}
-                <div className="flex items-center justify-between gap-3 mb-5 pr-20">
+                {/* Header do Card: Tag da Fórmula e Selo Recomendado alinhados sem colisão */}
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
                   <span
                     className={cn(
                       "text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full inline-block",
                       isHighlight
                         ? "bg-white/10 text-[#D97706] border border-[#D97706]/30"
-                        : "bg-[#472F5B]/10 text-[#472F5B] border border-[#472F5B]/20"
+                        : "bg-[#38183A]/10 text-[#38183A] border border-[#38183A]/20"
                     )}
                   >
                     {plan.formula}
                   </span>
+
+                  {isHighlight && (
+                    <span className="bg-[#D97706] text-white text-[9px] uppercase font-mono tracking-[0.18em] font-semibold px-3 py-1 rounded-full shadow-sm">
+                      PLANO RECOMENDADO
+                    </span>
+                  )}
                 </div>
 
                 {/* Ícone e Título */}
@@ -249,7 +246,7 @@ export default function MachineXServiceCards({
                       "w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 mt-0.5",
                       isHighlight
                         ? "bg-white/10 text-[#D97706]"
-                        : "bg-[#472F5B]/10 text-[#472F5B]"
+                        : "bg-[#38183A]/10 text-[#38183A]"
                     )}
                   >
                     <IconComponent className="w-5 h-5 stroke-[2]" />
@@ -260,19 +257,19 @@ export default function MachineXServiceCards({
                       layout="position"
                       transition={SPRING_CONFIG}
                       className={cn(
-                        "font-serif font-light tracking-tight text-2xl sm:text-3xl",
+                        "font-serif font-light tracking-tight text-2xl sm:text-3xl leading-snug",
                         isHighlight ? "text-[#FFFFF0]" : "text-[#1F242D]"
                       )}
                     >
                       {plan.name}
                     </motion.h3>
-                    <p className={cn("text-xs font-medium mt-0.5", isHighlight ? "text-[#D97706]" : "text-[#472F5B]")}>
+                    <p className={cn("text-xs font-medium mt-0.5", isHighlight ? "text-[#D97706]" : "text-[#38183A]")}>
                       {plan.headline}
                     </p>
                   </div>
                 </div>
 
-                {/* Resumo do Plano (Sempre visível para nunca ficar em branco) */}
+                {/* Resumo do Plano */}
                 <p
                   className={cn(
                     "text-xs sm:text-sm font-normal leading-relaxed mt-4 mb-6",
@@ -284,23 +281,23 @@ export default function MachineXServiceCards({
 
                 {/* LISTA DE ENTREGAS (TOTAL SE ATIVO, COMPACTA SE INATIVO) */}
                 <div className="space-y-3 mb-8">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <span
                       className={cn(
                         "text-[10px] uppercase font-bold tracking-wider block",
-                        isHighlight ? "text-[#D97706]" : "text-[#472F5B]"
+                        isHighlight ? "text-[#D97706]" : "text-[#38183A]"
                       )}
                     >
                       {isActive ? "Entregáveis Inclusos:" : "Principais Destaques:"}
                     </span>
                     {!isActive && (
-                      <span className="text-[10px] text-current/60 font-semibold uppercase tracking-wider">
+                      <span className="text-[10px] text-current/60 font-semibold uppercase tracking-wider shrink-0">
                         + {plan.features.length - 3} itens
                       </span>
                     )}
                   </div>
 
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {(isActive ? plan.features : plan.features.slice(0, 3)).map((feature, idx) => (
                       <motion.li
                         key={idx}
@@ -314,14 +311,14 @@ export default function MachineXServiceCards({
                             "w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 shadow-2xs",
                             isHighlight
                               ? "bg-[#D97706] text-white"
-                              : "bg-[#472F5B]/10 text-[#472F5B]"
+                              : "bg-[#38183A]/10 text-[#38183A]"
                           )}
                         >
                           <Check className="w-3 h-3 stroke-[2.5]" />
                         </div>
                         <span
                           className={cn(
-                            "leading-tight font-medium",
+                            "leading-snug font-medium",
                             isHighlight ? "text-[#FFFFF0]/95" : "text-[#1F242D]"
                           )}
                         >
@@ -348,15 +345,15 @@ export default function MachineXServiceCards({
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className={cn(
-                        "w-full py-4 px-6 rounded-full text-xs uppercase tracking-[0.18em] font-semibold flex items-center justify-center gap-3 transition-all duration-300 shadow-md group cursor-pointer",
+                        "w-full py-4 px-5 rounded-full text-xs uppercase tracking-[0.15em] font-semibold flex items-center justify-center gap-2.5 transition-all duration-300 shadow-md group cursor-pointer text-center",
                         isHighlight
                           ? "bg-[#D97706] hover:bg-[#b86403] text-white shadow-[#D97706]/30 hover:scale-[1.02] active:scale-[0.98]"
-                          : "bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] shadow-[#472F5B]/25 hover:scale-[1.02] active:scale-[0.98]"
+                          : "bg-[#38183A] hover:bg-[#2B112D] text-[#FFFFF0] shadow-[#38183A]/25 hover:scale-[1.02] active:scale-[0.98]"
                       )}
                     >
-                      <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:rotate-12 transition-transform duration-300" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:rotate-12 transition-transform duration-300 shrink-0" />
                       <span>{plan.ctaText}</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 shrink-0" />
                     </a>
                   </motion.div>
                 ) : (
@@ -365,7 +362,7 @@ export default function MachineXServiceCards({
                     className="w-full py-3 px-4 rounded-full border border-current/20 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-current/5 transition-colors cursor-pointer"
                   >
                     <span>Ver Todas as Entregas</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <ChevronRight className="w-3.5 h-3.5 shrink-0" />
                   </button>
                 )}
               </div>
@@ -381,9 +378,9 @@ export default function MachineXServiceCards({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-12 bg-white rounded-3xl border border-[#472F5B]/15 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
+        className="mt-12 bg-white rounded-3xl border border-[#38183A]/15 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
       >
-        <div className="p-7 sm:p-9 border-b border-[#472F5B]/10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-[#FAF9F5]">
+        <div className="p-6 sm:p-9 border-b border-[#38183A]/10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-[#FAF9F5]">
           <div>
             <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D97706] block mb-1.5">
               COMPARAÇÃO OBJETIVA DE ESCOPO
@@ -397,11 +394,16 @@ export default function MachineXServiceCards({
           </span>
         </div>
 
+        <div className="px-6 py-2 bg-[#FAF9F5]/60 border-b border-[#38183A]/10 text-[11px] text-[#4B5262] sm:hidden flex items-center justify-between">
+          <span>Deslize para o lado para ver todos os planos</span>
+          <span className="text-[#38183A] font-semibold">→</span>
+        </div>
+
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[720px] text-xs sm:text-sm">
+          <table className="w-full text-left border-collapse min-w-[700px] text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-[#472F5B]/15 bg-white">
-                <th className="py-5 px-6 sm:px-8 font-bold uppercase tracking-wider text-[11px] text-[#472F5B] w-[22%]">
+              <tr className="border-b border-[#38183A]/15 bg-white">
+                <th className="py-5 px-6 sm:px-8 font-bold uppercase tracking-wider text-[11px] text-[#38183A] w-[22%]">
                   Critério Prático
                 </th>
                 <th
@@ -411,13 +413,13 @@ export default function MachineXServiceCards({
                   }}
                   className={cn(
                     "py-5 px-6 cursor-pointer transition-colors duration-300 w-[26%]",
-                    activeId === "bpo" ? "bg-[#472F5B]/5" : "hover:bg-[#FAF9F5]"
+                    activeId === "bpo" ? "bg-[#38183A]/5" : "hover:bg-[#FAF9F5]"
                   )}
                 >
                   <span className="font-serif text-xl font-normal text-[#1F242D] block">
                     BPO Financeiro
                   </span>
-                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#472F5B] mt-1">
+                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#38183A] mt-1">
                     Processo Padrão
                   </span>
                 </th>
@@ -431,7 +433,7 @@ export default function MachineXServiceCards({
                     activeId === "assistencia" ? "bg-[#D97706]/10" : "bg-[#D97706]/5 hover:bg-[#D97706]/10"
                   )}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="font-serif text-xl font-medium text-[#1F242D]">
                       Assistência Virtual
                     </span>
@@ -450,19 +452,19 @@ export default function MachineXServiceCards({
                   }}
                   className={cn(
                     "py-5 px-6 cursor-pointer transition-colors duration-300 w-[26%]",
-                    activeId === "gestao" ? "bg-[#472F5B]/5" : "hover:bg-[#FAF9F5]"
+                    activeId === "gestao" ? "bg-[#38183A]/5" : "hover:bg-[#FAF9F5]"
                   )}
                 >
                   <span className="font-serif text-xl font-normal text-[#1F242D] block">
                     Gestão Estratégica
                   </span>
-                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#472F5B] mt-1">
+                  <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#38183A] mt-1">
                     Padrão + Suporte + Análise
                   </span>
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#472F5B]/10 text-[#4B5262] leading-relaxed">
+            <tbody className="divide-y divide-[#38183A]/10 text-[#4B5262] leading-relaxed">
               {[
                 {
                   criterion: "Para quem é indicado",
@@ -473,20 +475,20 @@ export default function MachineXServiceCards({
                 {
                   criterion: "O que a Favo executa",
                   bpo: "Organiza contas no sistema, concilia extratos diariamente (D+1) e fecha o mês.",
-                  assistencia: "Tudo do BPO + agenda pagamentos no banco, emite NFS-e/boletos, controla cartões e inadimplência.",
-                  gestao: "Tudo da Assistência + capta documentos de fornecedores, projeta fluxo futuro e elabora metas.",
+                  assistencia: "Tudo do BPO + agenda pagamentos no banco, emite NFS-e/boletos, capta documentos de fornecedores, controla cartões e inadimplência.",
+                  gestao: "Tudo da Assistência + projetar fluxo futuro e elaborar metas.",
                 },
                 {
                   criterion: "O que fica a cargo do cliente",
                   bpo: "Enviar documentos, agendar e pagar as contas no banco a partir do relatório semanal da Favo.",
                   assistencia: "Apenas conferir e aprovar com 1 clique no app do banco os pagamentos já agendados pela Favo.",
-                  gestao: "Aprovar os agendamentos no app do banco e participar da tomada de decisão estratégica mensal.",
+                  gestao: "Apenas conferir e aprovar com 1 clique no app do banco os pagamentos já agendados pela Favo.",
                 },
                 {
                   criterion: "Frequência de relatórios e reuniões",
                   bpo: "Relatórios semanais de contas a pagar/receber + fechamento mensal escrito.",
-                  assistencia: "Relatórios semanais + DRE mensal + Reunião mensal de apresentação de resultados.",
-                  gestao: "Relatórios semanais + DRE, gráficos e projeções + Reunião mensal de planejamento e resultados.",
+                  assistencia: "Relatórios semanais + DFC mensal + Reunião mensal de apresentação de resultados.",
+                  gestao: "Relatórios semanais + DFC mensal, gráficos e projeções + Reunião mensal de planejamento e resultados.",
                 },
               ].map((row, idx) => (
                 <motion.tr
@@ -504,7 +506,7 @@ export default function MachineXServiceCards({
                     onClick={() => setActiveId("bpo")}
                     className={cn(
                       "py-5 px-6 align-top cursor-pointer transition-colors duration-300",
-                      activeId === "bpo" && "bg-[#472F5B]/[0.03] text-[#1F242D]"
+                      activeId === "bpo" && "bg-[#38183A]/[0.03] text-[#1F242D]"
                     )}
                   >
                     {row.bpo}
@@ -522,7 +524,7 @@ export default function MachineXServiceCards({
                     onClick={() => setActiveId("gestao")}
                     className={cn(
                       "py-5 px-6 align-top cursor-pointer transition-colors duration-300",
-                      activeId === "gestao" && "bg-[#472F5B]/[0.03] text-[#1F242D]"
+                      activeId === "gestao" && "bg-[#38183A]/[0.03] text-[#1F242D]"
                     )}
                   >
                     {row.gestao}
@@ -535,7 +537,7 @@ export default function MachineXServiceCards({
       </motion.div>
 
       {/* SERVIÇOS ESPECÍFICOS & IMPLEMENTAÇÃO */}
-      <div className="mt-12 pt-10 border-t border-[#472F5B]/15">
+      <div className="mt-12 pt-10 border-t border-[#38183A]/15">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -560,10 +562,10 @@ export default function MachineXServiceCards({
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -5 }}
-              className="p-7 rounded-3xl bg-white border border-[#472F5B]/15 hover:border-[#472F5B]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="p-6 sm:p-7 rounded-3xl bg-white border border-[#38183A]/15 hover:border-[#38183A]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <span className="inline-block px-3 py-1 rounded-full bg-[#472F5B]/10 text-[10px] font-bold uppercase tracking-wider text-[#472F5B] mb-4">
+                <span className="inline-block px-3 py-1 rounded-full bg-[#38183A]/10 text-[10px] font-bold uppercase tracking-wider text-[#38183A] mb-4">
                   {srv.tag}
                 </span>
                 <h4 className="text-xl sm:text-2xl font-serif font-normal text-[#1F242D] mb-3">
@@ -578,11 +580,11 @@ export default function MachineXServiceCards({
                 href={buildWhatsappUrl(srv.whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-5 rounded-full bg-[#FAF9F5] hover:bg-[#472F5B] text-[#472F5B] hover:text-[#FFFFF0] border border-[#472F5B]/20 hover:border-[#472F5B] text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all duration-300 group"
+                className="w-full py-3.5 px-5 rounded-full bg-[#FAF9F5] hover:bg-[#38183A] text-[#38183A] hover:text-[#FFFFF0] border border-[#38183A]/20 hover:border-[#38183A] text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all duration-300 group"
               >
-                <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
                 <span>Solicitar este Serviço</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform shrink-0" />
               </a>
             </motion.div>
           ))}

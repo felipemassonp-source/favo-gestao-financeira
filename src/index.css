@@ -2,22 +2,62 @@
 
 @theme {
   --font-sans: "Montserrat", sans-serif;
-  --font-serif: "Cormorant Garamond", serif;
+  --font-serif: "Lora", Georgia, serif;
   --font-mono: "Montserrat", sans-serif;
-  --color-berinjela: #472F5B;
-  --color-berinjela-dark: #321B42;
-  --color-berinjela-light: #5C3D74;
+  --color-berinjela: #38183A;
+  --color-berinjela-dark: #2B112D;
+  --color-berinjela-light: #4E2351;
   --color-grafite: #1F242D;
   --color-grafite-muted: #333A48;
   --color-offwhite: #FFFFF0;
   --color-offwhite-alt: #FAF9F5;
   --color-dourado: #D97706;
+
+  /* Escala tipográfica ampliada para leitura confortável em todos os blocos e campos */
+  --text-xs: 0.86rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.955rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.325rem;
+  --text-xl--line-height: 1.45;
 }
 
 body {
   background-color: #FFFFF0;
   color: #1F242D;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Melhoria de legibilidade e peso nos títulos serifados (evita traços finos demais) */
+.font-serif {
+  letter-spacing: -0.01em;
+}
+
+.font-serif.font-light,
+.font-serif.font-normal {
+  font-weight: 500;
+}
+
+/* Ampliação automática de micro-textos (tags, selos, labels e subtítulos) */
+.text-\[9px\],
+.text-\[9\.5px\] {
+  font-size: 0.75rem !important;
+  line-height: 1.35 !important;
+}
+
+.text-\[10px\],
+.text-\[10\.5px\] {
+  font-size: 0.8rem !important;
+  line-height: 1.4 !important;
+}
+
+.text-\[11px\] {
+  font-size: 0.85rem !important;
+  line-height: 1.45 !important;
 }
 
 /* Contraste aprimorado para leitura nítida sobre o fundo creme (#FFFFF0) */
@@ -27,7 +67,7 @@ body {
 }
 
 .bg-honeycomb {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 96 L56 80 L56 48 L28 64 L0 48 L0 80 Z' fill='none' stroke='%23472F5B' stroke-width='1' stroke-opacity='0.05'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 96 L56 80 L56 48 L28 64 L0 48 L0 80 Z' fill='none' stroke='%2338183A' stroke-width='1' stroke-opacity='0.05'/%3E%3C/svg%3E");
 }
 
 .bg-honeycomb-amber {

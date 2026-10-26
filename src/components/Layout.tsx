@@ -79,7 +79,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [location.pathname, location.hash]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fffff0] text-[#472f5b] font-sans selection:bg-[#D8B36B]/30 relative">
+    <div className="flex flex-col min-h-screen bg-[#fffff0] text-[#38183A] font-sans selection:bg-[#D8B36B]/30 relative">
       {/* Noise Texture Overlay */}
       <div 
         className="fixed inset-0 pointer-events-none z-[9998] opacity-[0.04] mix-blend-multiply" 

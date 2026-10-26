@@ -203,7 +203,7 @@ export default function LeadCaptureForm({
   const questions = selectedService === "consultoria" ? consultoriaQuestions : bpoQuestions;
 
   return (
-    <div className="w-full max-w-5xl mx-auto rounded-[2.5rem] bg-gradient-to-br from-[#301A3F] via-[#472F5B] to-[#20102B] text-[#FFFFF0] shadow-2xl relative overflow-hidden border border-[#472F5B]/40 p-8 sm:p-14" id="formulario">
+    <div className="w-full max-w-5xl mx-auto rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-[#38183A] via-[#38183A] to-[#220D24] text-[#FFFFF0] shadow-2xl relative overflow-hidden border border-[#38183A]/40 p-5 sm:p-10 md:p-14" id="formulario">
       {/* Decorative Glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#D97706]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
@@ -236,8 +236,8 @@ export default function LeadCaptureForm({
       </div>
 
       {/* Form Container */}
-      <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 sm:p-12 text-[#1F242D] shadow-xl relative z-10 border border-white/20">
-        <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#472F5B]/10">
+      <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-10 md:p-12 text-[#1F242D] shadow-xl relative z-10 border border-white/20">
+        <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#38183A]/10">
           <div>
             <span className="text-[#D97706] text-[10px] uppercase tracking-[0.3em] font-semibold block mb-1">
               {step <= 2 ? `Passo ${step} de 2` : "Solicitação Recebida"}
@@ -248,7 +248,7 @@ export default function LeadCaptureForm({
           </div>
           <div className="text-xs text-[#4B5262] font-medium hidden sm:block text-right">
             <span className="block">{step === 1 ? "Preenchimento rápido (1 min)" : step === 2 ? "Quase lá!" : "Confirmação Registrada"}</span>
-            <span className="text-[11px] text-[#472F5B]">
+            <span className="text-[11px] text-[#38183A]">
               Retorno em até 1 dia útil • Sem compromisso
             </span>
           </div>
@@ -259,7 +259,7 @@ export default function LeadCaptureForm({
             
             {/* SELETOR DE SOLUÇÃO DE INTERESSE */}
             <div className="space-y-2">
-              <label className="text-xs uppercase tracking-widest font-semibold text-[#472F5B] block">
+              <label className="text-xs uppercase tracking-widest font-semibold text-[#38183A] block">
                 Solução de Interesse:
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
@@ -274,8 +274,8 @@ export default function LeadCaptureForm({
                       className={cn(
                         "p-3 rounded-xl border text-left transition-all duration-300",
                         isSelected
-                          ? "bg-[#472F5B] text-[#FFFFF0] border-[#472F5B] shadow-md"
-                          : "bg-[#FAF9F5] text-[#1F242D] border-[#472F5B]/15 hover:border-[#472F5B]/40"
+                          ? "bg-[#38183A] text-[#FFFFF0] border-[#38183A] shadow-md"
+                          : "bg-[#FAF9F5] text-[#1F242D] border-[#38183A]/15 hover:border-[#38183A]/40"
                       )}
                     >
                       <span className={cn("text-xs font-semibold block", isSelected ? "text-[#FFFFF0]" : "text-[#1F242D]")}>
@@ -298,7 +298,7 @@ export default function LeadCaptureForm({
                   type="text"
                   value={formData.nome}
                   onChange={(e) => setFormData({...formData, nome: e.target.value})}
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#472F5B] transition-colors"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#38183A] transition-colors"
                   placeholder="Seu nome"
                 />
               </div>
@@ -309,7 +309,7 @@ export default function LeadCaptureForm({
                   type="tel"
                   value={formData.whatsapp}
                   onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#472F5B] transition-colors"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#38183A] transition-colors"
                   placeholder="(00) 00000-0000"
                 />
               </div>
@@ -323,7 +323,7 @@ export default function LeadCaptureForm({
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#472F5B] transition-colors"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#38183A] transition-colors"
                   placeholder="seu@email.com.br"
                 />
               </div>
@@ -334,7 +334,7 @@ export default function LeadCaptureForm({
                   type="text"
                   value={formData.empresa}
                   onChange={(e) => setFormData({...formData, empresa: e.target.value})}
-                  className="w-full bg-[#FAF9F5] border border-[#472F5B]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#472F5B] transition-colors"
+                  className="w-full bg-[#FAF9F5] border border-[#38183A]/20 rounded-xl px-4 py-3.5 text-sm text-[#1F242D] placeholder:text-[#4B5262]/60 focus:outline-none focus:border-[#38183A] transition-colors"
                   placeholder="Sua marca ou negócio"
                 />
               </div>
@@ -345,7 +345,7 @@ export default function LeadCaptureForm({
                 <Lock className="w-3.5 h-3.5 text-[#D97706] shrink-0 mt-0.5" />
                 <span>
                   Seus dados são usados exclusivamente para elaborar seu diagnóstico e retornar pelo WhatsApp/e-mail.{" "}
-                  <Link to="/privacidade" className="text-[#472F5B] font-semibold underline hover:text-[#D97706]">
+                  <Link to="/privacidade" className="text-[#38183A] font-semibold underline hover:text-[#D97706]">
                     Política de Privacidade (LGPD)
                   </Link>
                   .
@@ -353,7 +353,7 @@ export default function LeadCaptureForm({
               </p>
               <button 
                 type="submit"
-                className="inline-flex items-center justify-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all shrink-0 cursor-pointer"
+                className="inline-flex items-center justify-center gap-3 bg-[#38183A] hover:bg-[#2B112D] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all shrink-0 cursor-pointer"
               >
                 Próximo Passo <ArrowRight className="w-4 h-4" />
               </button>
@@ -364,10 +364,10 @@ export default function LeadCaptureForm({
         {step === 2 && (
           <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
             {/* Resumo dos dados preenchidos no Passo 1 */}
-            <div className="p-4 rounded-2xl bg-[#472F5B]/5 border border-[#472F5B]/15 space-y-2 text-xs">
-              <div className="flex items-center justify-between">
+            <div className="p-4 rounded-2xl bg-[#38183A]/5 border border-[#38183A]/15 space-y-2 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-[#4B5262]">
-                  Plano selecionado: <strong className="text-[#472F5B]">{serviceLabels[selectedService].name}</strong> ({serviceLabels[selectedService].formula})
+                  Plano selecionado: <strong className="text-[#38183A]">{serviceLabels[selectedService].name}</strong> ({serviceLabels[selectedService].formula})
                 </span>
                 <button
                   type="button"
@@ -377,7 +377,7 @@ export default function LeadCaptureForm({
                   Editar Dados
                 </button>
               </div>
-              <div className="pt-2 border-t border-[#472F5B]/10 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-[#4B5262]">
+              <div className="pt-2 border-t border-[#38183A]/10 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-[#4B5262]">
                 <span><strong>Nome:</strong> {formData.nome}</span>
                 <span><strong>Empresa:</strong> {formData.empresa}</span>
                 <span><strong>WhatsApp:</strong> {formData.whatsapp}</span>
@@ -399,8 +399,8 @@ export default function LeadCaptureForm({
                     className={cn(
                       "text-left p-4 text-xs font-normal tracking-wide border rounded-xl transition-all duration-300",
                       formData.dorPrincipal === opt 
-                        ? "border-[#472F5B] bg-[#472F5B]/10 text-[#472F5B] font-medium shadow-xs" 
-                        : "border-[#472F5B]/15 text-[#4B5262] hover:border-[#472F5B]/40 bg-white"
+                        ? "border-[#38183A] bg-[#38183A]/10 text-[#38183A] font-medium shadow-xs" 
+                        : "border-[#38183A]/15 text-[#4B5262] hover:border-[#38183A]/40 bg-white"
                     )}
                   >
                     {opt}
@@ -423,8 +423,8 @@ export default function LeadCaptureForm({
                     className={cn(
                       "text-left p-4 text-xs font-normal tracking-wide border rounded-xl transition-all duration-300",
                       formData.volumeOuControle === opt 
-                        ? "border-[#472F5B] bg-[#472F5B]/10 text-[#472F5B] font-medium shadow-xs" 
-                        : "border-[#472F5B]/15 text-[#4B5262] hover:border-[#472F5B]/40 bg-white"
+                        ? "border-[#38183A] bg-[#38183A]/10 text-[#38183A] font-medium shadow-xs" 
+                        : "border-[#38183A]/15 text-[#4B5262] hover:border-[#38183A]/40 bg-white"
                     )}
                   >
                     {opt}
@@ -440,7 +440,7 @@ export default function LeadCaptureForm({
                   Resumo do seu Diagnóstico
                 </span>
                 <p className="text-[#1F242D]">
-                  <strong>{formData.nome}</strong> ({formData.empresa}) • Plano: <strong className="text-[#472F5B]">{serviceLabels[selectedService].name}</strong>
+                  <strong>{formData.nome}</strong> ({formData.empresa}) • Plano: <strong className="text-[#38183A]">{serviceLabels[selectedService].name}</strong>
                 </p>
                 {formData.dorPrincipal && (
                   <p className="text-[#4B5262]">
@@ -456,18 +456,18 @@ export default function LeadCaptureForm({
             )}
 
             <div className="pt-6 space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <button 
                   type="button"
                   onClick={handlePrev}
-                  className="px-6 py-3.5 border border-[#472F5B]/20 text-[#472F5B] hover:bg-[#472F5B]/5 rounded-full transition-colors flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3.5 border border-[#38183A]/20 text-[#38183A] hover:bg-[#38183A]/5 rounded-full transition-colors flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wider cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" /> Voltar
                 </button>
                 <button 
                   type="submit"
                   disabled={!formData.dorPrincipal || !formData.volumeOuControle}
-                  className="inline-flex items-center gap-3 bg-[#472F5B] hover:bg-[#361F48] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="inline-flex items-center justify-center gap-3 bg-[#38183A] hover:bg-[#2B112D] text-[#FFFFF0] px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-full shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   Enviar Avaliação <ArrowRight className="w-4 h-4" />
                 </button>
@@ -476,7 +476,7 @@ export default function LeadCaptureForm({
                 <Lock className="w-3.5 h-3.5 text-[#D97706] shrink-0" />
                 <span>
                   Após o envio, você verá o resumo das suas respostas e poderá avançar no WhatsApp.{" "}
-                  <Link to="/privacidade" className="text-[#472F5B] font-semibold underline hover:text-[#D97706]">
+                  <Link to="/privacidade" className="text-[#38183A] font-semibold underline hover:text-[#D97706]">
                     Política de Privacidade
                   </Link>
                 </span>
@@ -510,9 +510,9 @@ export default function LeadCaptureForm({
             </div>
 
             {/* Aviso Destacado Solicitado */}
-            <div className="w-full bg-[#FAF9F5] border border-[#472F5B]/15 rounded-3xl p-6 sm:p-8 text-left shadow-xs relative overflow-hidden">
+            <div className="w-full bg-[#FAF9F5] border border-[#38183A]/15 rounded-3xl p-6 sm:p-8 text-left shadow-xs relative overflow-hidden">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#472F5B] text-[#FFFFF0] flex items-center justify-center shrink-0 shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-[#38183A] text-[#FFFFF0] flex items-center justify-center shrink-0 shadow-sm">
                   <ShieldCheck className="w-5 h-5 text-[#D97706]" />
                 </div>
                 <div className="space-y-2.5">
@@ -526,7 +526,7 @@ export default function LeadCaptureForm({
               </div>
 
               {/* Informação adicional de retorno */}
-              <div className="mt-6 pt-4 border-t border-[#472F5B]/10 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#4B5262]">
+              <div className="mt-6 pt-4 border-t border-[#38183A]/10 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#4B5262]">
                 <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-[#25D366]" />
                   <span>Retorno via <strong>WhatsApp</strong></span>
@@ -540,11 +540,11 @@ export default function LeadCaptureForm({
 
             {/* Se for consultoria e tiver perfil classificado */}
             {selectedService === "consultoria" && getClassification() && (
-              <div className="bg-[#472F5B]/5 border border-[#472F5B]/15 rounded-2xl p-5 w-full text-left">
+              <div className="bg-[#38183A]/5 border border-[#38183A]/15 rounded-2xl p-5 w-full text-left">
                 <span className="text-[#D97706] text-[10px] uppercase tracking-[0.2em] font-semibold block mb-1">
                   Diagnóstico Preliminar
                 </span>
-                <h5 className="text-sm font-serif text-[#472F5B] font-semibold mb-1">
+                <h5 className="text-sm font-serif text-[#38183A] font-semibold mb-1">
                   {getClassification()?.tag}
                 </h5>
                 <p className="text-xs font-normal text-[#4B5262] leading-relaxed">
@@ -580,7 +580,7 @@ export default function LeadCaptureForm({
                   });
                   setStep(1);
                 }}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-[#472F5B]/20 text-xs uppercase tracking-wider text-[#472F5B] hover:bg-[#472F5B]/5 font-semibold transition-all"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-[#38183A]/20 text-xs uppercase tracking-wider text-[#38183A] hover:bg-[#38183A]/5 font-semibold transition-all"
               >
                 Nova Solicitação
               </button>

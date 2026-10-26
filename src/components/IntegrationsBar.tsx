@@ -159,7 +159,7 @@ export default function IntegrationsBar() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full bg-[#FFFFF0] border-y border-[#472F5B]/15 py-10 md:py-14 overflow-hidden relative"
+      className="w-full bg-[#FFFFF0] border-y border-[#38183A]/15 py-10 md:py-14 overflow-hidden relative"
       aria-label="Integrações e Ecossistema"
     >
       {/* Decorative gradient masks for smooth marquee fading on left and right */}
@@ -168,8 +168,8 @@ export default function IntegrationsBar() {
 
       <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
         <div className="inline-flex items-center gap-2 mb-3">
-          <Layers className="w-3.5 h-3.5 text-[#472F5B]" />
-          <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-[#472F5B] bg-[#472F5B]/10 px-3 py-1 rounded-full border border-[#472F5B]/20">
+          <Layers className="w-3.5 h-3.5 text-[#38183A]" />
+          <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-[#38183A] bg-[#38183A]/10 px-3 py-1 rounded-full border border-[#38183A]/20">
             Conectividade Total
           </span>
         </div>
@@ -191,13 +191,13 @@ export default function IntegrationsBar() {
           {integrations.map((item, idx) => (
             <div 
               key={`logo-1-${idx}`}
-              className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-[#472F5B]/15 bg-white text-[#472F5B] hover:text-[#361F48] hover:border-[#472F5B]/50 hover:bg-[#FFFFFF] hover:shadow-md transition-all duration-300 shrink-0 cursor-default"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-[#38183A]/15 bg-white text-[#38183A] hover:text-[#2B112D] hover:border-[#38183A]/50 hover:bg-[#FFFFFF] hover:shadow-md transition-all duration-300 shrink-0 cursor-default"
               title={`${item.name} - ${item.tag}`}
             >
               <div className="transition-transform duration-300 group-hover:scale-105">
                 {item.svg()}
               </div>
-              <span className="text-[9px] uppercase tracking-wider text-[#472F5B] font-semibold bg-[#472F5B]/10 px-2 py-0.5 rounded-md hidden sm:inline-block">
+              <span className="text-[9px] uppercase tracking-wider text-[#38183A] font-semibold bg-[#38183A]/10 px-2 py-0.5 rounded-md hidden sm:inline-block">
                 {item.tag}
               </span>
             </div>
@@ -207,14 +207,14 @@ export default function IntegrationsBar() {
           {integrations.map((item, idx) => (
             <div 
               key={`logo-2-${idx}`}
-              className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-[#472F5B]/15 bg-white text-[#472F5B] hover:text-[#361F48] hover:border-[#472F5B]/50 hover:bg-[#FFFFFF] hover:shadow-md transition-all duration-300 shrink-0 cursor-default"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-[#38183A]/15 bg-white text-[#38183A] hover:text-[#2B112D] hover:border-[#38183A]/50 hover:bg-[#FFFFFF] hover:shadow-md transition-all duration-300 shrink-0 cursor-default"
               title={`${item.name} - ${item.tag}`}
               aria-hidden="true"
             >
               <div className="transition-transform duration-300 group-hover:scale-105">
                 {item.svg()}
               </div>
-              <span className="text-[9px] uppercase tracking-wider text-[#472F5B] font-semibold bg-[#472F5B]/10 px-2 py-0.5 rounded-md hidden sm:inline-block">
+              <span className="text-[9px] uppercase tracking-wider text-[#38183A] font-semibold bg-[#38183A]/10 px-2 py-0.5 rounded-md hidden sm:inline-block">
                 {item.tag}
               </span>
             </div>
@@ -225,12 +225,12 @@ export default function IntegrationsBar() {
       {/* Trust pill footer below logos */}
       <div className="mt-8 flex flex-wrap items-center justify-center gap-6 px-6 text-[11px] text-[#4B5262] font-normal">
         <span className="inline-flex items-center gap-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#472F5B]" />
+          <ShieldCheck className="w-3.5 h-3.5 text-[#38183A]" />
           Acesso bancário 100% secundário (apenas leitura e conciliação)
         </span>
-        <span className="hidden md:inline text-[#472F5B]/30">•</span>
+        <span className="hidden md:inline text-[#38183A]/30">•</span>
         <span className="inline-flex items-center gap-1.5">
-          <CheckCircle2 className="w-3.5 h-3.5 text-[#472F5B]" />
+          <CheckCircle2 className="w-3.5 h-3.5 text-[#38183A]" />
           Importação automática diária de extratos e gateways
         </span>
       </div>

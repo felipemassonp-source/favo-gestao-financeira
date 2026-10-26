@@ -24,19 +24,19 @@ const ROUTE_SEO: Record<string, PageSEOConfig> = {
   "/gestao-financeira": {
     title: "BPO Financeiro, Assistência Virtual e Gestão Estratégica | Favo Gestão Financeira",
     description:
-      "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DRE gerencial e implementação Conta Azul.",
+      "Delegue sua rotina financeira com segurança: contas a pagar e receber, agendamento bancário, emissão de notas fiscais e boletos, conciliação diária, DFC mensal e implementação Conta Azul.",
     keywords:
       "BPO financeiro para empresas, assistência financeira virtual, terceirizar financeiro, gestão de contas a pagar e receber, conciliação bancária diária, emissão de notas fiscais e boletos, implementação Conta Azul, gestão financeira terceirizada",
     canonical: `${BASE_URL}/gestao-financeira`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
-  "/consultoria": {
-    title: "Consultoria Financeira Empresarial e Diagnóstico Raio-X | Favo Gestão Financeira",
+  "/perguntas-frequentes": {
+    title: "Perguntas Frequentes sobre BPO e Gestão Financeira | Favo Gestão Financeira",
     description:
-      "Consultoria financeira empresarial de 08 semanas com 04 encontros ao vivo e 60 dias de suporte no WhatsApp. Identificação de gargalos, mapeamento de processos, Raio-X financeiro e mapa estratégico.",
+      "Tire suas dúvidas sobre segurança bancária, diferença entre BPO, Assistência Financeira e Gestão Financeira, sistemas utilizados, prazos e propriedade dos seus dados na Favo.",
     keywords:
-      "consultoria financeira empresarial, diagnóstico financeiro empresarial, raio-x financeiro, consultor financeiro para empresas, organizar financeiro da empresa, fluxo de caixa empresarial, mapa estratégico financeiro",
-    canonical: `${BASE_URL}/consultoria`,
+      "dúvidas BPO financeiro, como funciona terceirização financeira, diferença BPO e gestão financeira, segurança BPO financeiro, perguntas frequentes Favo Gestão Financeira",
+    canonical: `${BASE_URL}/perguntas-frequentes`,
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   "/privacidade": {
@@ -110,7 +110,6 @@ export default function SEO() {
     }
     canonicalEl.setAttribute("href", config.canonical);
 
-    // Captura de parâmetros de campanha do Google Ads (UTM + GCLID)
     try {
       const params = new URLSearchParams(location.search);
       const trackedKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"];

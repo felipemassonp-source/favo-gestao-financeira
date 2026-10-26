@@ -218,7 +218,7 @@ export default function BeeCursor() {
           {/* Célula roxa na ponta da asa superior esquerda (fiel à logo) */}
           <path
             d="M5.2 19.2C7.8 18.2 11.4 18.5 14.5 19.8L11.8 24.2L6.2 25.2C4 23 3.6 20 5.2 19.2Z"
-            fill="#472F5B"
+            fill="#38183A"
           />
           {/* Veios geométricos internos da asa superior esquerda */}
           <path
@@ -241,7 +241,7 @@ export default function BeeCursor() {
           {/* Detalhe roxo na ponta da asa inferior esquerda */}
           <path
             d="M14.3 37.2L19.2 36.8L20.8 40.4C17.4 41.9 14.1 40.2 14.3 37.2Z"
-            fill="#472F5B"
+            fill="#38183A"
           />
           <path
             d="M19.2 36.8L23.5 33.5M19.2 36.8L16.5 34.2"
@@ -265,7 +265,7 @@ export default function BeeCursor() {
           {/* Célula roxa na ponta da asa superior direita */}
           <path
             d="M58.8 19.2C56.2 18.2 52.6 18.5 49.5 19.8L52.2 24.2L57.8 25.2C60 23 60.4 20 58.8 19.2Z"
-            fill="#472F5B"
+            fill="#38183A"
           />
           {/* Veios geométricos internos da asa superior direita */}
           <path
@@ -288,7 +288,7 @@ export default function BeeCursor() {
           {/* Detalhe roxo na ponta da asa inferior direita */}
           <path
             d="M49.7 37.2L44.8 36.8L43.2 40.4C46.6 41.9 49.9 40.2 49.7 37.2Z"
-            fill="#472F5B"
+            fill="#38183A"
           />
           <path
             d="M44.8 36.8L40.5 33.5M44.8 36.8L47.5 34.2"
@@ -345,7 +345,7 @@ export default function BeeCursor() {
         />
         <path
           d="M27.1 36.8C30.3 38.2 33.7 38.2 36.9 36.8"
-          stroke="#472F5B"
+          stroke="#38183A"
           strokeWidth="1.45"
           strokeLinecap="round"
         />

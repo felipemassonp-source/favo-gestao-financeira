@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /gestao-financeira
-Allow: /consultoria
+Allow: /perguntas-frequentes
 Allow: /privacidade
 Disallow: /admin
 Disallow: /obrigado
@@ -9,14 +9,14 @@ Disallow: /obrigado
 User-agent: AdsBot-Google
 Allow: /
 Allow: /gestao-financeira
-Allow: /consultoria
+Allow: /perguntas-frequentes
 Allow: /obrigado
 Disallow: /admin
 
 User-agent: AdsBot-Google-Mobile
 Allow: /
 Allow: /gestao-financeira
-Allow: /consultoria
+Allow: /perguntas-frequentes
 Allow: /obrigado
 Disallow: /admin
 

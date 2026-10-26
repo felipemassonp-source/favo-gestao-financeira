@@ -6,12 +6,13 @@ interface LogoProps {
   className?: string;
   variant?: "light" | "dark";
   size?: "md" | "lg";
+  onlySymbol?: boolean;
 }
 
-export default function Logo({ className, variant = "dark", size = "md" }: LogoProps) {
+export default function Logo({ className, variant = "dark", size = "md", onlySymbol = false }: LogoProps) {
   const [imgError, setImgError] = useState(false);
-  const textColor = variant === "dark" ? "text-[#472F5B]" : "text-[#FFFFF0]";
-  const logoSrc = "/logo-favo.png";
+  const textColor = variant === "dark" ? "text-[#38183A]" : "text-[#FFFFF0]";
+  const logoSrc = onlySymbol ? "/logo-abelha.png" : "/logo-favo.png";
 
   if (!imgError) {
     return (
@@ -22,7 +23,7 @@ export default function Logo({ className, variant = "dark", size = "md" }: LogoP
           onError={() => setImgError(true)}
           className={cn(
             "w-auto object-contain transition-transform duration-300 group-hover:scale-105",
-            size === "lg" ? "h-16 md:h-20" : "h-14 md:h-16"
+            onlySymbol ? "h-11 md:h-14" : size === "lg" ? "h-16 md:h-20" : "h-14 md:h-16"
           )}
         />
       </div>
@@ -34,7 +35,7 @@ export default function Logo({ className, variant = "dark", size = "md" }: LogoP
       <div className="relative flex items-center justify-center">
         <Hexagon 
           strokeWidth={1.75} 
-          className="w-8 h-8 text-[#472F5B] fill-[#472F5B]/10 transition-transform duration-300 group-hover:rotate-12" 
+          className="w-8 h-8 text-[#38183A] fill-[#38183A]/10 transition-transform duration-300 group-hover:rotate-12" 
         />
         <div className={cn(
           "absolute w-2 h-2 rounded-full",

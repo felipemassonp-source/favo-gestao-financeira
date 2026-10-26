@@ -47,10 +47,10 @@ export default function ConsultingTimeline() {
   return (
     <div ref={containerRef} className="relative w-full max-w-4xl mx-auto py-10 mt-10">
       {/* Background Static Line */}
-      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[1px] bg-[#472F5B]/15 -translate-x-1/2"></div>
+      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[1px] bg-[#38183A]/15 -translate-x-1/2"></div>
       
       {/* Subtle Warm Accent Line */}
-      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#D97706] via-[#472F5B]/30 to-[#25D366] -translate-x-1/2 opacity-70"></div>
+      <div className="absolute left-[27px] md:left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#D97706] via-[#38183A]/30 to-[#25D366] -translate-x-1/2 opacity-70"></div>
 
       <div className="space-y-16">
         {timelineSteps.map((step, idx) => {
@@ -70,13 +70,13 @@ export default function ConsultingTimeline() {
                 {step.highlight ? (
                   <MessageCircle className="w-5 h-5 text-[#25D366]" strokeWidth={2} />
                 ) : (
-                  <span className="text-xs font-serif font-bold text-[#472F5B]">{idx + 1}</span>
+                  <span className="text-xs font-serif font-bold text-[#38183A]">{idx + 1}</span>
                 )}
               </div>
 
               {/* Content Card */}
               <div className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? 'md:pl-10 text-left' : 'md:pr-10 md:text-right'}`}>
-                <div className={`p-6 sm:p-8 rounded-2xl bg-white border ${step.highlight ? 'border-[#25D366]/40 shadow-lg' : 'border-[#472F5B]/15 shadow-sm'} hover:shadow-md transition-shadow relative overflow-hidden`}>
+                <div className={`p-6 sm:p-8 rounded-2xl bg-white border ${step.highlight ? 'border-[#25D366]/40 shadow-lg' : 'border-[#38183A]/15 shadow-sm'} hover:shadow-md transition-shadow relative overflow-hidden`}>
                   {step.highlight && (
                     <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#25D366]/10 to-transparent rounded-full pointer-events-none" />
                   )}
